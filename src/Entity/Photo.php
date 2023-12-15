@@ -16,6 +16,9 @@ class Photo
     #[ORM\Column(length: 255)]
     private ?string $image = null;
 
+    #[ORM\ManyToOne(inversedBy: 'idPhoto')]
+    private ?FicheProduit $ficheProduit = null;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -29,6 +32,18 @@ class Photo
     public function setImage(string $image): static
     {
         $this->image = $image;
+
+        return $this;
+    }
+
+    public function getFicheProduit(): ?FicheProduit
+    {
+        return $this->ficheProduit;
+    }
+
+    public function setFicheProduit(?FicheProduit $ficheProduit): static
+    {
+        $this->ficheProduit = $ficheProduit;
 
         return $this;
     }

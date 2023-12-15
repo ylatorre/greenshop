@@ -3,6 +3,8 @@
 namespace App\Entity;
 
 use App\Repository\EcoScoreRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 #[ORM\Entity(repositoryClass: EcoScoreRepository::class)]
@@ -24,6 +26,14 @@ class EcoScore
 
     #[ORM\Column(length: 255)]
     private ?string $normes = null;
+
+    #[ORM\ManyToMany(targetEntity: FicheProduit::class, mappedBy: 'idEcoScore')]
+    private Collection $ficheProduits;
+
+    public function __construct()
+    {
+        $this->ficheProduits = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
@@ -74,6 +84,33 @@ class EcoScore
     public function setNormes(string $normes): static
     {
         $this->normes = $normes;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, FicheProduit>
+     */
+    public function getFicheProduits(): Collection
+    {
+        return $this->ficheProduits;
+    }
+
+    public function addFicheProduit(FicheProduit $ficheProduit): static
+    {
+        if (!$this->ficheProduits->contains($ficheProduit)) {
+            $this->ficheProduits->add($ficheProduit);
+            $ficheProduit->addIdEcoScore($this);
+        }
+
+        return $this;
+    }
+
+    public function removeFicheProduit(FicheProduit $ficheProduit): static
+    {
+        if ($this->ficheProduits->removeElement($ficheProduit)) {
+            $ficheProduit->removeIdEcoScore($this);
+        }
 
         return $this;
     }

@@ -23,6 +23,15 @@ class Avis
     #[ORM\Column(type: Types::DATETIME_MUTABLE)]
     private ?\DateTimeInterface $createdAt = null;
 
+    #[ORM\ManyToOne(inversedBy: 'idAvis')]
+    private ?User $user = null;
+
+    #[ORM\ManyToOne(inversedBy: 'idAvis')]
+    private ?Commande $commande = null;
+
+    #[ORM\OneToOne(inversedBy: 'avis', cascade: ['persist', 'remove'])]
+    private ?RepAvis $idAvis = null;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -60,6 +69,42 @@ class Avis
     public function setCreatedAt(\DateTimeInterface $createdAt): static
     {
         $this->createdAt = $createdAt;
+
+        return $this;
+    }
+
+    public function getUser(): ?User
+    {
+        return $this->user;
+    }
+
+    public function setUser(?User $user): static
+    {
+        $this->user = $user;
+
+        return $this;
+    }
+
+    public function getCommande(): ?Commande
+    {
+        return $this->commande;
+    }
+
+    public function setCommande(?Commande $commande): static
+    {
+        $this->commande = $commande;
+
+        return $this;
+    }
+
+    public function getIdAvis(): ?RepAvis
+    {
+        return $this->idAvis;
+    }
+
+    public function setIdAvis(?RepAvis $idAvis): static
+    {
+        $this->idAvis = $idAvis;
 
         return $this;
     }

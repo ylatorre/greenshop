@@ -13,8 +13,23 @@ class VarianteProduit
     #[ORM\Column]
     private ?int $id = null;
 
+    #[ORM\ManyToOne(inversedBy: 'idVarianteProduit')]
+    private ?FicheProduit $ficheProduit = null;
+
     public function getId(): ?int
     {
         return $this->id;
+    }
+
+    public function getFicheProduit(): ?FicheProduit
+    {
+        return $this->ficheProduit;
+    }
+
+    public function setFicheProduit(?FicheProduit $ficheProduit): static
+    {
+        $this->ficheProduit = $ficheProduit;
+
+        return $this;
     }
 }

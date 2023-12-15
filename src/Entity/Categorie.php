@@ -3,6 +3,8 @@
 namespace App\Entity;
 
 use App\Repository\CategorieRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 #[ORM\Entity(repositoryClass: CategorieRepository::class)]
@@ -21,6 +23,14 @@ class Categorie
 
     #[ORM\Column]
     private ?bool $marque = null;
+
+    #[ORM\ManyToMany(targetEntity: FicheProduit::class, mappedBy: 'idCategorie')]
+    private Collection $ficheProduits;
+
+    public function __construct()
+    {
+        $this->ficheProduits = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
@@ -59,6 +69,33 @@ class Categorie
     public function setMarque(bool $marque): static
     {
         $this->marque = $marque;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, FicheProduit>
+     */
+    public function getFicheProduits(): Collection
+    {
+        return $this->ficheProduits;
+    }
+
+    public function addFicheProduit(FicheProduit $ficheProduit): static
+    {
+        if (!$this->ficheProduits->contains($ficheProduit)) {
+            $this->ficheProduits->add($ficheProduit);
+            $ficheProduit->addIdCategorie($this);
+        }
+
+        return $this;
+    }
+
+    public function removeFicheProduit(FicheProduit $ficheProduit): static
+    {
+        if ($this->ficheProduits->removeElement($ficheProduit)) {
+            $ficheProduit->removeIdCategorie($this);
+        }
 
         return $this;
     }

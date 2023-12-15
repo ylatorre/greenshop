@@ -20,6 +20,12 @@ class RepAvis
     #[ORM\Column(type: Types::DATETIME_MUTABLE)]
     private ?\DateTimeInterface $createdAt = null;
 
+    #[ORM\ManyToOne(inversedBy: 'idRepAvis')]
+    private ?User $user = null;
+
+    #[ORM\OneToOne(mappedBy: 'idAvis', cascade: ['persist', 'remove'])]
+    private ?Avis $avis = null;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -45,6 +51,40 @@ class RepAvis
     public function setCreatedAt(\DateTimeInterface $createdAt): static
     {
         $this->createdAt = $createdAt;
+
+        return $this;
+    }
+
+    public function getUser(): ?User
+    {
+        return $this->user;
+    }
+
+    public function setUser(?User $user): static
+    {
+        $this->user = $user;
+
+        return $this;
+    }
+
+    public function getAvis(): ?Avis
+    {
+        return $this->avis;
+    }
+
+    public function setAvis(?Avis $avis): static
+    {
+        // unset the owning side of the relation if necessary
+        if ($avis === null && $this->avis !== null) {
+            $this->avis->setIdAvis(null);
+        }
+
+        // set the owning side of the relation if necessary
+        if ($avis !== null && $avis->getIdAvis() !== $this) {
+            $avis->setIdAvis($this);
+        }
+
+        $this->avis = $avis;
 
         return $this;
     }

@@ -25,6 +25,9 @@ class Adresse
     #[ORM\Column]
     private ?bool $adresseActif = null;
 
+    #[ORM\ManyToOne(inversedBy: 'idAdresse')]
+    private ?User $user = null;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -74,6 +77,18 @@ class Adresse
     public function setAdresseActif(bool $adresseActif): static
     {
         $this->adresseActif = $adresseActif;
+
+        return $this;
+    }
+
+    public function getUser(): ?User
+    {
+        return $this->user;
+    }
+
+    public function setUser(?User $user): static
+    {
+        $this->user = $user;
 
         return $this;
     }
