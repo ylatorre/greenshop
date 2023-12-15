@@ -39,9 +39,6 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     private ?string $prenom = null;
 
     #[ORM\Column(length: 255)]
-    private ?string $photo = null;
-
-    #[ORM\Column(length: 255)]
     private ?string $telephone = null;
 
     #[ORM\OneToMany(mappedBy: 'user', targetEntity: Liste::class)]
@@ -78,63 +75,47 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         return $this->email;
     }
 
-    public function setEmail(string $email): static
+    public function setEmail(string $email): self
     {
         $this->email = $email;
 
         return $this;
     }
 
-    /**
-     * A visual identifier that represents this user.
-     *
-     * @see UserInterface
-     */
     public function getUserIdentifier(): string
     {
         return (string) $this->email;
     }
 
-    /**
-     * @see UserInterface
-     */
     public function getRoles(): array
     {
         $roles = $this->roles;
-        // guarantee every user at least has ROLE_USER
         $roles[] = 'ROLE_USER';
 
         return array_unique($roles);
     }
 
-    public function setRoles(array $roles): static
+    public function setRoles(array $roles): self
     {
         $this->roles = $roles;
 
         return $this;
     }
 
-    /**
-     * @see PasswordAuthenticatedUserInterface
-     */
     public function getPassword(): string
     {
         return $this->password;
     }
 
-    public function setPassword(string $password): static
+    public function setPassword(string $password): self
     {
         $this->password = $password;
 
         return $this;
     }
 
-    /**
-     * @see UserInterface
-     */
     public function eraseCredentials(): void
     {
-        // If you store any temporary, sensitive data on the user, clear it here
         // $this->plainPassword = null;
     }
 
@@ -143,7 +124,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         return $this->nom;
     }
 
-    public function setNom(string $nom): static
+    public function setNom(string $nom): self
     {
         $this->nom = $nom;
 
@@ -155,21 +136,9 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         return $this->prenom;
     }
 
-    public function setPrenom(string $prenom): static
+    public function setPrenom(string $prenom): self
     {
         $this->prenom = $prenom;
-
-        return $this;
-    }
-
-    public function getPhoto(): ?string
-    {
-        return $this->photo;
-    }
-
-    public function setPhoto(string $photo): static
-    {
-        $this->photo = $photo;
 
         return $this;
     }
@@ -179,22 +148,19 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         return $this->telephone;
     }
 
-    public function setTelephone(string $telephone): static
+    public function setTelephone(string $telephone): self
     {
         $this->telephone = $telephone;
 
         return $this;
     }
 
-    /**
-     * @return Collection<int, Liste>
-     */
     public function getIdFavoris(): Collection
     {
         return $this->idFavoris;
     }
 
-    public function addIdFavori(Liste $idFavori): static
+    public function addIdFavori(Liste $idFavori): self
     {
         if (!$this->idFavoris->contains($idFavori)) {
             $this->idFavoris->add($idFavori);
@@ -204,10 +170,9 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         return $this;
     }
 
-    public function removeIdFavori(Liste $idFavori): static
+    public function removeIdFavori(Liste $idFavori): self
     {
         if ($this->idFavoris->removeElement($idFavori)) {
-            // set the owning side to null (unless already changed)
             if ($idFavori->getUser() === $this) {
                 $idFavori->setUser(null);
             }
@@ -216,15 +181,12 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         return $this;
     }
 
-    /**
-     * @return Collection<int, Adresse>
-     */
     public function getIdAdresse(): Collection
     {
         return $this->idAdresse;
     }
 
-    public function addIdAdresse(Adresse $idAdresse): static
+    public function addIdAdresse(Adresse $idAdresse): self
     {
         if (!$this->idAdresse->contains($idAdresse)) {
             $this->idAdresse->add($idAdresse);
@@ -234,10 +196,9 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         return $this;
     }
 
-    public function removeIdAdresse(Adresse $idAdresse): static
+    public function removeIdAdresse(Adresse $idAdresse): self
     {
         if ($this->idAdresse->removeElement($idAdresse)) {
-            // set the owning side to null (unless already changed)
             if ($idAdresse->getUser() === $this) {
                 $idAdresse->setUser(null);
             }
@@ -246,15 +207,12 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         return $this;
     }
 
-    /**
-     * @return Collection<int, RepAvis>
-     */
     public function getIdRepAvis(): Collection
     {
         return $this->idRepAvis;
     }
 
-    public function addIdRepAvi(RepAvis $idRepAvi): static
+    public function addIdRepAvi(RepAvis $idRepAvi): self
     {
         if (!$this->idRepAvis->contains($idRepAvi)) {
             $this->idRepAvis->add($idRepAvi);
@@ -264,10 +222,9 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         return $this;
     }
 
-    public function removeIdRepAvi(RepAvis $idRepAvi): static
+    public function removeIdRepAvi(RepAvis $idRepAvi): self
     {
         if ($this->idRepAvis->removeElement($idRepAvi)) {
-            // set the owning side to null (unless already changed)
             if ($idRepAvi->getUser() === $this) {
                 $idRepAvi->setUser(null);
             }
@@ -276,15 +233,12 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         return $this;
     }
 
-    /**
-     * @return Collection<int, Avis>
-     */
     public function getIdAvis(): Collection
     {
         return $this->idAvis;
     }
 
-    public function addIdAvi(Avis $idAvi): static
+    public function addIdAvi(Avis $idAvi): self
     {
         if (!$this->idAvis->contains($idAvi)) {
             $this->idAvis->add($idAvi);
@@ -294,10 +248,9 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         return $this;
     }
 
-    public function removeIdAvi(Avis $idAvi): static
+    public function removeIdAvi(Avis $idAvi): self
     {
         if ($this->idAvis->removeElement($idAvi)) {
-            // set the owning side to null (unless already changed)
             if ($idAvi->getUser() === $this) {
                 $idAvi->setUser(null);
             }
@@ -306,15 +259,12 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         return $this;
     }
 
-    /**
-     * @return Collection<int, Commande>
-     */
     public function getIdCommande(): Collection
     {
         return $this->idCommande;
     }
 
-    public function addIdCommande(Commande $idCommande): static
+    public function addIdCommande(Commande $idCommande): self
     {
         if (!$this->idCommande->contains($idCommande)) {
             $this->idCommande->add($idCommande);
@@ -324,10 +274,9 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         return $this;
     }
 
-    public function removeIdCommande(Commande $idCommande): static
+    public function removeIdCommande(Commande $idCommande): self
     {
         if ($this->idCommande->removeElement($idCommande)) {
-            // set the owning side to null (unless already changed)
             if ($idCommande->getUser() === $this) {
                 $idCommande->setUser(null);
             }
