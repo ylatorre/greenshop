@@ -21,7 +21,7 @@ class AccueilController extends AbstractController
             ->subject('Test depuis AccueilController')
             ->text('Ceci est un test d\'envoi de mail depuis AccueilController.');
 
-        $mailer->send($email);
+//        $mailer->send($email);
 
 // Rendu de la vue
         return $this->render('accueil/index.html.twig', [
