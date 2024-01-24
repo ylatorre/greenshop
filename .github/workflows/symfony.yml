@@ -36,7 +36,7 @@ jobs:
             git reset --hard
 
             # Tentative de git pull, si échec alors git clone
-            git pull
+            git pull origin Prod
             
             # Installation et mise à jour des dépendances avec Composer
             composer install
