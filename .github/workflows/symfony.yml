@@ -41,7 +41,7 @@ jobs:
             # Installation et mise à jour des dépendances avec Composer
             composer install
             php bin/console cache:clear
-
+            npm i
             # Copier le contenu de 'servers' dans 'public' avec rsync
             rsync -av servers/ public/
 
