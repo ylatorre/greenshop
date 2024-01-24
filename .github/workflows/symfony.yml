@@ -39,7 +39,7 @@ jobs:
             git pull
             
             # Installation et mise à jour des dépendances avec Composer
-            yarn merge
+            composer install
             php bin/console cache:clear
 
             # Copier le contenu de 'servers' dans 'public' avec rsync
