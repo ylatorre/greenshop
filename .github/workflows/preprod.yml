@@ -35,10 +35,10 @@ jobs:
 
             git reset --hard
             
-            # Vérifier que la branche courante est 'Prod'
+            # Vérifier que la branche courante est 'preprod'
             CURRENT_BRANCH=$(git rev-parse --abbrev-ref HEAD)
             if [ "$CURRENT_BRANCH" != "preprod" ]; then
-              echo "Attention : Vous n'êtes pas sur la branche 'Prod'. Opération annulée."
+              echo "Attention : Vous n'êtes pas sur la branche 'preprod'. Opération annulée."
               exit 1
             fi
             
