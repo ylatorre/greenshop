@@ -31,7 +31,7 @@ jobs:
         run: |
           sshpass -e ssh -T -o StrictHostKeyChecking=no -p 2222 ${{ secrets.REMOTE_USER_BACK }}@${{ secrets.REMOTE_HOST_NAME }} << 'ENDSSH'
             # Naviguer dans le dossier de déploiement
-            cd /home/preprodgreenshop/public_html
+            cd public_html
 
             git reset --hard
             
@@ -50,6 +50,7 @@ jobs:
             composer install
             php bin/console cache:clear
             npm i
+            npm run build
 
             service nginx restart 
             # Copier le contenu de 'servers' dans 'public' avec rsync
