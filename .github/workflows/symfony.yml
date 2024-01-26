@@ -31,17 +31,27 @@ jobs:
         run: |
           sshpass -e ssh -T -o StrictHostKeyChecking=no -p 2222 ${{ secrets.REMOTE_USER_BACK }}@${{ secrets.REMOTE_HOST_NAME }} << 'ENDSSH'
             # Naviguer dans le dossier de déploiement
-            cd /home/greenshop/public_html
+            cd /home/preprodgreenshop/public_html
 
             git reset --hard
-
+            
+            # Vérifier que la branche courante est 'Prod'
+            CURRENT_BRANCH=$(git rev-parse --abbrev-ref HEAD)
+            if [ "$CURRENT_BRANCH" != "Prod" ]; then
+              echo "Attention : Vous n'êtes pas sur la branche 'Prod'. Opération annulée."
+              exit 1
+            fi
+            
             # Tentative de git pull, si échec alors git clone
-            git pull
+            git fetch origin Prod
+            git rebase origin/Prod
             
             # Installation et mise à jour des dépendances avec Composer
             composer install
             php bin/console cache:clear
+            npm i
 
+            service nginx restart 
             # Copier le contenu de 'servers' dans 'public' avec rsync
             rsync -av servers/ public/
 
