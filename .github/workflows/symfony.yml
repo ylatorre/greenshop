@@ -31,7 +31,7 @@ jobs:
         run: |
           sshpass -e ssh -T -o StrictHostKeyChecking=no -p 2222 ${{ secrets.REMOTE_USER_BACK }}@${{ secrets.REMOTE_HOST_NAME }} << 'ENDSSH'
             # Naviguer dans le dossier de déploiement
-            cd public_html
+            cd /home/greenshop/public_html
 
             git reset --hard
 
