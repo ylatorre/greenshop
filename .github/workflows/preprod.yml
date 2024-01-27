@@ -44,6 +44,7 @@ jobs:
             
             # Tentative de git pull, si échec alors git clone
             git fetch origin preprod
+            git stash
             git rebase origin/preprod
             
             # Installation et mise à jour des dépendances avec Composer
