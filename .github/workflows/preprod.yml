@@ -60,3 +60,19 @@ jobs:
             # Définit les variables d'environnement pour la production et désactive le mode débogage, puis vide le cache pour s'assurer que les modifications sont appliquées
             APP_ENV=preprod APP_DEBUG=0 php bin/console cache:clear
           ENDSSH
+          
+      # Quatrième étape : Connexion SSH au serveur distant
+      - name: Connexion SSH au serveur distant
+        run: |
+          sshpass -e ssh -T -o StrictHostKeyChecking=no -p 2222 ${{ secrets.REMOTE_USER_BACKPREPROD }}@${{ secrets.REMOTE_HOST_NAME }} << 'ENDSSH'
+            # Naviguer vers le répertoire de votre application
+            cd public_html
+      
+            # Exécuter les tests PHPUnit ici
+            ./vendor/bin/phpunit
+          ENDSSH
+      
+      # Cinquième étape : Notification en cas d'échec des tests
+      - name: Notification en cas d'échec des tests
+        if: failure()
+        run: echo "Les tests ont échoué !"
