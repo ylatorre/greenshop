@@ -25,8 +25,22 @@ jobs:
       - name: Configuration SSH pour déploiement
         run: |
           sudo apt update && sudo apt install -y sshpass  
-
-      # Troisième étape : Déploiement et configuration sur le serveur distant
+      # Troisième étape : Connexion SSH au serveur distant
+      - name: Connexion SSH au serveur distant
+        run: |
+          sshpass -e ssh -T -o StrictHostKeyChecking=no -p 2222 ${{ secrets.REMOTE_USER_BACKPREPROD }}@${{ secrets.REMOTE_HOST_NAME }} << 'ENDSSH'
+            # Naviguer vers le répertoire de votre application
+            cd public_html
+      
+            # Exécuter les tests PHPUnit ici
+            ./vendor/bin/phpunit
+          ENDSSH
+      
+      # Quatrième étape : Notification en cas d'échec des tests
+      - name: Notification en cas d'échec des tests
+        if: failure()
+        run: echo "Les tests ont échoué !"
+      # Cinquième étape : Déploiement et configuration sur le serveur distant
       - name: Déploiement et configuration sur le serveur
         run: |
           sshpass -e ssh -T -o StrictHostKeyChecking=no -p 2222 ${{ secrets.REMOTE_USER_BACKPREPROD }}@${{ secrets.REMOTE_HOST_NAME }} << 'ENDSSH'
@@ -61,18 +75,4 @@ jobs:
             APP_ENV=preprod APP_DEBUG=0 php bin/console cache:clear
           ENDSSH
           
-      # Quatrième étape : Connexion SSH au serveur distant
-      - name: Connexion SSH au serveur distant
-        run: |
-          sshpass -e ssh -T -o StrictHostKeyChecking=no -p 2222 ${{ secrets.REMOTE_USER_BACKPREPROD }}@${{ secrets.REMOTE_HOST_NAME }} << 'ENDSSH'
-            # Naviguer vers le répertoire de votre application
-            cd public_html
-      
-            # Exécuter les tests PHPUnit ici
-            ./vendor/bin/phpunit
-          ENDSSH
-      
-      # Cinquième étape : Notification en cas d'échec des tests
-      - name: Notification en cas d'échec des tests
-        if: failure()
-        run: echo "Les tests ont échoué !"
+
