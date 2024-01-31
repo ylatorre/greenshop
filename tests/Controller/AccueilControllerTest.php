@@ -21,4 +21,5 @@ class AccueilControllerTest extends WebTestCase
 // (par exemple, un texte qui est présent sur la page d'accueil)
         $this->assertSelectorTextContains('html h1', 'Accueil');
     }
+
 }

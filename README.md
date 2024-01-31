@@ -153,4 +153,5 @@ Si vous découvrez une faille de sécurité dans Symfony, vous devez la signaler
 
 ### Licence
 
+<<<<<<< HEAD
 Symfony est distribué sous la licence MIT, ce qui le rend libre à utiliser et à modifier.
