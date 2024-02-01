@@ -15,8 +15,8 @@
         {% endblock %}
     </head>
     <body>
-
-        {% block body %}{% endblock %}
-
+    {% include './composant/Header.html.twig' %}
+    {% block body %}{% endblock %}
+    {% include './composant/bottomBar.html.twig' %}
     </body>
 </html>
