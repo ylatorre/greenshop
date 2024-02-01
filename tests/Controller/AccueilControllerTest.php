@@ -19,7 +19,7 @@ class AccueilControllerTest extends WebTestCase
 
 // Vérifie que le contenu de la réponse contient un texte spécifique
 // (par exemple, un texte qui est présent sur la page d'accueil)
-        $this->assertSelectorTextContains('html h1', 'Accueil');
+        $this->assertSelectorTextContains('html span', 'GreenShop');
     }
 
 }
