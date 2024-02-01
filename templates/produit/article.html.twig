@@ -1,0 +1,55 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello ArticleController!{% endblock %}
+
+{% block body %}
+{% include './composant/Header.html.twig' %}
+
+{# templates/product/slider.html.twig #}
+
+<div class="swiper-container">
+    <div class="swiper-wrapper">
+
+    <div class="swiper-slide">
+                <img src="./image/logo.png" alt="Image description">
+            </div>
+            <div class="swiper-slide">
+                <img src="./image/logo.png" alt="Image description">
+            </div>
+        {# Les éléments du carrousel seront injectés ici 
+        {% for image in images %}
+            <div class="swiper-slide">
+                <img src="{{ asset('path/to/your/images/' ~ image.filename) }}" alt="Image description">
+            </div>
+        {% endfor %}#}
+    </div>
+    <!-- Si vous voulez des points de pagination -->
+    <div class="swiper-pagination"></div>
+    
+    <!-- Si vous voulez des boutons de navigation -->
+    <div class="swiper-button-prev"></div>
+    <div class="swiper-button-next"></div>
+</div>
+
+
+
+{# templates/base.html.twig ou une section scripts à la fin de votre template spécifique #}
+
+<script>
+    const swiper = new Swiper('.swiper-container', {
+        // Paramètres du Swiper
+        loop: true,
+        pagination: {
+            el: '.swiper-pagination',
+            clickable: true,
+        },
+        navigation: {
+            nextEl: '.swiper-button-next',
+            prevEl: '.swiper-button-prev',
+        },
+    });
+</script>
+
+{% include './composant/bottomBar.html.twig' %}
+
+{% endblock %}

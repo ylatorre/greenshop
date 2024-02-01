@@ -15,4 +15,14 @@ class ProduitController extends AbstractController
             'controller_name' => 'ProduitController',
         ]);
     }
+
+    #[Route('/article', name: 'affichage_produit')]
+    public function AffichageProduit(): Response
+    {
+        return $this->render('produit/article.html.twig', [
+            'controller_name' => 'ProduitController',
+        ]);
+    }
+
+    
 }
