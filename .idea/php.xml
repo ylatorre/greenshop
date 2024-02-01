@@ -148,6 +148,39 @@
       <path value="$PROJECT_DIR$/vendor/fakerphp/faker" />
       <path value="$PROJECT_DIR$/vendor/theofidry/alice-data-fixtures" />
       <path value="$PROJECT_DIR$/vendor/symfony/webpack-encore-bundle" />
+      <path value="$PROJECT_DIR$/greenshop/vendor/symfony/polyfill-intl-grapheme" />
+      <path value="$PROJECT_DIR$/greenshop/vendor/composer" />
+      <path value="$PROJECT_DIR$/greenshop/vendor/psr/container" />
+      <path value="$PROJECT_DIR$/greenshop/vendor/psr/log" />
+      <path value="$PROJECT_DIR$/greenshop/vendor/psr/cache" />
+      <path value="$PROJECT_DIR$/greenshop/vendor/psr/event-dispatcher" />
+      <path value="$PROJECT_DIR$/greenshop/vendor/symfony/polyfill-php80" />
+      <path value="$PROJECT_DIR$/greenshop/vendor/symfony/dotenv" />
+      <path value="$PROJECT_DIR$/greenshop/vendor/symfony/framework-bundle" />
+      <path value="$PROJECT_DIR$/greenshop/vendor/symfony/polyfill-php73" />
+      <path value="$PROJECT_DIR$/greenshop/vendor/symfony/config" />
+      <path value="$PROJECT_DIR$/greenshop/vendor/symfony/event-dispatcher" />
+      <path value="$PROJECT_DIR$/greenshop/vendor/symfony/cache" />
+      <path value="$PROJECT_DIR$/greenshop/vendor/symfony/polyfill-php81" />
+      <path value="$PROJECT_DIR$/greenshop/vendor/symfony/filesystem" />
+      <path value="$PROJECT_DIR$/greenshop/vendor/symfony/polyfill-intl-normalizer" />
+      <path value="$PROJECT_DIR$/greenshop/vendor/symfony/runtime" />
+      <path value="$PROJECT_DIR$/greenshop/vendor/symfony/var-dumper" />
+      <path value="$PROJECT_DIR$/greenshop/vendor/symfony/http-kernel" />
+      <path value="$PROJECT_DIR$/greenshop/vendor/symfony/yaml" />
+      <path value="$PROJECT_DIR$/greenshop/vendor/symfony/event-dispatcher-contracts" />
+      <path value="$PROJECT_DIR$/greenshop/vendor/symfony/finder" />
+      <path value="$PROJECT_DIR$/greenshop/vendor/symfony/routing" />
+      <path value="$PROJECT_DIR$/greenshop/vendor/symfony/service-contracts" />
+      <path value="$PROJECT_DIR$/greenshop/vendor/symfony/deprecation-contracts" />
+      <path value="$PROJECT_DIR$/greenshop/vendor/symfony/flex" />
+      <path value="$PROJECT_DIR$/greenshop/vendor/symfony/error-handler" />
+      <path value="$PROJECT_DIR$/greenshop/vendor/symfony/http-foundation" />
+      <path value="$PROJECT_DIR$/greenshop/vendor/symfony/var-exporter" />
+      <path value="$PROJECT_DIR$/greenshop/vendor/symfony/console" />
+      <path value="$PROJECT_DIR$/greenshop/vendor/symfony/polyfill-mbstring" />
+      <path value="$PROJECT_DIR$/greenshop/vendor/symfony/cache-contracts" />
+      <path value="$PROJECT_DIR$/greenshop/vendor/symfony/dependency-injection" />
     </include_path>
   </component>
   <component name="PhpProjectSharedConfiguration" php_language_level="8.2" />
@@ -156,7 +189,7 @@
   </component>
   <component name="PhpUnit">
     <phpunit_settings>
-      <PhpUnitSettings custom_loader_path="$PROJECT_DIR$/vendor/autoload.php" />
+      <PhpUnitSettings bootstrap_file_path="$PROJECT_DIR$/tests/bootstrap.php" custom_loader_path="$PROJECT_DIR$/vendor/autoload.php" phpunit_phar_path="" use_bootstrap_file="true" />
     </phpunit_settings>
   </component>
   <component name="PsalmOptionsConfiguration">
