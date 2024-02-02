@@ -1,10 +1,21 @@
+{# templates/produit/index.html.twig #}
+
 {% extends 'base.html.twig' %}
 
-{% block title %}Hello ArticleController!{% endblock %}
-
 {% block body %}
-{% include './composant/Header.html.twig' %}
-{% include './composant/Article.html.twig' %}
-{% include './composant/bottomBar.html.twig' %}
+    <h1>{{ controller_name }}</h1>
 
+    <ul>
+        {% for ficheProduit in ficheProduits %}
+            <li>
+                <h2>{{ ficheProduit.titre }}</h2>
+                <p>{{ ficheProduit.description }}</p>
+                <p>Stock: {{ ficheProduit.stock }}</p>
+                <p>Note: {{ ficheProduit.noteProduit }}</p>
+                <p>Nombre de ventes: {{ ficheProduit.nombreDeVente }}</p>
+                <p>Recyclage: {{ ficheProduit.recyclage ? 'Oui' : 'Non' }}</p>
+                {# Add other properties as needed #}
+            </li>
+        {% endfor %}
+    </ul>
 {% endblock %}
