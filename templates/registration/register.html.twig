@@ -14,17 +14,17 @@
                 {{ form_row(registrationForm.email, {'attr': {'class': 'bg-gray-50 mb-4 p-2 w-full border border-gray-300 rounded', 'placeholder': 'email'}, 'label': false}) }}
                 {{ form_row(registrationForm.telephone, {'attr': {'class': 'bg-gray-50 mb-4 p-2 w-full border border-gray-300 rounded', 'placeholder': 'telephone'}, 'label': false}) }}
                 
-                {# Password input field with toggle button #}
                 <div class="relative">
-                    {% set passwordId = 'password-input' %}
-                    <input
-                        type="password"
-                        id="{{ passwordId }}"
-                        name="{{ registrationForm.plainPassword.vars.full_name }}"
-                        class="bg-gray-50 mb-4 p-2 w-full border border-gray-300 rounded"
-                        placeholder="password"
-                    />
-                    <span class="absolute right-4 top-1/2 transform -translate-y-1/2 cursor-pointer pb-4 text-ThirdGreen" onclick="togglePasswordVisibility('{{ passwordId }}')">
+                    {{ form_row(registrationForm.plainPassword, {
+                        'attr': {
+                            'class': 'bg-gray-50 mb-4 p-2 w-full border border-gray-300 rounded',
+                            'placeholder': 'password',
+                            'id': 'passwordId'
+                        },
+                        'label': false
+                    }) }}
+
+                    <span class="absolute right-4 top-1/2 transform -translate-y-1/2 cursor-pointer pb-4 text-ThirdGreen" id="showPasswordButton" onclick="togglePasswordVisibility('passwordId')">
                         Show
                     </span>
                 </div>
@@ -39,11 +39,14 @@
         </div>
     </div>
 
-    {# JavaScript for toggling password visibility #}
-        <script>
-        function togglePasswordVisibility(passwordId) {
-            var passwordInput = document.getElementById(passwordId);
+{# JavaScript for toggling password visibility #}
+<script>
+    function togglePasswordVisibility(passwordId) {
+        var passwordInput = document.getElementById(passwordId);
+
+        if (passwordInput) {
             passwordInput.type = (passwordInput.type === 'password') ? 'text' : 'password';
-            }
-        </script>
+        }
+    }
+</script>
 {% endblock %}
