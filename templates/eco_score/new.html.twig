@@ -1,0 +1,11 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}New EcoScore{% endblock %}
+
+{% block body %}
+    <h1>Create new EcoScore</h1>
+
+    {{ include('eco_score/_form.html.twig') }}
+
+    <a href="{{ path('app_eco_score_index') }}">back to list</a>
+{% endblock %}

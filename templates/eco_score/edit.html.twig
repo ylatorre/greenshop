@@ -1,0 +1,13 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Edit EcoScore{% endblock %}
+
+{% block body %}
+    <h1>Edit EcoScore</h1>
+
+    {{ include('eco_score/_form.html.twig', {'button_label': 'Update'}) }}
+
+    <a href="{{ path('app_eco_score_index') }}">back to list</a>
+
+    {{ include('eco_score/_delete_form.html.twig') }}
+{% endblock %}
