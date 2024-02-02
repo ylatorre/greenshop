@@ -1,0 +1,11 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}New VarianteProduit{% endblock %}
+
+{% block body %}
+    <h1>Create new VarianteProduit</h1>
+
+    {{ include('variante_produit/_form.html.twig') }}
+
+    <a href="{{ path('app_variante_produit_index') }}">back to list</a>
+{% endblock %}
