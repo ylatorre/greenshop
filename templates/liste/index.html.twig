@@ -3,39 +3,49 @@
 {% block title %}Liste index{% endblock %}
 
 {% block body %}
-    <h1>Liste index</h1>
 
-    <table class="table">
-        <thead>
-            <tr>
-                <th>Id</th>
-                <th>NumeroListe</th>
-                <th>TypeListe</th>
-                <th>NomListe</th>
-                <th>Quantity</th>
-                <th>actions</th>
-            </tr>
-        </thead>
-        <tbody>
-        {% for liste in listes %}
-            <tr>
-                <td>{{ liste.id }}</td>
-                <td>{{ liste.numeroListe }}</td>
-                <td>{{ liste.typeListe }}</td>
-                <td>{{ liste.nomListe }}</td>
-                <td>{{ liste.quantity }}</td>
-                <td>
-                    <a href="{{ path('app_liste_show', {'id': liste.id}) }}">show</a>
-                    <a href="{{ path('app_liste_edit', {'id': liste.id}) }}">edit</a>
-                </td>
-            </tr>
+
+{% include './composant/Header.html.twig' %}
+
+
+{% include 'composant/affichagePage.html.twig' with {'pageName': 'Vos Listes'} %}
+
+
+
+<div  class="w-screen flex justify-end items-end px-2"> <!-- Adjust the width as needed -->
+                <button id="NewList" class="text-slate-50 text-sm bg-green-900 hover:bg-green-950 font-medium rounded-full w-40 px-8 py-1">
+                    Nouvelle liste
+                </button>
+</div>
+
+
+
+<div class=" flex flex-col w-scree items-center justify-center">
+{% for liste in listes %}
+        
+         {% include './composant/VosListes.html.twig' with {'nomListe': liste.nomListe} %}
+
+                 <!--<a href="{{ path('app_liste_edit', {'id': liste.id}) }}">edit</a>-->
+   
+
         {% else %}
             <tr>
                 <td colspan="6">no records found</td>
             </tr>
-        {% endfor %}
-        </tbody>
-    </table>
+{% endfor %}
+</div>
 
-    <a href="{{ path('app_liste_new') }}">Create new</a>
+
+    
+
+    
+
+
+    {% include './composant/bottomBar.html.twig' %}
+
+    <script>
+    document.getElementById('NewList').addEventListener('click', function() {
+        window.location.href = '{{ path('app_liste_new') }}';
+    });
+    </script>
 {% endblock %}

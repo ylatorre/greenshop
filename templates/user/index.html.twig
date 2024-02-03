@@ -7,18 +7,19 @@
 
 {% block body %}
 {% include './composant/Header.html.twig' %}
-<h1>Bonjour, {{ user.nom }}</h1>
-
+<div class="  w-screen min-h-9 flex items-center">
+<h1 class="text-sm ml-4" >Bonjour,</h1>&nbsp;<h1 class="font-semibold text-sm"> {{ user.nom }}</h1>
+</div>
  <div class="w-screen flex justify-center">
     <div class="flex flex-col gap-2.5 p-3 w-11/12 items-center justify-between	 ">
         <div class="flex justify-center ">
             <div id="goToOrder" class="w-1/2 px-2"> <!-- Adjust the width as needed -->
-                <button class="text-white text-sm bg-green-800 hover:bg-green-900 font-medium rounded-full w-44 px-8 py-3">
+                <button class="text-slate-50 text-sm bg-green-900 hover:bg-green-900 font-medium rounded-full w-44 px-8 py-2">
                     Vos commande
                 </button>
             </div>
             <div class="w-1/2 px-2"> <!-- Adjust the width as needed -->
-                <button class="text-white text-sm	 bg-green-800 hover:bg-green-900 font-medium rounded-full w-44 px-8 py-3">
+                <button class=" text-slate-50 text-sm	 bg-green-900 hover:bg-green-900 font-medium rounded-full w-44 px-8 py-2">
                     Vos favoris
                 </button>    
             </div>
@@ -27,12 +28,12 @@
         <div class="flex justify-center ">
             <div class="w-1/2 px-2"> <!-- Adjust the width as needed -->
 
-                <button id="goToAccount" class="text-white text-sm	 bg-green-800 hover:bg-green-900 font-medium rounded-full w-44 px-8 py-3">
+                <button id="goToAccount" class="text-slate-50 text-sm	 bg-green-900 hover:bg-green-900 font-medium rounded-full w-44 px-8 py-2">
                     Votre compte
                 </button>
             </div>
             <div class="w-1/2 px-2"> <!-- Adjust the width as needed -->
-                <button class="text-white text-sm	 bg-green-800 hover:bg-green-900 font-medium rounded-full w-44 px-8 py-3">
+                <button id="goToListe"class="text-slate-50 text-sm	 bg-green-900 hover:bg-green-900 font-medium rounded-full w-44 px-8 py-2">
                     Vos listes
                 </button>
             </div>
@@ -40,9 +41,60 @@
     </div>
 </div>
 
-{% include './composant/VosCommandes.html.twig' %}
-{% include './composant/VosListes.html.twig' %}
 
+<!--Commandes-->
+<div class="w-screen flex flex-col justify-center items-center mt-6">
+    <div class="flex flex-row items-center w-10/12">
+        <div class="font-lora font-semibold w-1/2 text-xl leading-none text-neutral-900">Vos commandes</div>
+        <div class="font-inter text-xs w-1/2 text-sm leading-none text-right text-neutral-900">
+            <a href="#" class="hover:underline">Afficher tout</a>
+        </div>
+    </div>
+    {% if commandes|length == 0 %}
+
+
+    
+    <div class=" w-10/12 mt-4">
+       
+        <div class="flex-row flex items-center min-h-20 w-full rounded-md border-gray-600">
+
+            <div class=" flex flex-col w-full ">
+                <div class="font-light 	  text-center">
+                    <p class="text-lg font-extrabold text-neutral-500">Aucune commande</p>
+                    <p class="text-2xl font-semibold text-neutral-400"> En manque d'inspiration ?</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+        
+    {% else %}
+        {% for commande in commandes %}
+            {% include './composant/VosCommandes.html.twig' with {'commande': commande} %}
+        {% endfor %}
+    {% endif %}
+</div>
+
+
+
+<!--Listes-->
+  <div class="w-screen flex flex-col justify-center items-center mt-6">
+
+    <div class="flex flex-row items-center w-10/12	">
+
+        <div class="font-lora font-semibold w-1/2 text-xl leading-none text-neutral-900">Vos listes</div>
+    
+      <div class="font-inter text-xs w-1/2 text-sm leading-none  text-right text-neutral-900	">
+        <a href="#" class="hover:underline">Afficher tout</a>
+      </div>
+    </div>
+{% for liste in listes %}
+    {% include './composant/VosListes.html.twig' with {'nomListe': liste.nomListe} %}
+{% endfor %}
+
+  </div>
 
 
 {% include './composant/bottomBar.html.twig' %}
@@ -68,6 +120,9 @@
     window.location.href = '/commande/VosCommandes';
 });
 
+    document.getElementById('goToListe').addEventListener('click', function() {
+    window.location.href = '/liste/';
+});
 
     
 </script>
