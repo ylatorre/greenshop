@@ -23,4 +23,21 @@ class UserController extends AbstractController
             'user' => $user
         ]);
     }
+
+
+    #[Route('/compte', name: 'compte')]
+    public function compte(): Response
+    {
+        // Récupérer l'utilisateur connecté
+        $user = $this->getUser();
+
+        // Assurez-vous qu'un utilisateur est connecté
+        if (!$user instanceof UserInterface) {
+            throw $this->createAccessDeniedException('Vous n\'êtes pas connecté.');
+        }
+
+        return $this->render('user/compte.html.twig', [
+            'user' => $user
+        ]);
+    }
 }

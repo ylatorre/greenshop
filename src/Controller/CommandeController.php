@@ -78,4 +78,17 @@ class CommandeController extends AbstractController
 
         return $this->redirectToRoute('app_commande_index', [], Response::HTTP_SEE_OTHER);
     }
+
+
+
+
+    #[Route('/VosCommandes', name: 'sVosCommandes')]
+    public function VosCommandes(CommandeRepository $commandeRepository): Response
+    {
+        $commandes = $commandeRepository->findByDateDescending();
+    
+        return $this->render('commande/HistoriqueCommande.html.twig', [
+            'commandes' => $commandes,
+        ]);
+    }
 }
