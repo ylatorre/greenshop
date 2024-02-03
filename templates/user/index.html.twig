@@ -1,3 +1,4 @@
+
 {# templates/user/index.html.twig #}
 
 {% extends 'base.html.twig' %}
@@ -5,54 +6,72 @@
 {% block title %}Profil de {{ user.prenom }} {{ user.nom }}{% endblock %}
 
 {% block body %}
+{% include './composant/Header.html.twig' %}
+<h1>Bonjour, {{ user.nom }}</h1>
 
-<div class="container mx-auto px-4 py-6 mb-4">
-    <div class="bg-white shadow overflow-hidden sm:rounded-lg">
-        <div class="px-4 py-5 sm:px-6">
-            <h3 class="text-lg leading-6 font-medium text-gray-900">
-                Informations du Profil
-            </h3>
-            <p class="mt-1 max-w-2xl text-sm text-gray-500">
-                Détails personnels.
-            </p>
+ <div class="w-screen flex justify-center">
+    <div class="flex flex-col gap-2.5 p-3 w-11/12 items-center justify-between	 ">
+        <div class="flex justify-center ">
+            <div id="goToOrder" class="w-1/2 px-2"> <!-- Adjust the width as needed -->
+                <button class="text-white text-sm bg-green-800 hover:bg-green-900 font-medium rounded-full w-44 px-8 py-3">
+                    Vos commande
+                </button>
+            </div>
+            <div class="w-1/2 px-2"> <!-- Adjust the width as needed -->
+                <button class="text-white text-sm	 bg-green-800 hover:bg-green-900 font-medium rounded-full w-44 px-8 py-3">
+                    Vos favoris
+                </button>    
+            </div>
         </div>
-        <div class="border-t border-gray-200">
-            <dl>
-                <div class="bg-gray-50 px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
-                    <dt class="text-sm font-medium text-gray-500">
-                        Nom complet
-                    </dt>
-                    <dd class="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">
-                        {{ user.prenom }} {{ user.nom }}
-                    </dd>
-                </div>
-                <div class="bg-white px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
-                    <dt class="text-sm font-medium text-gray-500">
-                        Email
-                    </dt>
-                    <dd class="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">
-                        {{ user.email }}
-                    </dd>
-                </div>
-                <div class="bg-gray-50 px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
-                    <dt class="text-sm font-medium text-gray-500">
-                        Téléphone
-                    </dt>
-                    <dd class="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">
-                        {{ user.telephone }}
-                    </dd>
-                </div>
-                <!-- Ajouter plus de champs si nécessaire -->
-            </dl>
+            
+        <div class="flex justify-center ">
+            <div class="w-1/2 px-2"> <!-- Adjust the width as needed -->
+
+                <button id="goToAccount" class="text-white text-sm	 bg-green-800 hover:bg-green-900 font-medium rounded-full w-44 px-8 py-3">
+                    Votre compte
+                </button>
+            </div>
+            <div class="w-1/2 px-2"> <!-- Adjust the width as needed -->
+                <button class="text-white text-sm	 bg-green-800 hover:bg-green-900 font-medium rounded-full w-44 px-8 py-3">
+                    Vos listes
+                </button>
+            </div>
         </div>
     </div>
 </div>
 
-{% if is_granted('ROLE_ADMIN') %}
-        <a href="/admin" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
-            Bouton Admin
-        </a>
-    {% endif %}
+{% include './composant/VosCommandes.html.twig' %}
+{% include './composant/VosListes.html.twig' %}
+
+
 
 {% include './composant/bottomBar.html.twig' %}
+
+
+
+
+
+
+{% if is_granted('ROLE_ADMIN') %}
+    <a href="/admin" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
+        Bouton Admin
+    </a>
+{% endif %}
+
+
+<script>
+    document.getElementById('goToAccount').addEventListener('click', function() {
+        window.location.href = '/compte';
+    });
+
+    document.getElementById('goToOrder').addEventListener('click', function() {
+    window.location.href = '/commande/VosCommandes';
+});
+
+
+    
+</script>
+
+
+
 {% endblock %}

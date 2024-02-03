@@ -4,7 +4,11 @@ module.exports = {
     "./assets/**/*.js",
     "./templates/**/*.html.twig",
   ],  theme: {
-    extend: {},
+    extend: {
+      backgroundColor: {
+        'custom-gray': '#D6DDD1',
+      },
+    },
   },
   plugins: [],
 }
