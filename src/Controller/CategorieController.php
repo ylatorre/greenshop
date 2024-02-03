@@ -21,4 +21,23 @@ class CategorieController extends AbstractController
             'categories' => $categories
         ]);
     }
+
+    #[Route('/categorie/{id}', name: 'categorie_show')]
+public function categorie(int $id, EntityManagerInterface $entityManager): Response
+{
+    $categorieRepository = $entityManager->getRepository(Categorie::class);
+    $categorie = $categorieRepository->find($id);
+
+    if (!$categorie) {
+        throw $this->createNotFoundException('La catégorie demandée n\'existe pas.');
+    }
+
+    $produits = $categorie->getFicheProduits();
+
+    return $this->render('categorie/show.html.twig', [
+        'categorie' => $categorie,
+        'produits' => $produits,
+    ]);
+}
+
 }

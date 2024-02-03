@@ -13,9 +13,9 @@
 </head>
 <body>
 <div class=" flex justify-center border-b border-gray-200">
-    <div class="bg-white flex justify-between w-10/12 items-center	 ">
+    <div class=" flex justify-between w-10/12 items-center	 ">
         <svg width="48" height="48" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
-<a href="{{path("app_accueil")}}"><rect x="0.5" width="47" height="48" fill="url(#pattern0)"/></a>
+<rect x="0.5" width="47" height="48" fill="url(#pattern0)"/>
 <defs>
 <pattern id="pattern0" patternContentUnits="objectBoundingBox" width="1" height="1">
 <use xlink:href="#image0_665_2060" transform="matrix(0.00302153 0 0 0.00295858 -0.00912753 0)"/>
@@ -68,33 +68,3 @@
   </div>
 
 
- <script>
-    // JavaScript to toggle the modal
-    const searchIcon = document.getElementById('search-icon');
-    const modal = document.getElementById('myModal');
-    const modalContent = modal.querySelector('div');
-    const closeModal = document.getElementById('close-modal');
-
-    searchIcon.addEventListener('click', function() {
-      modal.classList.remove('hidden');
-      setTimeout(() => {
-        modalContent.classList.remove('scale-95');
-        modalContent.classList.remove('opacity-0');
-      }, 10); // Start the animation shortly after the modal is shown
-    });
-
-    closeModal.addEventListener('click', function() {
-      modalContent.classList.add('scale-95');
-      modalContent.classList.add('opacity-0');
-      setTimeout(() => {
-        modal.classList.add('hidden');
-      }, 150); // Delay the hiding of the modal until after the animation
-    });
-
-    // Optional: Close the modal on pressing the Escape key
-    window.addEventListener('keydown', function(event) {
-      if (event.key === 'Escape') {
-        closeModal.click();
-      }
-    });
-  </script>

@@ -1,0 +1,48 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Catégories{% endblock %}
+
+{% block body %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GreenShop</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Lora:wght@400;700&display=swap');
+        body {
+            font-family: 'Lora', serif;
+        }
+    </style>
+</head>
+<body>
+
+{% include './composant/Header.html.twig' %}
+
+
+
+
+
+{% include 'composant/affichagePage.html.twig' with {'pageName':  categorie.nom } %}
+
+
+
+
+    <div>
+        {% for produit in produits %}
+            <div>
+                <h2>{{ produit.titre }}</h2>
+                <p>{{ produit.description }}</p>
+                <!-- Plus de détails sur le produit si nécessaire -->
+            </div>
+        {% else %}
+            <p>Aucun produit trouvé dans cette catégorie.</p>
+        {% endfor %}
+    </div>
+
+
+{% include './composant/bottomBar.html.twig' %}
+
+{% endblock %}
