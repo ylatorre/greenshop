@@ -1,0 +1,51 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Liste index{% endblock %}
+
+{% block body %}
+
+
+{% include './composant/Header.html.twig' %}
+
+
+{% include 'composant/affichagePage.html.twig' with {'pageName': 'Vos Listes'} %}
+
+
+
+<div  class="w-screen flex justify-end items-end px-2"> <!-- Adjust the width as needed -->
+                <button id="NewList" class="text-slate-50 text-sm bg-green-900 hover:bg-green-950 font-medium rounded-full w-40 px-8 py-1">
+                    Nouvelle liste
+                </button>
+</div>
+
+
+
+<div class=" flex flex-col w-scree items-center justify-center">
+{% for liste in listes %}
+        
+         {% include './composant/VosListes.html.twig' with {'nomListe': liste.nomListe} %}
+
+                 <!--<a href="{{ path('app_liste_edit', {'id': liste.id}) }}">edit</a>-->
+   
+
+        {% else %}
+            <tr>
+                <td colspan="6">no records found</td>
+            </tr>
+{% endfor %}
+</div>
+
+
+    
+
+    
+
+
+    {% include './composant/bottomBar.html.twig' %}
+
+    <script>
+    document.getElementById('NewList').addEventListener('click', function() {
+        window.location.href = '{{ path('app_liste_new') }}';
+    });
+    </script>
+{% endblock %}

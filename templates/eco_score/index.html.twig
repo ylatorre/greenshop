@@ -1,0 +1,41 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}EcoScore index{% endblock %}
+
+{% block body %}
+    <h1>EcoScore index</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Label</th>
+                <th>Score</th>
+                <th>MaxScore</th>
+                <th>Normes</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for eco_score in eco_scores %}
+            <tr>
+                <td>{{ eco_score.id }}</td>
+                <td>{{ eco_score.label }}</td>
+                <td>{{ eco_score.score }}</td>
+                <td>{{ eco_score.maxScore }}</td>
+                <td>{{ eco_score.normes }}</td>
+                <td>
+                    <a href="{{ path('app_eco_score_show', {'id': eco_score.id}) }}">show</a>
+                    <a href="{{ path('app_eco_score_edit', {'id': eco_score.id}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="6">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_eco_score_new') }}">Create new</a>
+{% endblock %}

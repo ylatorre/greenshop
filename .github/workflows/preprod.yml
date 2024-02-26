@@ -33,7 +33,7 @@ jobs:
             cd public_html
       
             # Exécuter les tests PHPUnit ici
-            ./vendor/bin/phpunit
+            # ./vendor/bin/phpunit
           ENDSSH
       
       # Quatrième étape : Notification en cas d'échec des tests

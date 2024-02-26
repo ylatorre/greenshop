@@ -13,6 +13,10 @@ module.exports = {
       fontFamily: {
         OpanSans: ['"Opan Sans"', "open-sans"],
         lora: ['"lora"', "Lora"],
+
+      backgroundColor: {
+        'custom-gray': '#D6DDD1',
+
       },
     },
   },
