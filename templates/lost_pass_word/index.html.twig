@@ -1,0 +1,65 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Lost password{% endblock %}
+
+
+{% block body %}
+<style>
+    /* Pour les écrans de taille PC */
+    @media screen and (min-width: 768px) {
+        .login-page .max-w-md {
+            max-width: none; /* Supprimez la limitation de la largeur maximale */
+        }
+
+        .login-page .p-4 {
+            padding: 8rem; /* Augmentez la marge intérieure pour occuper plus d'espace sur PC */
+        }
+
+        .login-page .bg-gray-50 {
+            background-color: #ffffff; /* Changer la couleur de fond des inputs sur les écrans de PC */
+        }
+
+        /* Ajustez la taille des inputs */
+        .login-page input[type="email"],
+        .login-page input[type="password"] {
+            width: 100%; /* Utilisez la largeur totale du conteneur */
+            padding: 10px; /* Ajustez la taille du padding selon vos besoins */
+            font-size: 16px; /* Ajustez la taille de la police selon vos besoins */
+        }
+
+        /* Ajustez d'autres styles selon vos besoins */
+    }
+</style>
+<form method="post" class="flex items-center justify-center">
+    
+<div class="max-w-md w-full p-4">
+        <h1 class="text-3xl font-bold font-lora text-center">Mot de passe</h1>
+        <h1 class="text-3xl font-bold font-lora mb-6 text-center">oublié</h1>
+       
+        <div class="font-OpanSans">
+             <div class="flex items-center justify-center">
+                <div class="text-center mb-6 ">
+                    <p>Merci d’entrer votre adresse e-mail :</p>
+                </div>
+            </div>
+            <div class="mb-4">
+                {# <label for="inputEmail" class="block text-gray-700 text-sm font-bold mb-2">Email</label> #}
+                <input type="email" value="" name="email" id="inputEmail" class="bg-gray-50 mb-1 p-2 w-full border border-gray-300 rounded"  placeholder="email" autocomplete="email" required autofocus>
+            </div>
+
+            <div>
+                <button class="bg-PrimaryGreen text-white py-2 px-4 rounded-full w-full mt-40 mb-2" type="submit">
+                    envoyer
+                </button>
+            </div>
+        </div>
+    </div>
+</form>
+<div class="flex items-center justify-center flex-col text-center">
+
+    <div>
+        <p class='mb-2'>Vous n’avez pas de compte ? <a class='text-SecondaryGreen'>Inscrivez-vous</a></p>
+    </div>
+
+</div>
+{% endblock %}
