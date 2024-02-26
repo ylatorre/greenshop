@@ -3,13 +3,13 @@ module.exports = {
   content: [
     "./assets/**/*.js",
     "./templates/**/*.html.twig",
-  ],  theme: {
+  ],
+  theme: {
     extend: {
       backgroundColor: {
-        'custom-gray': '#D6DDD1',
+        'custom-gray': 'orange-100', // Setting custom-gray background color to orange-100
       },
     },
   },
   plugins: [],
 }
-
