@@ -15,5 +15,6 @@ function togglePasswordVisibility(passwordId) {
         if (passwordInput) {
             passwordInput.type = (passwordInput.type === 'password') ? 'text' : 'password';
         }
+
 }
 
