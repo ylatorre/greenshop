@@ -5,8 +5,18 @@ module.exports = {
     "./templates/**/*.html.twig",
   ],  theme: {
     extend: {
+      colors: {
+        PrimaryGreen: '#A4AC86', // Replace this with your custom color code
+        SecondaryGreen: '#004225',
+        ThirdGreen: '#5DB075',
+      },
+      fontFamily: {
+        OpanSans: ['"Opan Sans"', "open-sans"],
+        lora: ['"lora"', "Lora"],
+
       backgroundColor: {
         'custom-gray': '#D6DDD1',
+
       },
     },
   },

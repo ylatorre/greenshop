@@ -3,19 +3,43 @@
 {% block title %}Register{% endblock %}
 
 {% block body %}
-    <h1>Register</h1>
+    <div class="flex items-center justify-center ">
+        <div class="bg-white p-8 rounded  flex flex-col items-center">
+            <h1 class="text-3xl font-bold font-lora mb-6">Inscription</h1>
 
-    {{ form_errors(registrationForm) }}
+            {{ form_errors(registrationForm) }}
 
-    {{ form_start(registrationForm) }}
-        {{ form_row(registrationForm.email) }}
-        {{ form_row(registrationForm.plainPassword, {
-            label: 'Password'
-        }) }}
-        {{ form_row(registrationForm.agreeTerms) }}
-        {{ form_row(registrationForm.nom) }}
-        {{ form_row(registrationForm.prenom) }}
-        {{ form_row(registrationForm.telephone) }}
-        <button type="submit" class="btn">Register</button>
-    {{ form_end(registrationForm) }}
+            {{ form_start(registrationForm, {'attr': {'class': 'w-80 font-OpanSans'}}) }}
+                {{ form_row(registrationForm.nom, {'attr': {'class': 'bg-gray-50 mb-4 p-2 w-full border border-gray-300 rounded', 'placeholder': 'nom'}, 'label': false}) }}
+                {{ form_row(registrationForm.email, {'attr': {'class': 'bg-gray-50 mb-4 p-2 w-full border border-gray-300 rounded', 'placeholder': 'email'}, 'label': false}) }}
+                {{ form_row(registrationForm.telephone, {'attr': {'class': 'bg-gray-50 mb-4 p-2 w-full border border-gray-300 rounded', 'placeholder': 'telephone'}, 'label': false}) }}
+                
+                <div class="relative">
+                    {{ form_row(registrationForm.plainPassword, {
+                        'attr': {
+                            'class': 'bg-gray-50 mb-4 p-2 w-full border border-gray-300 rounded',
+                            'placeholder': 'password',
+                            'id': 'passwordId'
+                        },
+                        'label': false
+                    }) }}
+
+                    <span class="absolute right-4 top-1/2 transform -translate-y-1/2 cursor-pointer pb-4 text-ThirdGreen" id="showPasswordButton" onclick="togglePasswordVisibility('passwordId')">
+                        Show
+                    </span>
+                </div>
+
+                                
+                {{ form_row(registrationForm.agreeTerms, {'label_attr': {'class': 'block text-left mb-4 '}}) }}
+
+                <button type="submit" class="bg-PrimaryGreen text-white py-2 px-4 rounded-full w-full mt-40 mb-2">Créer mon compte</button>
+            {{ form_end(registrationForm) }}
+            
+            <p class=''>Vous avez déjà un compte ?<a class='text-SecondaryGreen'>Connectez-vous</a></p>
+        </div>
+    </div>
+
+{# JavaScript for toggling password visibility #}
+
 {% endblock %}
+
