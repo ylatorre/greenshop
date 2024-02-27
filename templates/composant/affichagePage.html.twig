@@ -1,0 +1,32 @@
+<div class="flex items-center">
+
+
+<button onclick="goBack()" class="bg-blue-100 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
+   <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
+            <g clip-path="url(#clip0_665_3369)">
+            <path d="M15 19.5L7.5 12L15 4.5" stroke="#125C1E" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            </g>
+            <defs>
+            <clipPath id="clip0_665_3369">
+            <rect width="24" height="24" fill="white"/>
+            </clipPath>
+            </defs>
+    </svg>
+</button>
+
+
+    <div class=" flex-col justify-center w-full items-center">
+    <div class=" flex items-center justify-center">
+        <h1 class="text-xl text-green-800 my-8 w-11/12 text-center">
+            {{ pageName }}
+        </h1>
+    </div>
+    </div>
+</div>
+
+
+<script>
+    function goBack() {
+        window.history.back();
+    }
+</script>

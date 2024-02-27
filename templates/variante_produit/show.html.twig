@@ -1,0 +1,22 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}VarianteProduit{% endblock %}
+
+{% block body %}
+    <h1>VarianteProduit</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ variante_produit.id }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_variante_produit_index') }}">back to list</a>
+
+    <a href="{{ path('app_variante_produit_edit', {'id': variante_produit.id}) }}">edit</a>
+
+    {{ include('variante_produit/_delete_form.html.twig') }}
+{% endblock %}

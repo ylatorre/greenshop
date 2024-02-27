@@ -1,0 +1,51 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Liste{% endblock %}
+
+{% block body %}
+
+{% include './composant/Header.html.twig' %}
+{% include 'composant/affichagePage.html.twig' with {'pageName':  liste.nomListe } %}
+
+    <h1>Total :</h1>
+<div  class="w-screen flex justify-end items-end px-2"> <!-- Adjust the width as needed -->
+                <button id="Add" class="text-slate-50 text-xs bg-green-900 hover:bg-green-950 font-medium rounded-full w-40 px-8 py-1">
+                    Ajouter au panier
+                </button>
+</div>
+
+
+
+
+<div class="produits-liste">
+        {% for ficheProduit in liste.getFicheProduits %}
+            <div class="produit">
+                <h2>{{ ficheProduit.titre }}</h2>
+                <p>{{ ficheProduit.description }}</p>
+                <!-- Autres détails du produit -->
+            </div>
+        {% endfor %}
+    </div>
+
+    <div class="produits-liste h-32">
+{% for produit in liste.getFicheProduits %}
+{% include './composant/VosCommandes.html.twig' with {'produit': produit} %}
+
+{% endfor %}
+</div>
+
+
+    <a href="{{ path('app_liste_edit', {'id': liste.id}) }}">edit</a>
+
+    {{ include('liste/_delete_form.html.twig') }}
+
+
+       {% include './composant/bottomBar.html.twig' %}
+
+
+           <script>
+    document.getElementById('Add').addEventListener('click', function() {
+        window.location.href = '{{ path('app_liste_new') }}';
+    });
+    </script>
+{% endblock %}

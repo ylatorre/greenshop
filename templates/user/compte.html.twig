@@ -1,0 +1,44 @@
+
+
+
+{# templates/user/index.html.twig #}
+
+{% extends 'base.html.twig' %}
+
+{% block title %}Profil de {{ user.prenom }} {{ user.nom }}{% endblock %}
+
+{% block body %}
+{% include './composant/Header.html.twig' %}
+
+{% include 'composant/affichagePage.html.twig' with {'pageName': 'Mes Informations'} %}
+
+
+<div class="container mx-auto px-2 sm:px-4 py-6 mb-4">
+    <div class="bg-white shadow overflow-hidden rounded-lg">
+        <div class="px-2 sm:px-4 py-5">
+            <h3 class="text-md sm:text-lg leading-6 font-medium text-gray-900">
+                Informations du Profil
+            </h3>
+            <p class="mt-1 max-w-2xl text-xs sm:text-sm text-gray-500">
+                Détails personnels.
+            </p>
+        </div>
+        <div class="border-t border-gray-200">
+            <dl class="flex flex-col sm:grid sm:grid-cols-3 sm:gap-4">
+                <!-- Champs du profil ici, en répétant le pattern ci-dessous -->
+                <div class="bg-gray-50 px-2 sm:px-4 py-5">
+                    <dt class="text-sm font-medium text-gray-500">
+                        Nom complet
+                    </dt>
+                    <dd class="mt-1 text-sm text-gray-900">
+                        {{ user.prenom }} {{ user.nom }}
+                    </dd>
+                </div>
+                <!-- Autres champs... -->
+            </dl>
+        </div>
+    </div>
+</div>
+
+{% include './composant/bottomBar.html.twig' %}
+{% endblock %}
