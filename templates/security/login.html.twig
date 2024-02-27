@@ -4,32 +4,7 @@
 
 
 {% block body %}
-<style>
-    /* Pour les écrans de taille PC */
-    @media screen and (min-width: 768px) {
-        .login-page .max-w-md {
-            max-width: none; /* Supprimez la limitation de la largeur maximale */
-        }
 
-        .login-page .p-4 {
-            padding: 8rem; /* Augmentez la marge intérieure pour occuper plus d'espace sur PC */
-        }
-
-        .login-page .bg-gray-50 {
-            background-color: #ffffff; /* Changer la couleur de fond des inputs sur les écrans de PC */
-        }
-
-        /* Ajustez la taille des inputs */
-        .login-page input[type="email"],
-        .login-page input[type="password"] {
-            width: 100%; /* Utilisez la largeur totale du conteneur */
-            padding: 10px; /* Ajustez la taille du padding selon vos besoins */
-            font-size: 16px; /* Ajustez la taille de la police selon vos besoins */
-        }
-
-        /* Ajustez d'autres styles selon vos besoins */
-    }
-</style>
 <form method="post" class="flex items-center justify-center">
     {% if error %}
         <div class="alert alert-danger">{{ error.messageKey|trans(error.messageData, 'security') }}</div>

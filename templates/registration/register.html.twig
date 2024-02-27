@@ -40,13 +40,5 @@
     </div>
 
 {# JavaScript for toggling password visibility #}
-<script>
-    function togglePasswordVisibility(passwordId) {
-        var passwordInput = document.getElementById(passwordId);
 
-        if (passwordInput) {
-            passwordInput.type = (passwordInput.type === 'password') ? 'text' : 'password';
-        }
-    }
-</script>
 {% endblock %}
