@@ -1,8 +1,10 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Accueil!{% endblock %}
+{% block title %}Accueil!
+{% endblock %}
 
 {% block body %}
+
 
 {% include './composant/Header.html.twig' %}
 
@@ -353,6 +355,7 @@ src="{{ produit.pathToImage }}" #}
 
 
 
+
 <button id="checkout-button" class="bg-green-800 hover:bg-green-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline transform transition hover:scale-105 duration-300 ease-in-out">
     Payer
 </button>
@@ -387,11 +390,21 @@ checkoutButton.addEventListener('click', function () {
 
 </script>
 
+<script>
+	function carouselNext() {
+const container = document.querySelector('.flex');
+const shownItems = document.querySelectorAll('.flex-shrink-0:not(.hidden)');
+const nextIndex = Math.min(shownItems.length, 5);
+container.style.transform = `translateX(-${
+nextIndex * 100
+}%)`;
+}
 
-{% include './composant/bottomBar.html.twig' %}
+function carouselPrev() {
+const container = document.querySelector('.flex');
+container.style.transform = 'translateX(0)';
+}
+</script>
 
 
-</body>
-</html>
-
-{% endblock %}
+{% include './composant/bottomBar.html.twig' %}</body></html>{% endblock %}
