@@ -11,18 +11,48 @@ use App\Entity\FicheProduit;
 use App\Entity\Commande;
 use App\Entity\Categorie;
 use App\Entity\User;
+use Doctrine\ORM\EntityManagerInterface;
 
 
 
 
 class DashboardController extends AbstractDashboardController
 {
+    private $entityManager;
+
+    public function __construct(EntityManagerInterface $entityManager)
+    {
+        $this->entityManager = $entityManager;
+    }
+
     #[Route('/admin', name: 'admin')]
     public function index(): Response
     {
-        return $this->render('admin/dashboard.html.twig');
+        $commandeRepository = $this->entityManager->getRepository(Commande::class);
+$commandesParHeure = $commandeRepository->getCommandesParHeure();
+$commandesParMois = $commandeRepository->getCommandesParMois();
+
+
+
+$categorieRepository = $this->entityManager->getRepository(Categorie::class);
+        $ventesParCategorie = $categorieRepository->getVentesParCategorie();
+
+
+
+return $this->render('admin/dashboard.html.twig', [
+    'commandesParMoment' => $commandesParHeure,
+    'commandesParMois' => $commandesParMois,
+    'ventesParCategorie' => $ventesParCategorie
+
+    // Assurez-vous que la clé correspond à celle utilisée dans votre Twig
+]);
     }
-    
+
+
+
+
+
+
 
     public function configureDashboard(): Dashboard
 {

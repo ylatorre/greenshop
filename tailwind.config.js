@@ -3,7 +3,8 @@ module.exports = {
   content: [
     "./assets/**/*.js",
     "./templates/**/*.html.twig",
-  ],  theme: {
+  ],
+  theme: {
     extend: {
       colors: {
         PrimaryGreen: '#A4AC86', // Replace this with your custom color code
@@ -15,11 +16,10 @@ module.exports = {
         lora: ['"lora"', "Lora"],
 
       backgroundColor: {
-        'custom-gray': '#D6DDD1',
 
+        'custom-gray': 'orange-100', // Setting custom-gray background color to orange-100
       },
     },
   },
   plugins: [],
 }
-

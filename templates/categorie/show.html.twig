@@ -30,17 +30,38 @@
 
 
 
-    <div>
-        {% for produit in produits %}
-            <div>
-                <h2>{{ produit.titre }}</h2>
-                <p>{{ produit.description }}</p>
-                <!-- Plus de détails sur le produit si nécessaire -->
+
+<div class="flex flex-wrap justify-center gap-4">
+    {% for produit in produits %}
+        <div class="h-3/5 w-56 bg-white shadow-lg">
+            <div class="h-56 border-b-2 border-gray-200">
+                {# <img src="{{ produit.imageUrl }}" alt="{{ produit.titre }}"> #}
             </div>
-        {% else %}
-            <p>Aucun produit trouvé dans cette catégorie.</p>
-        {% endfor %}
-    </div>
+            <div class="w-full h-44 flex flex-col justify-center items-center">
+                <div class="h-1/2 flex flex-col text-center justify-center">
+                    <div>
+                        {# <h1 class="font-bold text-gray-800">{{ produit.marque }}</h1> #}
+                        <p class="font-light text-base text-gray-600">{{ produit.titre }}</p>
+                        {# <p class="font-light text-base text-gray-600">{{ produit.volume }}</p> #}
+                    </div>
+                </div>
+                
+                <div class="flex h-1/2 items-center">
+                    <div class="text-center">
+                        <h1 class="font-light text-blue-800 border-blue-800 border mb-4"> -10% Extime Rewards</h1>
+                        <a class="font-light text-gray-600 text-center"> À partir de</a> <a class="text-gray-600 text-center font-semibold">{{ produit.prix }}</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    {% else %}
+        <p>Aucun produit trouvé dans cette catégorie.</p>
+    {% endfor %}
+</div>
+
+
+
+
 
 
 {% include './composant/bottomBar.html.twig' %}

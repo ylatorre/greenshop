@@ -7,6 +7,7 @@ use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
+
 #[ORM\Entity(repositoryClass: FicheProduitRepository::class)]
 class FicheProduit
 {
@@ -53,6 +54,9 @@ class FicheProduit
 
     #[ORM\OneToMany(mappedBy: 'ficheProduit', targetEntity: Photo::class)]
     private Collection $idPhoto;
+
+    #[ORM\Column]
+    private ?float $prix = null;
 
     public function __construct()
     {
@@ -295,4 +299,18 @@ class FicheProduit
 
         return $this;
     }
+
+    public function getPrix(): ?float
+    {
+        return $this->prix;
+    }
+
+    public function setPrix(float $prix): static
+    {
+        $this->prix = $prix;
+
+        return $this;
+    }
+
+
 }
