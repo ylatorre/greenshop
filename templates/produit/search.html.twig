@@ -1,0 +1,12 @@
+{# templates/product/search.html.twig #}
+
+{% extends 'base.html.twig' %}
+
+{% block content %}
+    <h1>Product Search</h1>
+
+    {{ form_start(form) }}
+        {{ form_row(form.search) }}
+        <button type="submit">Search</button>
+    {{ form_end(form) }}
+{% endblock %}

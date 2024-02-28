@@ -1,0 +1,17 @@
+{# templates/product/search_results.html.twig #}
+
+{% extends 'base.html.twig' %}
+
+{% block content %}
+    <h1>Search Results</h1>
+
+    {% if results is not empty %}
+        <ul>
+            {% for product in results %}
+                <li>{{ product.titre }} - {{ product.description }}</li>
+            {% endfor %}
+        </ul>
+    {% else %}
+        <p>No results found.</p>
+    {% endif %}
+{% endblock %}

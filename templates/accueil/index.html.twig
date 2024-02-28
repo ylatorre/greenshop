@@ -21,6 +21,10 @@
 			<span class="text-lime-500 text-4xl font-normal mb-4">GreenShop</span>
 		</div>
 
+	{{ form_start(form) }}
+        {{ form_row(form.search) }}
+        <button type="submit">Rechercher</button>
+    {{ form_end(form) }}
 
 		<div class="flex w-screen justify-center items-center flex-col">
 			<h2 class="text-xl text-green-700 text-center w-10/12">
@@ -28,7 +32,7 @@
 			</h2>
 			<h2 class="text-xl text-green-700 text-center w-10/12">
 				Notre objectif est de sensibiliser à la cause environnementale et de promouvoir un mode de vie durable.
-			</h2>
+			</h2>	
 		</div>
 
 	</div>
@@ -357,18 +361,18 @@ checkoutButton.addEventListener('click', function () {
 
 <script>
 	function carouselNext() {
-const container = document.querySelector('.flex');
-const shownItems = document.querySelectorAll('.flex-shrink-0:not(.hidden)');
-const nextIndex = Math.min(shownItems.length, 5);
-container.style.transform = `translateX(-${
-nextIndex * 100
-}%)`;
-}
+		const container = document.querySelector('.flex');
+		const shownItems = document.querySelectorAll('.flex-shrink-0:not(.hidden)');
+		const nextIndex = Math.min(shownItems.length, 5);
+		container.style.transform = `translateX(-${
+		nextIndex * 100
+		}%)`;
+		}
 
-function carouselPrev() {
-const container = document.querySelector('.flex');
-container.style.transform = 'translateX(0)';
-}
+		function carouselPrev() {
+		const container = document.querySelector('.flex');
+		container.style.transform = 'translateX(0)';
+	}
 </script>
 
 

@@ -21,6 +21,16 @@ class FicheProduitRepository extends ServiceEntityRepository
         parent::__construct($registry, FicheProduit::class);
     }
 
+    public function findBySearchTerm(string $searchTerm)
+    {
+        return $this->createQueryBuilder('p')
+            ->andWhere('p.titre LIKE :searchTerm OR p.description LIKE :searchTerm')
+            ->setParameter('searchTerm', '%' . $searchTerm . '%')
+            ->getQuery()
+            ->getResult();
+    }
+}
+
 //    /**
 //     * @return FicheProduit[] Returns an array of FicheProduit objects
 //     */
@@ -45,4 +55,3 @@ class FicheProduitRepository extends ServiceEntityRepository
 //            ->getOneOrNullResult()
 //        ;
 //    }
-}

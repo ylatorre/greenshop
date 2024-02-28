@@ -2,11 +2,15 @@
 
 namespace App\Controller;
 
+use App\Form\SearchType;
+use App\Repository\FicheProduitRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Doctrine\ORM\EntityManagerInterface;
 use App\Entity\FicheProduit;
+
 
 class ProduitController extends AbstractController
 {
@@ -30,38 +34,26 @@ class ProduitController extends AbstractController
             'controller_name' => 'ProduitController',
         ]);
     }
-}
 
-
-
-class DefaultController extends AbstractController
-{
-    /**
-     * @Route("/", name="home")
-     */
-    public function index(Request $request): Response
+    public function search(Request $request, FicheProduitRepository $FicheProduitRepository): Response
     {
-        // ... votre code existant
+        $form = $this->createForm(SearchType::class);
+        $form->handleRequest($request);
 
-        return $this->render('default/index.html.twig');
-    }
+        if ($form->isSubmitted() && $form->isValid()) {
+            $searchTerm = $form->get('search')->getData();
 
-    /**
-     * @Route("/search", name="search")
-     */
-    public function search(Request $request): Response
-    {
-        // Récupérer la requête de recherche depuis le formulaire
-        $searchQuery = $request->query->get('q');
+            // Use your repository or service to fetch products based on the search term
+            $results = $FicheProduitRepository->findBySearchTerm($searchTerm);
 
-        // Utiliser Doctrine pour rechercher les produits correspondant à la requête
-        $entityManager = $this->getDoctrine()->getManager();
-        $produits = $entityManager->getRepository(Produit::class)->findBySearchQuery($searchQuery);
+            return $this->render('product/search_results.html.twig', [
+                'results' => $results,
+            ]);
+        }
 
-        // Passer les résultats à la vue
-        return $this->render('search/results.html.twig', [
-            'produits' => $produits,
-            'searchQuery' => $searchQuery,
+        return $this->render('product/search.html.twig', [
+            'form' => $form->createView(),
         ]);
     }
+
 }
