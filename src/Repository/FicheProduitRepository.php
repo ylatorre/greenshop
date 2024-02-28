@@ -21,6 +21,8 @@ class FicheProduitRepository extends ServiceEntityRepository
         parent::__construct($registry, FicheProduit::class);
     }
 
+    
+
 //    /**
 //     * @return FicheProduit[] Returns an array of FicheProduit objects
 //     */

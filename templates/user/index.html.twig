@@ -1,0 +1,88 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Profil de {{ user.prenom }} {{ user.nom }}{% endblock %}
+
+{% block body %}
+{% include './composant/Header.html.twig' %}
+
+<div class="flex flex-col sm:flex-row w-full mt-5 h-screen">
+    <div class="w-10"></div>
+    <div class="w-full sm:w-5/6 px-4 sm:px-0">
+        <div class="flex flex-col sm:flex-row items-center justify-between text-xl ">
+            <h1 class="text-4xl sm:text-7xl text-gray-900 font-bold mb-4 sm:mb-0">Compte</h1>
+            <div class="flex bg-white h-16 border-orange-100 border-2 items-center w-full sm:w-3/4 shadow-lg justify-around text-sm sm:text-base">
+                <div class="font-semibold" onclick="window.location.href='/commande/VosCommandes';" style="cursor: pointer;">Mes commandes</div>
+                <div onclick="window.location.href='/compte';" style="cursor: pointer;">Mon profil</div>
+                <div onclick="window.location.href='/favoris';" style="cursor: pointer;">Mes favoris</div>
+                <div onclick="window.location.href='/liste/';" style="cursor: pointer;">Vos listes</div>
+            </div>
+        </div>
+        <div class="text-gray-900 mt-8 sm:mt-20">
+            <h2 class="text-3xl sm:text-5xl font-semibold">Historique des commandes</h2>
+            {% if commandes|length == 0 %}
+                <h2 class="text-xl sm:text-2xl font-light">Vous n'avez pas encore passé de commande.</h2>
+            {% else %}
+                {% for commande in commandes %}
+                    {% include './composant/VosCommandes.html.twig' with {'commande': commande} %}
+                {% endfor %}
+            {% endif %}
+        </div>
+
+    </div>
+</div>
+
+{% if is_granted('ROLE_ADMIN') %}
+    <a href="/admin" class="bg-blue-500 mt-10 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
+        Bouton Admin
+    </a>
+{% endif %}
+
+
+
+{% include './composant/bottomBar.html.twig' %} 
+
+
+
+
+
+
+<script>
+    document.getElementById('goToAccount').addEventListener('click', function() {
+        window.location.href = '/compte';
+    });
+
+    document.getElementById('goToOrder').addEventListener('click', function() {
+    window.location.href = '/commande/VosCommandes';
+});
+
+    document.getElementById('goToListe').addEventListener('click', function() {
+    window.location.href = '/liste/';
+});
+
+    
+</script>
+
+
+
+{% endblock %}
+
+
+
+
+{# 
+                <!--Listes-->
+        <div class="w-screen flex flex-col justify-center items-center mt-6">
+
+            <div class="flex flex-row items-center w-10/12	">
+
+                <h2 class="text-3xl sm:text-5xl font-semibold">Vos Listes</h2>
+            
+            <div class="font-inter text-xs w-1/2 text-sm leading-none  text-right text-neutral-900	">
+                <a href="#" class="hover:underline">Afficher tout</a>
+            </div>
+            </div>
+        {% for liste in listes %}
+            {% include './composant/VosListes.html.twig' with {'nomListe': liste.nomListe} %}
+        {% endfor %}
+
+        </div> #}

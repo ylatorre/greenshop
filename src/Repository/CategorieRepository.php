@@ -5,7 +5,8 @@ namespace App\Repository;
 use App\Entity\Categorie;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
-
+use Doctrine\ORM\EntityManagerInterface;
+use Doctrine\ORM\Query\ResultSetMapping;
 /**
  * @extends ServiceEntityRepository<Categorie>
  *
@@ -20,6 +21,25 @@ class CategorieRepository extends ServiceEntityRepository
     {
         parent::__construct($registry, Categorie::class);
     }
+    
+    public function getVentesParCategorie(): array
+{
+    $rsm = new ResultSetMapping();
+    $rsm->addScalarResult('categorie', 'categorie');
+    $rsm->addScalarResult('total', 'total');
+
+    $query = $this->getEntityManager()->createNativeQuery(
+        'SELECT cat.nom AS categorie, SUM(fp.nombre_de_vente) AS total
+         FROM categorie cat
+         JOIN fiche_produit_categorie cfp ON cfp.categorie_id = cat.id
+         JOIN fiche_produit fp ON fp.id = cfp.fiche_produit_id
+         GROUP BY cat.nom', $rsm
+    );
+
+    return $query->getResult();
+}
+
+
 
 //    /**
 //     * @return Categorie[] Returns an array of Categorie objects

@@ -1,0 +1,100 @@
+{% extends '@EasyAdmin/page/content.html.twig' %}
+
+{% block content %}
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+<!-- Votre contenu HTML -->
+
+<h1>Bienvenue sur l'espace d'administration de GreenShop</h1>
+
+<canvas id="commandesParMoment" width="100" height="50"></canvas>
+<canvas id="commandesParMois" width="100" height="50"></canvas>
+<canvas id="ventesParCategorie" class="w-full h-64"></canvas>
+
+<script>
+    let ventesParCategorie = {{ ventesParCategorie|json_encode|raw }};
+
+    let labelsCategorie = ventesParCategorie.map(v => v.categorie);
+    let dataCategorie = ventesParCategorie.map(v => v.total);
+
+    const dataChartCategorie = {
+        labels: labelsCategorie,
+        datasets: [{
+            label: 'Ventes par catégorie',
+            data: dataCategorie,
+            backgroundColor: [/* Couleurs pour chaque catégorie */],
+            borderColor: [/* Couleurs de bordure pour chaque catégorie */],
+            borderWidth: 1
+        }]
+    };
+
+    new Chart(document.getElementById('ventesParCategorie'), {
+        type: 'pie',
+        data: dataChartCategorie,
+        options: {
+            responsive: true,
+            maintainAspectRatio: false
+        }
+    });
+</script>
+
+
+
+<!--script graphique commande par mois-->
+
+
+<script>
+    let commandesParMois = {{ commandesParMois|json_encode|raw }};
+
+    let labelsMois = Object.keys(commandesParMois);
+    let dataMois = Object.values(commandesParMois);
+
+    const dataChartMois = {
+        labels: labelsMois,
+        datasets: [{
+            label: 'Commandes par mois',
+            data: dataMois,
+            backgroundColor: 'rgba(54, 162, 235, 0.2)',
+            borderColor: 'rgba(54, 162, 235, 1)',
+            borderWidth: 1
+        }]
+    };
+
+    new Chart(document.getElementById('commandesParMois'), {
+        type: 'bar', // ou 'line', selon le type de graphique souhaité
+        data: dataChartMois,
+        options: { /* options du graphique */ }
+    });
+</script>
+
+
+
+
+
+<!--script graphique commande par heure-->
+<script>
+    let commandesParMoment = {{ commandesParMoment|json_encode|raw }};
+
+    // Création des tableaux de labels et de données pour Chart.js
+    let labels = Object.keys(commandesParMoment);
+    let data = Object.values(commandesParMoment);
+
+    const dataChart = {
+        labels: labels,
+        datasets: [{
+            label: 'Commandes par moment de la journée',
+            data: data,
+            backgroundColor: 'rgba(255, 99, 132, 0.2)',
+            borderColor: 'rgba(255, 99, 132, 1)',
+            borderWidth: 1
+        }]
+    };
+
+    new Chart(document.getElementById('commandesParMoment'), {
+        type: 'bar', // ou 'line', selon le type de graphique souhaité
+        data: dataChart,
+        options: { /* options du graphique */ }
+    });
+</script>
+
+{% endblock %}
