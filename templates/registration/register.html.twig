@@ -1,21 +1,52 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Register{% endblock %}
+{% block title %}Inscription
+{% endblock %}
 
 {% block body %}
-    <h1>Register</h1>
 
-    {{ form_errors(registrationForm) }}
+{% include './composant/PageStyle.html.twig' %}
 
-    {{ form_start(registrationForm) }}
-        {{ form_row(registrationForm.email) }}
-        {{ form_row(registrationForm.plainPassword, {
-            label: 'Password'
-        }) }}
-        {{ form_row(registrationForm.agreeTerms) }}
-        {{ form_row(registrationForm.nom) }}
-        {{ form_row(registrationForm.prenom) }}
-        {{ form_row(registrationForm.telephone) }}
-        <button type="submit" class="btn">Register</button>
-    {{ form_end(registrationForm) }}
+<div class="flex items-center justify-center bg-white p-28">
+	<div class="p-8 rounded  flex flex-col items-center">
+		<h1 class="text-3xl font-bold mb-6">Inscription</h1>
+
+
+		{{ form_errors(registrationForm) }}
+
+		{{ form_start(registrationForm, {'attr': {'class': 'w-80 font-OpanSans'}}) }}
+		{{ form_row(registrationForm.prenom, {'attr': {'class': 'bg-gray-50 mb-4 p-2 w-full border border-gray-300 rounded', 'placeholder': 'Prénom'}, 'label': false}) }}
+		{{ form_row(registrationForm.nom, {'attr': {'class': 'bg-gray-50 mb-4 p-2 w-full border border-gray-300 rounded', 'placeholder': 'Nom'}, 'label': false}) }}
+		{{ form_row(registrationForm.email, {'attr': {'class': 'bg-gray-50 mb-4 p-2 w-full border border-gray-300 rounded', 'placeholder': 'Adresse email'}, 'label': false}) }}
+		{{ form_row(registrationForm.telephone, {'attr': {'class': 'bg-gray-50 mb-4 p-2 w-full border border-gray-300 rounded', 'placeholder': 'Téléphone'}, 'label': false}) }}
+
+		<div class="relative">
+			{{ form_row(registrationForm.plainPassword, {
+                        'attr': {
+                            'class': 'bg-gray-50 mb-4 p-2 w-full border border-gray-300 rounded',
+                            'placeholder': 'Mot de passe',
+                            'id': 'passwordId'
+                        },
+                        'label': false
+                    }) }}
+
+			{# <span class="absolute right-4 top-1/2 transform -translate-y-1/2 cursor-pointer pb-4 text-ThirdGreen" id="showPasswordButton" onclick="togglePasswordVisibility('passwordId')">
+																                        Show
+																                    </span> #}
+		</div>
+
+
+		{{ form_row(registrationForm.agreeTerms, {'label': 'J\'accepte les termes et les conditions', 'label_attr': {'class': 'inline-block text-right pr-2'}}) }}
+                
+
+                <button type="submit" class="bg-green-700 text-white py-2 px-4 rounded-full w-full mt-40 mb-2">Créer mon compte</button>
+            {{ form_end(registrationForm) }}
+            <div class="flex space-x-1">
+                <p class=''>Vous avez déjà un compte ? </p>
+                <a class='text-green-500' href="{{path("app_login")}}">Connectez-vous</a>
+            </div>
+        
+    </div>
+
+</div>
 {% endblock %}
