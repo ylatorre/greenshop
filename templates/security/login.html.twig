@@ -1,54 +1,58 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Log in!{% endblock %}
-
+{% block title %}Connexion
+{% endblock %}
 
 {% block body %}
 
-<form method="post" class="flex items-center justify-center">
-    {% if error %}
-        <div class="alert alert-danger">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
-    {% endif %}
+	{% include './composant/PageStyle.html.twig' %}
 
-    {% if app.user %}
-        <div class="mb-3">
-            You are logged in as {{ app.user.userIdentifier }}, <a href="{{ path('app_logout') }}">Logout</a>
+	<div
+		class="bg-white pb-56 pt-52">
+
+		{# {% if app.user %}
+									<div class="mb-3">
+										You are logged in as
+										{{ app.user.userIdentifier }},
+										<a href="{{ path('app_logout') }}">Logout</a>
+									</div>
+								{% endif %} #}
+
+		<form method="post" action="{{ path('app_login') }}" class="flex justify-center">
+        {# {% if error %}
+            <div class="alert alert-danger">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
+        {% endif %} #}
+        
+        
+        <div class="">
+            <h1 class="text-3xl font-bold mb-6 text-center">Connectez-vous</h1>
+            <div class="">
+                <div class="mb-4">
+                    <input type="email" value="{{ last_username }}" name="email" id="inputEmail" class="bg-gray-50 p-2 w-full border border-gray-300 rounded" placeholder="Adresse email" autocomplete="email" required autofocus>
+                </div>
+                <div class="mb-4">
+                    <input type="password" name="password" id="inputPassword" class="bg-gray-50 mb-4 p-2 w-full border border-gray-300 rounded" placeholder="Mot de passe" autocomplete="current-password" required>
+                </div>
+                <div class="mb-4">
+                    <input type="hidden" name="_csrf_token" value="{{ csrf_token('authenticate') }}">
+                </div>
+                <div>
+                    <button class="bg-green-600 text-white py-2 px-4 rounded-full w-full mt-40 mb-2" type="submit">
+                        Se connecter
+                    </button>
+                </div>
+            </div>
         </div>
-    {% endif %}
+    </form>
+		<div class="flex items-center justify-center flex-col text-center">
+			<div class="mb-4">
+				<a class="text-base font-semibold text-green-700 " href="{{ path("app_lost_pass_word") }}">Mot de passe oublié</a>
+			</div>
+			<div class="flex space-x-2">
+				<p>Vous n’avez pas de compte ?</p>
+				<a class='text-green-500' href="{{ path("app_register") }}">Inscrivez-vous</a>
+			</div>
+		</div>
+	</div>
 
-<div class="max-w-md w-full p-4">
-        <h1 class="text-3xl font-bold font-lora mb-6 text-center">Connectez-vous</h1>
-        <div class="font-OpanSans">
-            <div class="mb-4">
-                {# <label for="inputEmail" class="block text-gray-700 text-sm font-bold mb-2">Email</label> #}
-                <input type="email" value="{{ last_username }}" name="email" id="inputEmail" class="bg-gray-50 mb-1 p-2 w-full border border-gray-300 rounded"  placeholder="email" autocomplete="email" required autofocus>
-            </div>
-
-            <div class="mb-4">
-
-                <input type="password" name="password" id="inputPassword" class="bg-gray-50 mb-4 p-2 w-full border border-gray-300 rounded" placeholder="Password" autocomplete="current-password" required>
-            </div>
-
-            <div class="mb-4">
-                <input type="hidden" name="_csrf_token" value="{{ csrf_token('authenticate') }}">
-            </div>
-
-            <div>
-                <button class="bg-PrimaryGreen text-white py-2 px-4 rounded-full w-full mt-40 mb-2" type="submit">
-                    Sign in
-                </button>
-            </div>
-        </div>
-    </div>
-</form>
-<div class="flex items-center justify-center flex-col text-center">
-
-    <div class="mb-4">
-        <a class="text-base font-semibold text-SecondaryGreen ">Mot de passe oublié</a>
-    </div>
-    <div>
-        <p class='mb-2'>Vous n’avez pas de compte ? <a class='text-SecondaryGreen'>Inscrivez-vous</a></p>
-    </div>
-
-</div>
 {% endblock %}
