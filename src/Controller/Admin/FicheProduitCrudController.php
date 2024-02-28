@@ -29,12 +29,13 @@ class FicheProduitCrudController extends AbstractCrudController
         NumberField::new('noteProduit'),
         NumberField::new('nombreDeVente'),
         BooleanField::new('recyclage'),
+        NumberField::new('prix'),
 
         // Utilisez AssociationField pour les relations ManyToOne ou ManyToMany
-        AssociationField::new('idEtat'),
-        AssociationField::new('idFournisseur'),
-        AssociationField::new('idCategorie')->hideOnIndex(),
-        AssociationField::new('idEcoScore')->hideOnIndex(),
+        AssociationField::new('idEtat')->setFormTypeOption('choice_label', 'label'), // Spécifiez 'label' comme la propriété à afficher
+        AssociationField::new('idFournisseur')->setFormTypeOption('choice_label', 'nom'), // Spécifiez 'nom' comme la propriété à afficher
+        AssociationField::new('idCategorie')->setFormTypeOption('choice_label', 'nom')->hideOnIndex(), // Spécifiez 'nom' comme la propriété à afficher
+        AssociationField::new('idEcoScore')->setFormTypeOption('choice_label', 'label')->hideOnIndex(), // Spécifiez 'label' comme la propriété à afficher
 
         // Pour une collection de photos ou autres entités liées
         CollectionField::new('idPhoto')
