@@ -1,6 +1,3 @@
-
-
-
 {# templates/user/index.html.twig #}
 
 {% extends 'base.html.twig' %}
@@ -8,37 +5,124 @@
 {% block title %}Profil de {{ user.prenom }} {{ user.nom }}{% endblock %}
 
 {% block body %}
-{% include './composant/Header.html.twig' %}
+    {% include './composant/Header.html.twig' %}
 
-{% include 'composant/affichagePage.html.twig' with {'pageName': 'Mes Informations'} %}
+    {% include 'composant/affichagePage.html.twig' with {'pageName': 'Mes Informations'} %}
 
-
-<div class="container mx-auto px-2 sm:px-4 py-6 mb-4">
-    <div class="bg-white shadow overflow-hidden rounded-lg">
-        <div class="px-2 sm:px-4 py-5">
-            <h3 class="text-md sm:text-lg leading-6 font-medium text-gray-900">
-                Informations du Profil
-            </h3>
-            <p class="mt-1 max-w-2xl text-xs sm:text-sm text-gray-500">
-                Détails personnels.
-            </p>
-        </div>
-        <div class="border-t border-gray-200">
-            <dl class="flex flex-col sm:grid sm:grid-cols-3 sm:gap-4">
-                <!-- Champs du profil ici, en répétant le pattern ci-dessous -->
-                <div class="bg-gray-50 px-2 sm:px-4 py-5">
-                    <dt class="text-sm font-medium text-gray-500">
-                        Nom complet
-                    </dt>
-                    <dd class="mt-1 text-sm text-gray-900">
-                        {{ user.prenom }} {{ user.nom }}
-                    </dd>
-                </div>
-                <!-- Autres champs... -->
-            </dl>
+    <div class="container mx-auto px-2 sm:px-4 py-6 mb-4">
+        <div class="bg-white shadow overflow-hidden rounded-lg">
+            <div class="px-2 sm:px-4 py-5">
+                <h3 class="text-md sm:text-lg leading-6 font-medium text-gray-900">
+                    Informations du Profil
+                </h3>
+                <p class="mt-1 max-w-2xl text-xs sm:text-sm text-gray-500">
+                    Détails personnels.
+                </p>
+            </div>
+            <div class="border-t border-gray-200">
+                <dl class="flex flex-col sm:grid sm:grid-cols-3 sm:gap-4">
+                    <div class="bg-gray-50 px-2 sm:px-4 py-5">
+                        <dt class="text-sm font-medium text-gray-500">
+                            Email
+                        </dt>
+                        <dd class="mt-1 text-sm text-gray-900">
+                            {{ user.email }}
+                        </dd>
+                    </div>
+                    <div class="bg-white px-2 sm:px-4 py-5">
+                        <dt class="text-sm font-medium text-gray-500">
+                            Téléphone
+                        </dt>
+                        <dd class="mt-1 text-sm text-gray-900">
+                            {{ user.telephone }}
+                        </dd>
+                    </div>
+                    <div class="bg-gray-50 px-2 sm:px-4 py-5">
+                        <dt class="text-sm font-medium text-gray-500">
+                            Adresse
+                        </dt>
+                        <dd class="mt-1 text-sm text-gray-900">
+                            {{ adresses.0.adresse }}
+                        </dd>
+                    </div>
+                    <div class="bg-white px-2 sm:px-4 py-5">
+                        <dt class="text-sm font-medium text-gray-500">
+                            Region
+                        </dt>
+                        <dd class="mt-1 text-sm text-gray-900">
+                            {{ adresses.0.region }}
+                        </dd>
+                    </div>
+                    <div class="bg-gray-50 px-2 sm:px-4 py-5">
+                        <dt class="text-sm font-medium text-gray-500">
+                            Code Postal
+                        </dt>
+                        <dd class="mt-1 text-sm text-gray-900">
+                            {{ adresses.0.codePostal }}
+                        </dd>
+                    </div>
+                    <div class="bg-white px-2 sm:px-4 py-5">
+                        <dt class="text-sm font-medium text-gray-500">
+                            Address Actuelle
+                        </dt>
+                        <dd class="mt-1 text-sm text-gray-900">
+                            {{ adresses.0.adresseActif }}
+                        </dd>
+                    </div>
+                </dl>
+            </div>
+{#            add bouton edit #}
+            <div class="px-2 sm:px-4 py-5">
+{#                <a href="{{ path('edit-compte', {'id': user.id}) }}" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">                    Modifier#}
+                </a>
+            </div>
         </div>
     </div>
-</div>
 
-{% include './composant/bottomBar.html.twig' %}
+    {% include './composant/bottomBar.html.twig' %}
+
+
+{#    <script>#}
+{#        document.addEventListener('DOMContentLoaded', function () {#}
+{#            document.getElementById('editButton').addEventListener('click', function() {#}
+{#                // Transforme les éléments en champs d'entrée#}
+{#                const fields = ['email', 'telephone', 'adresse', 'region', 'codePostal'];#}
+{#                fields.forEach(field => {#}
+{#                    const element = document.getElementById(field);#}
+{#                    const value = element.innerText;#}
+{#                    element.innerHTML = `<input type="text" id="input_${field}" value="${value}" class="mt-1 block w-full" />`;#}
+{#                });#}
+
+{#                // Change le bouton Modifier en Sauvegarder#}
+{#                this.innerText = 'Sauvegarder';#}
+{#                this.id = 'saveButton';#}
+
+{#                // Gère le clic sur Sauvegarder#}
+{#                document.getElementById('saveButton').addEventListener('click', function() {#}
+{#                    const updatedFields = {};#}
+{#                    fields.forEach(field => {#}
+{#                        updatedFields[field] = document.getElementById(`input_${field}`).value;#}
+{#                    });#}
+
+{#                    // Envoie les données mises à jour au serveur#}
+{#                    fetch('{{ path('update_route') }}', { // Remplacez 'update_route' par le nom de votre route de mise à jour#}
+{#                        method: 'POST',#}
+{#                        headers: {#}
+{#                            'Content-Type': 'application/json',#}
+{#                            'X-Requested-With': 'XMLHttpRequest',#}
+{#                            'X-CSRF-TOKEN': '{{ csrf_token('update_item') }}' // Assurez-vous d'avoir généré un token CSRF#}
+{#                        },#}
+{#                        body: JSON.stringify(updatedFields)#}
+{#                    })#}
+{#                        .then(response => response.json())#}
+{#                        .then(data => {#}
+{#                            console.log(data);#}
+{#                            // Ici, vous pouvez gérer la réponse du serveur, par exemple rafraîchir la page#}
+{#                        })#}
+{#                        .catch(error => console.error('Erreur:', error));#}
+{#                });#}
+{#            });#}
+{#        });#}
+{#    </script>#}
+
 {% endblock %}
