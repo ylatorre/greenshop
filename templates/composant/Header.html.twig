@@ -14,7 +14,7 @@
 <body>
 
 
-  <div class="flex justify-center border-b border-gray-200">
+  <div class=" fixed top-0 left-0 w-full z-50 bg-white h-20 flex justify-center border-b border-gray-200">
     <div class="flex justify-between w-10/12 items-center">
       <!-- Logo et Nom du site -->
       <div class="flex items-center">
@@ -35,17 +35,19 @@
       </div>
 
       <!-- Barre de recherche au centre -->
-      <div class="flex items-center mx-auto">
-        <!-- Champ de recherche -->
-        <input type="text" placeholder="Rechercher..." class="border-none outline-none bg-gray-300 p-3 rounded-md w-64" />
+<div class="flex items-center mx-auto">
+    <!-- Champ de recherche avec id "search-input" ajouté -->
+    <input type="text" id="search-input" placeholder="Rechercher..." class="border-none outline-none bg-gray-200 p-3 rounded-l-md w-64" />
 
-        <!-- Bouton de recherche -->
-        <button class="bg-green-500 p-2 rounded-md ml-2 h-8 w-8" onclick="votreFonction()">
-          <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20" fill="white">
-            <path d="M19.707 18.293L16.85 15.435C15.38 16.558 13.585 17.1 11.75 17.1C7.364 17.1 4 13.736 4 9.35C4 4.964 7.364 1.6 11.75 1.6C16.136 1.6 19.5 4.964 19.5 9.35C19.5 11.185 18.958 12.98 17.835 14.45L20.707 17.293C20.9 17.488 21 17.744 21 18C21 18.256 20.9 18.512 20.707 18.707C20.316 19.098 19.684 19.098 19.293 18.707ZM11.75 16.1C14.955 16.1 17.5 13.555 17.5 9.35C17.5 5.145 14.955 2.6 11.75 2.6C8.545 2.6 6 5.145 6 9.35C6 13.555 8.545 16.1 11.75 16.1Z"/>
-          </svg>
-        </button>
-      </div>
+    <!-- Bouton de recherche -->
+    <button class="bg-green-500 p-2 rounded-r-md h-12 w-22" onclick="votreFonction()">
+      <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20" fill="white">
+        <path d="M19.707 18.293L16.85 15.435C15.38 16.558 13.585 17.1 11.75 17.1C7.364 17.1 4 13.736 4 9.35C4 4.964 7.364 1.6 11.75 1.6C16.136 1.6 19.5 4.964 19.5 9.35C19.5 11.185 18.958 12.98 17.835 14.45L20.707 17.293C20.9 17.488 21 17.744 21 18C21 18.256 20.9 18.512 20.707 18.707C20.316 19.098 19.684 19.098 19.293 18.707ZM11.75 16.1C14.955 16.1 17.5 13.555 17.5 9.35C17.5 5.145 14.955 2.6 11.75 2.6C8.545 2.6 6 5.145 6 9.35C6 13.555 8.545 16.1 11.75 16.1Z"/>
+      </svg>
+    </button>
+</div>
+
+
 
       <div class="flex justify-end items-center pr-4">
         <!-- Bouton Cœur -->
@@ -60,7 +62,7 @@
 
         <!-- Bouton Liste -->
         <button class="p-2 mr-2">
-          <img src="image/liste.png" alt="Liste" class="h-6 w-6">
+          <img src="image/liste2.png" alt="Liste" class="h-6 w-6">
         </button>
 
         <!-- Bouton Profil -->
@@ -76,24 +78,46 @@
 
 
 
-  <!-- Modal -->
-  <div id="myModal" class="hidden fixed inset-0 bg-gray-600 bg-opacity-50 overflow-y-auto h-full w-full" id="my-modal">
+<!-- Modal -->
+<div id="myModal" class="hidden z-49 fixed inset-0 bg-gray-600 bg-opacity-50 overflow-y-auto h-full w-full">
     <!-- Modal content -->
-    <div class="transform transition-all scale-95 opacity-0 relative top-1/4 mx-auto p-5 border w-10/12 shadow-lg rounded-md bg-white">
+    <div class="relative top-1/4 mx-auto p-5 border w-10/12 shadow-lg rounded-md bg-white">
       <div class="mt-3 text-center">
         <h3 class="text-lg leading-6 font-medium text-gray-900">Recherche</h3>
         <div class="mt-2 px-7 py-3">
           <!-- Search Input -->
-          <input type="text" id="search-input" class="mt-1 p-2 w-full rounded-md border-gray-300 focus:border-blue-500 focus:ring focus:ring-blue-200 focus:ring-opacity-50" placeholder="Tapez pour rechercher...">
+          <input type="text" id="search-input-modal" class="mt-1 p-2 w-full rounded-md border-gray-300 focus:border-blue-500 focus:ring focus:ring-blue-200 focus:ring-opacity-50" placeholder="Tapez pour rechercher...">
+        </div>
+        <div id="search-results" class="mt-4">
+          <!-- Les résultats de recherche seront affichés ici -->
         </div>
         <div class="items-center px-4 py-3">
-          <button id="search-button" class="px-4 py-2 bg-blue-500 text-white text-base font-medium rounded-md shadow-sm hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-300">
-            Rechercher
-          </button>
-          <button id="close-modal" class="ml-3 px-4 py-2 bg-gray-500 text-white text-base font-medium rounded-md shadow-sm hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-gray-300">
+          <button id="close-modal" class="px-4 py-2 bg-gray-500 text-white text-base font-medium rounded-md shadow-sm hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-gray-300">
             Fermer
           </button>
         </div>
       </div>
-  </div>
+    </div>
+</div>
+
+<script>
+// Script pour gérer l'ouverture et la fermeture de la modale
+document.getElementById('search-input').onclick = function() {
+    document.getElementById('myModal').classList.remove('hidden');
+};
+
+document.getElementById('close-modal').onclick = function() {
+    document.getElementById('myModal').classList.add('hidden');
+};
+
+// Script pour filtrer dynamiquement les produits (exemple simplifié)
+document.getElementById('search-input-modal').onkeyup = function(e) {
+    const searchTerm = e.target.value.toLowerCase();
+    document.getElementById('search-results').innerHTML = ''; // Efface les résultats précédents
+    // Filtrez vos produits ici en fonction de searchTerm
+    // Mettez à jour le DOM avec les résultats filtrés
+};
+</script>
+
+</body>
 </div>
