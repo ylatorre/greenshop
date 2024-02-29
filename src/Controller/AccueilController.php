@@ -2,7 +2,7 @@
 
 namespace App\Controller;
 
-
+use App\Entity\Categorie;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -39,8 +39,32 @@ $ficheProduitRepository = $entityManager->getRepository(FicheProduit::class);
             [],
             ['nombreDeVente' => 'DESC'],
             8,
-              // Limite à 4 produits
         );
+
+        $categorieRepository = $entityManager->getRepository(Categorie::class);
+        $categories = $categorieRepository->findAll();
+
+
+       
+//je veux les imamge des produits de chaque categorie
+
+
+      $filteredProduits = $entityManager->getRepository(FicheProduit::class)->findAllSortedByCategory();
+      
+      dd($filteredProduits);
+
+      foreach ($filteredProduits as $filteredProduit) {
+        $categories = $filteredProduit->getIdCategorie();
+    
+        foreach ($categories as $categorie) {
+            $categorie->setImageProduit($filteredProduit->getImageProduit());
+            $entityManager->persist($categorie);
+        }
+    
+        $entityManager->flush();
+    }
+    
+    //   dd($categories->toArray());
 
 
 // Rendu de la vue
@@ -48,6 +72,7 @@ $ficheProduitRepository = $entityManager->getRepository(FicheProduit::class);
             'controller_name' => 'AccueilController',
             'produitsMieuxNotes' => $produitsMieuxNotes,
             'produitsPlusVendus' => $produitsPlusVendus,
+            'categories' => $categories->toArray(),
 
 
         ]);

@@ -55,8 +55,8 @@ class FicheProduit
     #[ORM\OneToMany(mappedBy: 'ficheProduit', targetEntity: Photo::class)]
     private Collection $idPhoto;
 
-    #[ORM\Column]
-    private ?float $prix = null;
+
+    
 
     public function __construct()
     {
@@ -312,5 +312,29 @@ class FicheProduit
         return $this;
     }
 
+    private ?string $imageProduit = null;  // Ajoutez cette propriété
 
+    public function setImageProduit(?string $imageProduit): static
+    {
+        $this->imageProduit = $imageProduit;
+    
+        return $this;
+    }
+    
+    public function getImageProduit(): ?string
+    {
+        return $this->imageProduit;
+    }
+    public function getImagesProduit(): array
+    {
+        $images = [];
+    
+        foreach ($this->idPhoto as $photo) {
+            // Ajoutez la logique pour obtenir l'URL ou le chemin de l'image
+            $images[] = $photo->getImage();
+        }
+    
+        return $images;
+    }
+        
 }

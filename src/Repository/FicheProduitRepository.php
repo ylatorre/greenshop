@@ -47,4 +47,15 @@ class FicheProduitRepository extends ServiceEntityRepository
 //            ->getOneOrNullResult()
 //        ;
 //    }
+
+
+public function findAllSortedByCategory()
+{
+    return $this->createQueryBuilder('fp')
+        ->leftJoin('fp.idCategorie', 'c')
+        ->addSelect('c')
+        ->orderBy('c.nom', 'ASC') // Vous pouvez changer 'nom' par la propriété que vous souhaitez utiliser pour trier
+        ->getQuery()
+        ->getResult();
+}
 }
