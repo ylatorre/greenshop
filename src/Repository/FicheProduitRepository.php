@@ -21,7 +21,18 @@ class FicheProduitRepository extends ServiceEntityRepository
         parent::__construct($registry, FicheProduit::class);
     }
 
-    
+
+    public function findBySearchQuery($query)
+    {
+        return $this->createQueryBuilder('p')
+            ->andWhere('p.titre LIKE :query OR p.description LIKE :query')
+            ->setParameter('query', '%' . $query . '%')
+            ->getQuery()
+            ->getResult();
+    }
+
+
+
 
 //    /**
 //     * @return FicheProduit[] Returns an array of FicheProduit objects
@@ -47,4 +58,28 @@ class FicheProduitRepository extends ServiceEntityRepository
 //            ->getOneOrNullResult()
 //        ;
 //    }
+
+    public function findAllSortedByCategory()
+    {
+        $entityManager = $this->getEntityManager();
+
+        $query = $entityManager->createQuery(
+            'SELECT fp
+        FROM App\Entity\FicheProduit fp
+        JOIN fp.idCategorie c
+        ORDER BY c.nom ASC'
+        );
+
+        return $query->getResult();
+    }
+
+    public function findFirstProductByCategory()
+    {
+        return $this->createQueryBuilder('fp')
+            ->join('fp.idCategorie', 'c')
+            ->groupBy('c.id')
+            ->getQuery()
+            ->getResult();
+    }
+
 }

@@ -7,6 +7,10 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Doctrine\ORM\EntityManagerInterface;
 use App\Entity\FicheProduit;
+use Symfony\Component\HttpFoundation\Request;
+
+
+
 
 class ProduitController extends AbstractController
 {
@@ -30,38 +34,35 @@ class ProduitController extends AbstractController
             'controller_name' => 'ProduitController',
         ]);
     }
+
+    #[Route('/produit/{id}', name: 'produit_show')]
+public function show(int $id, EntityManagerInterface $entityManager): Response
+{
+    $product = $entityManager->getRepository(FicheProduit::class)->find($id);
+
+    if (!$product) {
+        throw $this->createNotFoundException('No product found for id '.$id);
+    }
+
+    return $this->render('produit/article.html.twig', ['product' => $product]);
 }
 
 
-
-class DefaultController extends AbstractController
-{
-    /**
-     * @Route("/", name="home")
-     */
-    public function index(Request $request): Response
+#[Route('/search', name: 'search')]
+public function search(Request $request, EntityManagerInterface $entityManager): Response
     {
-        // ... votre code existant
-
-        return $this->render('default/index.html.twig');
-    }
-
-    /**
-     * @Route("/search", name="search")
-     */
-    public function search(Request $request): Response
-    {
-        // Récupérer la requête de recherche depuis le formulaire
         $searchQuery = $request->query->get('q');
+        $ficheProduits = $entityManager->getRepository(FicheProduit::class)->findBySearchQuery($searchQuery);
 
-        // Utiliser Doctrine pour rechercher les produits correspondant à la requête
-        $entityManager = $this->getDoctrine()->getManager();
-        $produits = $entityManager->getRepository(Produit::class)->findBySearchQuery($searchQuery);
-
-        // Passer les résultats à la vue
-        return $this->render('search/results.html.twig', [
-            'produits' => $produits,
+        return $this->render('produit/results.html.twig', [
+            'ficheProduits' => $ficheProduits,
             'searchQuery' => $searchQuery,
         ]);
     }
+
+    
+
 }
+
+
+

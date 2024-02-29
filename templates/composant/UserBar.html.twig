@@ -1,0 +1,27 @@
+<div class="flex flex-col sm:flex-row items-center justify-between text-xl ">
+    <h1 class="text-4xl sm:text-7xl text-gray-900 font-bold mb-4 sm:mb-0">Compte</h1>
+    <div class="flex bg-white h-16 border-orange-100 border-2 items-center w-full sm:w-3/4 shadow-lg justify-around text-sm sm:text-base">
+        <div class="font-semibold nav-item" onclick="window.location.href='/commande/VosCommandes';" style="cursor: pointer;">Mes commandes</div>
+        <div class="nav-item" onclick="window.location.href='/compte';" style="cursor: pointer;">Mon profil</div>
+        <div class="nav-item" onclick="window.location.href='/favoris';" style="cursor: pointer;">Mes favoris</div>
+        <div class="nav-item" onclick="window.location.href='/liste/';" style="cursor: pointer;">Vos listes</div>
+    </div>
+</div>
+
+<script>
+  // Fonction pour appliquer le style en gras à l'élément cliqué et retirer de tous les autres
+  function highlightSelectedItem() {
+    // Retirer le style gras de tous les éléments
+    document.querySelectorAll('.nav-item').forEach(item => {
+      item.style.fontWeight = 'normal';
+    });
+
+    // Appliquer le style gras à l'élément cliqué
+    this.style.fontWeight = 'bold';
+  }
+
+  // Ajouter un écouteur d'événements de clic à chaque élément nav-item
+  document.querySelectorAll('.nav-item').forEach(item => {
+    item.addEventListener('click', highlightSelectedItem);
+  });
+</script>

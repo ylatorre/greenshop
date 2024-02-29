@@ -5,18 +5,11 @@
 {% block body %}
 {% include './composant/Header.html.twig' %}
 
-<div class="flex flex-col sm:flex-row w-full mt-5 h-screen">
-    <div class="w-10"></div>
-    <div class="w-full sm:w-5/6 px-4 sm:px-0">
-        <div class="flex flex-col sm:flex-row items-center justify-between text-xl ">
-            <h1 class="text-4xl sm:text-7xl text-gray-900 font-bold mb-4 sm:mb-0">Compte</h1>
-            <div class="flex bg-white h-16 border-orange-100 border-2 items-center w-full sm:w-3/4 shadow-lg justify-around text-sm sm:text-base">
-                <div class="font-semibold" onclick="window.location.href='/commande/VosCommandes';" style="cursor: pointer;">Mes commandes</div>
-                <div onclick="window.location.href='/compte';" style="cursor: pointer;">Mon profil</div>
-                <div onclick="window.location.href='/favoris';" style="cursor: pointer;">Mes favoris</div>
-                <div onclick="window.location.href='/liste/';" style="cursor: pointer;">Vos listes</div>
-            </div>
-        </div>
+<div class="flex flex-col sm:flex-row w-screen  h-screen">
+    <div class="w-6/10"></div>
+    <div class="w-full mt-32 sm:w-5/6 px-4 sm:px-0">
+        {% include './composant/UserBar.html.twig' %}
+
         <div class="text-gray-900 mt-8 sm:mt-20">
             <h2 class="text-3xl sm:text-5xl font-semibold">Historique des commandes</h2>
             {% if commandes|length == 0 %}

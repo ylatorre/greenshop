@@ -5,22 +5,40 @@
 {% block body %}
     <h1>{{ controller_name }}</h1>
 
-    <ul>
-        {% for ficheProduit in ficheProduits %}
-            <li>
-                <h2>{{ ficheProduit.titre }}</h2>
-                <p>{{ ficheProduit.description }}</p>
-                <p>Stock: {{ ficheProduit.stock }}</p>
-                <p>Note: {{ ficheProduit.noteProduit }}</p>
-                <p>Nombre de ventes: {{ ficheProduit.nombreDeVente }}</p>
-                <p>Recyclage: {{ ficheProduit.recyclage ? 'Oui' : 'Non' }}</p>
-                {# Add other properties as needed #}
-            </li>
-        {% endfor %}
-    </ul>
+{% include './composant/Header.html.twig' %}
 
 
+<div class="flex flex-wrap w-screen justify-center gap-4">
+    {% for ficheProduit in ficheProduits %}
+        <a href="{{ path('produit_show', {'id': ficheProduit.id}) }}" class="btn btn-primary">
 
+        <!-- Modification ici: ajouter sm:w-1/3 pour appliquer cette largeur pour les écrans >= sm -->
+        <div class="h-3/5 sm:w-1/3 w-10/12 bg-white shadow-lg">
+            <div class="h-44 border-b-2 border-gray-200">
+                {# <img src="{{ produit.imageUrl }}" alt="{{ produit.titre }}"> #}
+            </div>
+            <div class="w-full h-44 flex flex-col justify-center items-center">
+                <div class="h-1/2 flex flex-col text-center justify-center">
+                    <div>
+                         <h1 class="font-bold text-gray-800">{{ ficheProduit.description }}</h1>
+                        <p class="font-light text-base text-gray-600">{{ ficheProduit.titre }}</p>
+                         <p class="font-light text-base text-gray-600">{{ ficheProduit.noteProduit }}</p>
+                    </div>
+                </div>
+                
+                <div class="flex h-1/2 items-center">
+                    <div class="text-center">
+                        <h1 class="font-light text-blue-800 border-blue-800 border mb-4"> {{ ficheProduit.recyclage ? 'Oui' : 'Non' }}</h1>
+                        <a class="font-light text-gray-600 text-center"> À partir de</a> <a class="text-gray-600 text-center font-semibold">{{ ficheProduit.prix }}</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+       </a>
+    {% else %}
+        <p>Aucun produit trouvé dans cette catégorie.</p>
+    {% endfor %}
+</div>
 
 
     

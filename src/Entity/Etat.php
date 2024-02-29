@@ -46,6 +46,8 @@ class Etat
         return $this;
     }
 
+    
+
     public function getCommande(): ?Commande
     {
         return $this->commande;
@@ -97,4 +99,5 @@ class Etat
 
         return $this;
     }
+
 }

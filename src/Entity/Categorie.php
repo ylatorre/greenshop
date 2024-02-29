@@ -99,4 +99,11 @@ class Categorie
 
         return $this;
     }
+    private ?string $imageProduit = null;
+
+    public function setImageProduit($imageProduit)
+    {
+        $this->imageProduit = $imageProduit;
+    }
+
 }

@@ -1,410 +1,189 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Accueil!
-{% endblock %}
+{% block title %}Accueil!{% endblock %}
 
 {% block body %}
 
 
-{% include './composant/Header.html.twig' %}
+    {% include './composant/Header.html.twig' %}
 
-<body class=" bg-orange-100">
-     
-    
+    <body class=" bg-orange-100">
 
-
-<div class="relative  h-[90vh] top-0 flex flex-col justify-center items-center">
-    <!-- Conteneur de l'image -->
-    <div class="w-full md:w-3/4 h-1/2 md:h-2/3 bg-no-repeat bg-center" style="background-image: url('./hochkonig-8469932_1920.jpg');">
-        <!-- Le texte commence ici, au-dessus de l'image -->
-        <div id="floatingText" class="absolute top-0 left-1/2 w-full justify-center -translate-y-full flex flex-col items-center">
-            <h2 class="text-4xl md:text-6xl xs:text-3xl text-orange-100 text-center font-extrabold">
-                La plateforme de vente en ligne. <br>- déchet <br>+ de produits.
-            </h2>
-            <h2 class="text-xl md:text-xl xs:text-xl text-orange-100 mt-2 md:mt-5 text-center font-semibold">
-                Notre objectif est de sensibiliser à la cause environnementale et de promouvoir un mode de vie durable.
-            </h2>
-            <button class="mt-2 md:mt-4 rounded border-2 border-orange-200 px-4 md:px-7 pb-[4px] md:pb-[8px] pt-[6px] md:pt-[10px] text-xs md:text-sm font-medium uppercase leading-normal text-orange-100 transition duration-150 ease-in-out hover:border-neutral-100 hover:bg-neutral-500 hover:bg-opacity-10 hover:text-neutral-100">
-                Shop Now
-            </button>
+        <div class="relative z-48  h-[90vh] top-0 flex flex-col justify-center items-center">
+            <!-- Conteneur de l'image -->
+            <div class="w-full md:w-3/4 h-3/4 md:h-2/3 bg-no-repeat bg-center" style="background-image: url('https://media.discordapp.net/attachments/1153601406339661886/1212416782166397058/pexels-kelly-4030637.jpg?ex=65f1c21e&is=65df4d1e&hm=20d1f5326f6b585e953a4872762b1f91514dccf8a2b7fdea1ee2e5a50d6456e1&=&format=webp&width=2087&height=1172');">
+                <!-- Le texte commence ici, au-dessus de l'image -->
+                <div id="floatingText" class="absolute top-0 left-1/2 w-full justify-center -translate-y-full flex flex-col items-center">
+                    <h2 class="text-4xl md:text-5xl xs:text-3xl text-orange-100 text-center font-extrabold">
+                        La plateforme de vente en ligne éco-responsable. <br>- déchet <br>+ de produits.
+                    </h2>
+                    <h2 class="text-xl md:text-2xl xs:text-xl text-orange-100 mt-2 md:mt-5 text-center font-semibold">
+                        Notre objectif est de sensibiliser à la cause environnementale et de promouvoir un mode de vie durable.
+                    </h2>
+                    <button class="mt-2 md:mt-4 rounded border-2 border-orange-200 px-4 md:px-7 pb-[4px] md:pb-[8px] pt-[6px] md:pt-[10px] text-xs md:text-sm font-medium uppercase leading-normal text-orange-100 transition duration-150 ease-in-out hover:border-neutral-100 hover:bg-neutral-500 hover:bg-opacity-10 hover:text-neutral-100">
+                        Shop Now
+                    </button>
+                </div>
+            </div>
         </div>
-    </div>
-</div>
 
-        
+        <script>
+            document.addEventListener('scroll', function() {
+                var scrollPosition = window.scrollY;
+                var textElement = document.getElementById('floatingText');
+                var imageContainer = textElement.parentElement;
+                var imageHeight = imageContainer.offsetHeight;
+                var imageOffsetTop = imageContainer.offsetTop;
+                var textElements = textElement.querySelectorAll('h2, button'); // Sélectionne tous les éléments de texte et le bouton
+                var extraDistance = 130; // Ajustez cette valeur selon vos besoins
+                var textPosition = scrollPosition + window.innerHeight / 2 - imageOffsetTop;
 
-<script>
-    document.addEventListener('scroll', function() {
-        var scrollPosition = window.scrollY;
-        var textElement = document.getElementById('floatingText');
-        var imageContainer = textElement.parentElement;
-        var imageHeight = imageContainer.offsetHeight;
-        var imageOffsetTop = imageContainer.offsetTop;
-        var textElements = textElement.querySelectorAll('h2, button'); // Sélectionne tous les éléments de texte et le bouton
+                if (scrollPosition + window.innerHeight / 2 <= imageOffsetTop + imageHeight + extraDistance) {
+                    textElement.style.transform = `translate(-50%, ${textPosition}px)`;
+                    if (scrollPosition + window.innerHeight / 2 <= imageOffsetTop + imageHeight) {
+                        textElements.forEach(el => {
+                            el.classList.remove('text-neutral-900');
+                            el.classList.add('text-orange-100');
+                        });
+                    } else {
+                        textElements.forEach(el => {
+                            el.classList.remove('text-orange-100');
+                            el.classList.add('text-neutral-900');
+                        });
+                    }
+                } else {
+                    let translateYValue = (imageHeight + extraDistance) - imageOffsetTop + window.innerHeight / 2 - textElement.offsetHeight / 2;
+                    textElement.style.transform = `translate(-50%, ${translateYValue}px)`;
+                }
+            });
+        </script>
 
-        var extraDistance = 130; // Ajustez cette valeur selon vos besoins
-
-        var textPosition = scrollPosition + window.innerHeight / 2 - imageOffsetTop;
-
-        if (scrollPosition + window.innerHeight / 2 <= imageOffsetTop + imageHeight + extraDistance) {
-            textElement.style.transform = `translate(-50%, ${textPosition}px)`;
-            if (scrollPosition + window.innerHeight / 2 <= imageOffsetTop + imageHeight) {
-                textElements.forEach(el => {
-                    el.classList.remove('text-neutral-900');
-                    el.classList.add('text-orange-100');
-                });
-            } else {
-                textElements.forEach(el => {
-                    el.classList.remove('text-orange-100');
-                    el.classList.add('text-neutral-900');
-                });
-            }
-        } else {
-            let translateYValue = (imageHeight + extraDistance) - imageOffsetTop + window.innerHeight / 2 - textElement.offsetHeight / 2;
-            textElement.style.transform = `translate(-50%, ${translateYValue}px)`;
+        <style>
+        .card:hover .arrow-svg {
+            transform: translateX(10px);
+            transition: transform 0.3s ease-in-out;
         }
-    });
-</script>
+        </style>
 
-    
-    <!-- <style>
-        .carousel-slides {
-        width: 500%; /* Ajustez cela en fonction du nombre de diapositives */
-    }
-     
-    [data-carousel-item] {
-        width: 20%; /* Ajustez cela en fonction du nombre de diapositives */
-        flex-shrink: 0;
-    }
-    </style>
-     
-       
-       <div class=" mt-96 flex w-screen justify-center h-1/3 items-center">
-        <div id="default-carousel" class="relative w-11/12" data-carousel="slide">
-            Carousel wrapper
-            <div class="relative h-56 overflow-hidden rounded-lg md:h-96">
-                <div class="carousel-slides flex transition-transform duration-700 ease-in-out">
-     
-               
-                <div class="w-full flex-shrink-0" data-carousel-item>
-                    <img src="https://http2.mlstatic.com/D_NQ_637976-MLA74368484855_022024-OO.webp" class="absolute block w-full -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2" alt="...">
-                </div>
-
-                <div class="w-full flex-shrink-0" data-carousel-item>
-                    <img src="https://http2.mlstatic.com/D_NQ_989927-MLA74368494153_022024-OO.webp" class="absolute block w-full -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2" alt="...">
-                </div>
-
-                <div class="w-full flex-shrink-0" data-carousel-item>
-                    <img src="https://http2.mlstatic.com/D_NQ_985793-MLA74254028956_022024-OO.webp" class="absolute block w-full -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2" alt="...">
-                </div>
-   
-                <div class="w-full flex-shrink-0" data-carousel-item>
-                    <img src="https://http2.mlstatic.com/D_NQ_637976-MLA74368484855_022024-OO.webp" class="absolute block w-full -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2" alt="...">
-                </div>
-
-                <div class="w-full flex-shrink-0" data-carousel-item>
-                    <img src="https://http2.mlstatic.com/D_NQ_847027-MLA74253312716_022024-OO.webp" class="absolute block w-full -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2" alt="...">
-                </div>
-                </div>
-            </div>
-
-            <div class="absolute z-30 flex -translate-x-1/2 bottom-5 left-1/2 space-x-3 rtl:space-x-reverse">
-                <button type="button" class="w-3 h-3 rounded-full" aria-current="true" aria-label="Slide 1" data-carousel-slide-to="0"></button>
-                <button type="button" class="w-3 h-3 rounded-full" aria-current="false" aria-label="Slide 2" data-carousel-slide-to="1"></button>
-                <button type="button" class="w-3 h-3 rounded-full" aria-current="false" aria-label="Slide 3" data-carousel-slide-to="2"></button>
-                <button type="button" class="w-3 h-3 rounded-full" aria-current="false" aria-label="Slide 4" data-carousel-slide-to="3"></button>
-                <button type="button" class="w-3 h-3 rounded-full" aria-current="false" aria-label="Slide 5" data-carousel-slide-to="4"></button>
-            </div>
-
-            <button type="button" class="hidden md:flex absolute top-0 start-0 z-30 flex items-center justify-center h-full px-4 cursor-pointer group focus:outline-none" data-carousel-prev>
-                <span class="inline-flex items-center justify-center w-10 h-10 rounded-full bg-white/30 dark:bg-gray-800/30 group-hover:bg-white/50 dark:group-hover:bg-gray-800/60 group-focus:ring-4 group-focus:ring-white dark:group-focus:ring-gray-800/70 group-focus:outline-none">
-                    <svg class="w-4 h-4 text-white dark:text-gray-800 rtl:rotate-180" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 6 10">
-                        <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 1 1 5l4 4"/>
-                    </svg>
-                    <span class="sr-only">Previous</span>
-                </span>
-            </button>
-            <button type="button" class="hidden md:flex absolute top-0 end-0 z-30 flex items-center justify-center h-full px-4 cursor-pointer group focus:outline-none" data-carousel-next>
-                <span class="inline-flex items-center justify-center w-10 h-10 rounded-full bg-white/30 dark:bg-gray-800/30 group-hover:bg-white/50 dark:group-hover:bg-gray-800/60 group-focus:ring-4 group-focus:ring-white dark:group-focus:ring-gray-800/70 group-focus:outline-none">
-                    <svg class="w-4 h-4 text-white dark:text-gray-800 rtl:rotate-180" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 6 10">
-                        <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 9 4-4-4-4"/>
-                    </svg>
-                    <span class="sr-only">Next</span>
-                </span>
-            </button>
-        </div>
-       </div> -->
-
-
-
-
-<style>
-.card:hover .arrow-svg {
-    transform: translateX(10px);
-    transition: transform 0.3s ease-in-out;
-}
-</style>
-<br>
-
-<div class="w-screen   xs:mt-72 mt-96 flex justify-around">
-    <div class="w-11/12 h-1/3  flex flex-col sm:flex-row  justify-around items-center">
-
-        <div class="bg-orange-100 flex flex-col mb-4 w-72 shadow-lg">
-            <div>
-                <!-- Replace with your actual image path -->
-                <img src="fruit-210105_1280.jpg" class="w-full">
-            </div>
-            <div class=" flex flex-col h-24 justify-center p-4 bg-gray-50">
-                <div class="text-center text-gray-600 text-lg font-semibold mb-2">
-                    Légume
-                </div>
-                <div class= " arrow-svg flex flex-row justify-center items-center">
-
-                        <div class="text-gray-500 text-center flex items-center font-semibold text-xs hover:text-gray-800 cursor-pointer">
-                            <p>Découvrir</p> &nbsp;&nbsp;
+        <!--Affichage dynamique des catégories-->
+        <div class="w-screen mt-24 flex justify-around flex-wrap pt-80">
+            <div class="w-full flex flex-wrap justify-around">
+                {% for categorie in categories %}
+                    {% set imageFileName = imagesParCategorie[categorie.id] ?? 'default.png' %}
+                    <!-- Chaque carte prend 1/4 de la largeur du conteneur sur des écrans medium et plus grands -->
+                    <div class="flex flex-col mb-3 w-full md:w-1/3 p-3">
+                        <div class="shadow-lg">
+                            <img src="{{ asset('/image/produits/' ~ imageFileName) }}" class="h-56 w-full object-cover" alt="Image de {{ categorie.nom }}">
+                            <div class="text-center py-4">{{ categorie.nom }}</div>
                         </div>
-                        <div class="text-center">
-                            <!-- Replace with your actual SVG code -->
-                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 19 14" class="arrow-svg hover:text-gray-800 relative top-[-1px] inline-block w-3 fill-current text-gray-500 md:w-4 transition-transform transform hover:-rotate-90">
-                                <g data-name="ARROW LINK">
-                                    <path data-name="Fill 1" d="M18.961 7.24a.754.754 0 0 0 0-.48.656.656 0 0 0-.114-.2L13.528.183a.466.466 0 0 0-.741 0 .719.719 0 0 0 0 .887l4.427 5.3H.524A.582.582 0 0 0 0 7a.583.583 0 0 0 .524.627h16.689l-4.427 5.3a.719.719 0 0 0 0 .887.465.465 0 0 0 .741 0l5.319-6.371a.643.643 0 0 0 .114-.2"></path>
-                                </g>
-                            </svg>                    
+                    </div>
+                {% endfor %}
+            </div>
+        </div>
+
+
+
+        <!--Affichage semi-dynamique produits "Les plus vendus"-->
+        <div class="h-screen w-screen flex-col justify-center items-center">
+            <div class="w-screen flex items-center justify-center">
+                <h1 class="text-xl text-green-800 my-8 w-11/12 ">
+                    Top Vente
+                </h1>
+            </div>
+            <div class="flex justify-center gap-4">
+                {% for produit in produitsPlusVendus|slice(0, 4) %}
+                    <div class="flex flex-col items-center w-44 h-64 p-2.5 rounded border border-gray-400 border-opacity-50">
+                        <img  alt="{{ produit.titre }}" class="w-32 h-32 object-contain p-2">
+                        <div class="flex flex-col items-center space-y-3">
+                            <a  class="text-xs mt-2 text-center font-medium">{{ produit.titre }}</a>
+                            <span class="text-xs font-thin">{{ produit.description }}</span>
                         </div>
-                </div>
-            </div>
-        </div>
-
-
-
-        <div class="flex flex-col mb-4 w-72 shadow-lg">
-            <div class="">
-                <!-- Replace with your actual image path -->
-                <img src="pexels-lisa-fotios-1395958.jpg" class=" h-56 w-full">
-            </div>
-            <div class="flex flex-col h-24 justify-center p-4 bg-white">
-                <div class="text-center text-gray-600 text-lg font-semibold mb-2">
-                    Beauté
-                </div>
-                <div class="flex flex-row justify-center items-center">
-                    <div class="text-gray-500 text-center font-semibold text-xs hover:text-blue-800 cursor-pointer">
-                        <p>Découvrir</p>
                     </div>
-                    <div class="text-center">
-                        <!-- Replace with your actual SVG code -->
-                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 19 14" class="relative top-[-1px] inline-block w-3 fill-current text-gray-500 md:w-4">
-                            <g data-name="ARROW LINK">
-                                <path data-name="Fill 1" d="M18.961 7.24a.754.754 0 0 0 0-.48.656.656 0 0 0-.114-.2L13.528.183a.466.466 0 0 0-.741 0 .719.719 0 0 0 0 .887l4.427 5.3H.524A.582.582 0 0 0 0 7a.583.583 0 0 0 .524.627h16.689l-4.427 5.3a.719.719 0 0 0 0 .887.465.465 0 0 0 .741 0l5.319-6.371a.643.643 0 0 0 .114-.2"></path>
-                            </g>
-                        </svg>                    
+                {% endfor %}
+            </div>
+            <div id="produits-cache" class="hidden">
+                {% for produit in produitsPlusVendus|slice(4, 4) %}
+                    <div class="flex flex-col items-center w-44 h-64 p-2.5 rounded border border-gray-400 border-opacity-50">
+                        <img  alt="{{ produit.titre }}" class="w-32 h-32 object-contain p-2">
+                        <div class="flex flex-col items-center space-y-3">
+                            <a  class="text-xs mt-2 text-center font-medium">{{ produit.titre }}</a>
+                            <span class="text-xs font-thin">{{ produit.description }}</span>
+                        </div>
                     </div>
+                {% endfor %}
+            </div>
+            <h2 class="voir-plus text-green-800 font-semibold text-sm underline text-center mt-4 cursor-pointer">Voir plus</h2>
+
+            <script>
+                document.querySelector('.voir-plus').addEventListener('click', function() {
+                    document.getElementById('produits-cache').classList.remove('hidden');
+                    this.classList.add('hidden'); // Cache le bouton "Voir plus" après le clic
+                });
+            </script>
+            {# <span class="text-xs font-semibold">Prix: {{ produit.prix }} €</span>
+            href="{{ path('path_to_product_detail', {'id': produit.id}) }}"
+            src="{{ produit.pathToImage }}" #}
+
+            <!-- Affichage semi-dynamique produits "Mieux notés"-->
+            <div class="h-screen w-screen flex-col justify-center items-center">
+                <div class="w-screen flex items-center justify-center">
+                    <h1 class="text-xl text-green-800 my-8 w-11/12 ">
+                        Mieux notés
+                    </h1>
                 </div>
-            </div>
-        </div>
-
-        <div class="flex flex-col mb-4 w-72 shadow-lg">
-            <div class="h-56">
-                <!-- Replace with your actual image path -->
-                <img src="pexels-junior-teixeira-2047905.jpg"  class="h-56 w-full">
-            </div>
-            <div class="flex flex-col h-24 justify-center p-4 bg-white">
-                <div class="text-center text-gray-600 text-lg font-semibold mb-2">
-                    Cave
+                <div class="flex justify-center gap-4">
+                    {% for produit in produitsMieuxNotes|slice(0, 4) %}
+                        <div class="flex flex-col items-center w-44 h-64 p-2.5 rounded border border-gray-400 border-opacity-50">
+                            <img  alt="{{ produit.titre }}" class="w-32 h-32 object-contain p-2">
+                            <div class="flex flex-col items-center space-y-3">
+                                <a  class="text-xs mt-2 text-center font-medium">{{ produit.titre }}</a>
+                                <span class="text-xs font-thin">{{ produit.description }}</span>
+                            </div>
+                        </div>
+                    {% endfor %}
                 </div>
-                <div class="flex flex-row justify-center items-center">
-                    <div class="text-gray-500 text-center font-semibold text-xs hover:text-blue-800 cursor-pointer">
-                        <p>Découvrir</p>
-                    </div>
-                    <div class="text-center">
-                        <!-- Replace with your actual SVG code -->
-                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 19 14" class="relative top-[-1px] inline-block w-3 fill-current text-gray-500 md:w-4">
-                            <g data-name="ARROW LINK">
-                                <path data-name="Fill 1" d="M18.961 7.24a.754.754 0 0 0 0-.48.656.656 0 0 0-.114-.2L13.528.183a.466.466 0 0 0-.741 0 .719.719 0 0 0 0 .887l4.427 5.3H.524A.582.582 0 0 0 0 7a.583.583 0 0 0 .524.627h16.689l-4.427 5.3a.719.719 0 0 0 0 .887.465.465 0 0 0 .741 0l5.319-6.371a.643.643 0 0 0 .114-.2"></path>
-                            </g>
-                        </svg>                    
-                    </div>
+                <div id="produits-cache-mieux-notes" class="hidden">
+                    {% for produit in produitsMieuxNotes|slice(4, 4) %}
+                        <div class="flex flex-col items-center w-44 h-64 p-2.5 rounded border border-gray-400 border-opacity-50">
+                            <img  alt="{{ produit.titre }}" class="w-32 h-32 object-contain p-2">
+                            <div class="flex flex-col items-center space-y-3">
+                                <a  class="text-xs mt-2 text-center font-medium">{{ produit.titre }}</a>
+                                <span class="text-xs font-thin">{{ produit.description }}</span>
+
+                            </div>
+                        </div>
+                    {% endfor %}
                 </div>
+
+                <h2 class="voir-plus-mieux-notes text-green-800 font-semibold text-sm underline text-center mt-4 cursor-pointer">Voir plus</h2>
+
+                <script>
+                    document.querySelector('.voir-plus-mieux-notes').addEventListener('click', function() {
+                        document.getElementById('produits-cache-mieux-notes').classList.remove('hidden');
+                        this.classList.add('hidden'); // Cache le bouton "Voir plus" après le clic
+                    });
+                </script>
+
+                <script>
+                    function carouselNext() {
+                        const container = document.querySelector('.flex');
+                        const shownItems = document.querySelectorAll('.flex-shrink-0:not(.hidden)');
+                        const nextIndex = Math.min(shownItems.length, 5);
+                        container.style.transform = `translateX(-${
+                        nextIndex * 100
+                        }%)`;
+                        }
+
+                        function carouselPrev() {
+                        const container = document.querySelector('.flex');
+                        container.style.transform = 'translateX(0)';
+                    }
+                </script>
             </div>
         </div>
-        <div class="flex flex-col mb-4 w-72 shadow-lg">
-            <div>
-                <!-- Replace with your actual image path -->
-                <img src="pexels-anna-shvets-11124950.jpg" class="h-56 w-full">
-            </div>
-            <div class="flex flex-col h-24 justify-center p-4 bg-white">
-                <div class="text-center text-gray-600 text-lg font-semibold mb-2">
-                    Épicerie
-                </div>
-                <div class="flex flex-row justify-center items-center">
-                    <div class="text-gray-500 text-center font-semibold text-xs hover:text-blue-800 cursor-pointer">
-                        <p>Découvrir</p>
-                    </div>
-                    <div class="text-center">
-                        <!-- Replace with your actual SVG code -->
-                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 19 14" class="relative top-[-1px] inline-block w-3 fill-current text-gray-500 md:w-4">
-                            <g data-name="ARROW LINK">
-                                <path data-name="Fill 1" d="M18.961 7.24a.754.754 0 0 0 0-.48.656.656 0 0 0-.114-.2L13.528.183a.466.466 0 0 0-.741 0 .719.719 0 0 0 0 .887l4.427 5.3H.524A.582.582 0 0 0 0 7a.583.583 0 0 0 .524.627h16.689l-4.427 5.3a.719.719 0 0 0 0 .887.465.465 0 0 0 .741 0l5.319-6.371a.643.643 0 0 0 .114-.2"></path>
-                            </g>
-                        </svg>                    
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-
-</div>
-
-
-
-<div class="h-screen w-screen flex-col justify-center items-center">
-    <div class="w-screen flex items-center justify-center">
-        <h1 class="text-xl text-green-800 my-8 w-11/12 ">
-            Top Vente
-        </h1>
-    </div>
-
-<div class="flex justify-center gap-4">
-    {% for produit in produitsPlusVendus|slice(0, 4) %}
-        <div class="flex flex-col items-center w-44 h-64 p-2.5 rounded border border-gray-400 border-opacity-50">
-            <img  alt="{{ produit.titre }}" class="w-32 h-32 object-contain p-2">
-            <div class="flex flex-col items-center space-y-3">
-                <a  class="text-xs mt-2 text-center font-medium">{{ produit.titre }}</a>
-                <span class="text-xs font-thin">{{ produit.description }}</span>
-                
-            </div>
-        </div>
-    {% endfor %}
-</div>
-<div id="produits-cache" class="hidden">
-    {% for produit in produitsPlusVendus|slice(4, 4) %}
-        <div class="flex flex-col items-center w-44 h-64 p-2.5 rounded border border-gray-400 border-opacity-50">
-            <img  alt="{{ produit.titre }}" class="w-32 h-32 object-contain p-2">
-            <div class="flex flex-col items-center space-y-3">
-                <a  class="text-xs mt-2 text-center font-medium">{{ produit.titre }}</a>
-                <span class="text-xs font-thin">{{ produit.description }}</span>
-                
-            </div>
-        </div>
-    {% endfor %}
-</div>
-<h2 class="voir-plus text-green-800 font-semibold text-sm underline text-center mt-4 cursor-pointer">Voir plus</h2>
-
-<script>
-    document.querySelector('.voir-plus').addEventListener('click', function() {
-        document.getElementById('produits-cache').classList.remove('hidden');
-        this.classList.add('hidden'); // Cache le bouton "Voir plus" après le clic
-    });
-</script>
+    </body>
+{% endblock %}
 
 
 
 
-
-
-
-
-
-
-                {# <span class="text-xs font-semibold">Prix: {{ produit.prix }} €</span>
-href="{{ path('path_to_product_detail', {'id': produit.id}) }}"
-src="{{ produit.pathToImage }}" #}
-
-
-
-
-<div class="h-screen w-screen flex-col justify-center items-center">
-    <div class="w-screen flex items-center justify-center">
-        <h1 class="text-xl text-green-800 my-8 w-11/12 ">
-            Mieux notés
-        </h1>
-    </div>
-
-
-<div class="flex justify-center gap-4">
-    {% for produit in produitsMieuxNotes|slice(0, 4) %}
-        <div class="flex flex-col items-center w-44 h-64 p-2.5 rounded border border-gray-400 border-opacity-50">
-            <img  alt="{{ produit.titre }}" class="w-32 h-32 object-contain p-2">
-            <div class="flex flex-col items-center space-y-3">
-                <a  class="text-xs mt-2 text-center font-medium">{{ produit.titre }}</a>
-                <span class="text-xs font-thin">{{ produit.description }}</span>
-                
-            </div>
-        </div>
-    {% endfor %}
-</div>
-<div id="produits-cache-mieux-notes" class="hidden">
-    {% for produit in produitsMieuxNotes|slice(4, 4) %}
-        <div class="flex flex-col items-center w-44 h-64 p-2.5 rounded border border-gray-400 border-opacity-50">
-            <img  alt="{{ produit.titre }}" class="w-32 h-32 object-contain p-2">
-            <div class="flex flex-col items-center space-y-3">
-                <a  class="text-xs mt-2 text-center font-medium">{{ produit.titre }}</a>
-                <span class="text-xs font-thin">{{ produit.description }}</span>
-                
-            </div>
-        </div>
-    {% endfor %}
-</div>
-<h2 class="voir-plus-mieux-notes text-green-800 font-semibold text-sm underline text-center mt-4 cursor-pointer">Voir plus</h2>
-
-<script>
-    document.querySelector('.voir-plus-mieux-notes').addEventListener('click', function() {
-        document.getElementById('produits-cache-mieux-notes').classList.remove('hidden');
-        this.classList.add('hidden'); // Cache le bouton "Voir plus" après le clic
-    });
-</script>
-
-
-
-
-<button id="checkout-button" class="bg-green-800 hover:bg-green-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline transform transition hover:scale-105 duration-300 ease-in-out">
-    Payer
-</button>
-
-</div>
-<script src="https://js.stripe.com/v3/"></script>
-
-
-
-<script>
-var stripe = Stripe('pk_test_51OfQTfIt7t0x5dTglGHreq6TfXNXoTLuXW9HOvi24as0oEkvSxzXWNZBuYwfS9rnbVNFs8umnJRkDdEtIQo9FBTZ00h6Y2jXk2');
-
-var checkoutButton = document.getElementById('checkout-button');
-checkoutButton.addEventListener('click', function () {
-    // Créer une session de paiement sur le serveur (voir étape dans le contrôleur Symfony)
-    fetch('/create-checkout-session', {
-        method: 'POST',
-    })
-    .then(function (response) {
-        return response.json();
-    })
-    .then(function (session) {
-        return stripe.redirectToCheckout({ sessionId: session.id });
-    })
-    .then(function (result) {
-        if (result.error) {
-            // Gérer l'erreur ici (par exemple, afficher un message à l'utilisateur)
-        }
-    });
-});
-
-
-</script>
-
-<script>
-	function carouselNext() {
-const container = document.querySelector('.flex');
-const shownItems = document.querySelectorAll('.flex-shrink-0:not(.hidden)');
-const nextIndex = Math.min(shownItems.length, 5);
-container.style.transform = `translateX(-${
-nextIndex * 100
-}%)`;
-}
-
-function carouselPrev() {
-const container = document.querySelector('.flex');
-container.style.transform = 'translateX(0)';
-}
-</script>
-
-
-{% include './composant/bottomBar.html.twig' %}</body></html>{% endblock %}
