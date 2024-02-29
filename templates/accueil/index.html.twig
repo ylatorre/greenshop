@@ -66,19 +66,21 @@
         </style>
 
         <!--Affichage dynamique des catégories-->
-        <div class="w-screen xs:mt-72 mt-96 flex justify-around">
-            <div class="w-11/12 h-1/3 flex flex-col sm:flex-row justify-around items-center">
+        <div class="w-screen mt-24 flex justify-around flex-wrap pt-80">
+            <div class="w-full flex flex-wrap justify-around">
                 {% for categorie in categories %}
-                    {% set imageFileName = imagesParCategorie[categorie.id] ?? 'default.jpg' %}
-                    <div class="flex flex-col mb-4 w-72 shadow-lg">
-                        <div>
-                            <img src="{{ asset('/image/produits/' ~ imageFileName) }}" class="h-56 w-full" alt="Image de {{ categorie.nom }}">
+                    {% set imageFileName = imagesParCategorie[categorie.id] ?? 'default.png' %}
+                    <!-- Chaque carte prend 1/4 de la largeur du conteneur sur des écrans medium et plus grands -->
+                    <div class="flex flex-col mb-3 w-full md:w-1/3 p-3">
+                        <div class="shadow-lg">
+                            <img src="{{ asset('/image/produits/' ~ imageFileName) }}" class="h-56 w-full object-cover" alt="Image de {{ categorie.nom }}">
+                            <div class="text-center py-4">{{ categorie.nom }}</div>
                         </div>
-                        <div>{{ categorie.nom }}</div>
                     </div>
                 {% endfor %}
             </div>
         </div>
+
 
 
         <!--Affichage semi-dynamique produits "Les plus vendus"-->
