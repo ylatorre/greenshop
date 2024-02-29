@@ -33,13 +33,24 @@
 					{% for ficheProduit in panier.getFicheProduits %}
 						<div class="border border-gray-300 shadow-md p-3 m-3 rounded-lg">
 							<div class="mb-4">
-								<span class="font-semibold">{{ ficheProduit.titre }}</span>
+								<span class="font-semibold text-2xl">{{ ficheProduit.titre }}</span>
 								<br>
 								<span>Prix :
 									{{ ficheProduit.prix }}
 									€
 								</span>
                                 <br>
+								
+                    <div class="flex items-center mt-2">
+                        <button class="bg-gray-200 text-gray-700 hover:text-gray-900 hover:bg-gray-300 rounded px-2 py-1 mr-2">
+                            -
+                        </button>
+                        <span class="text-gray-700 px-2 border border-grey-500">1</span> <!-- Remplacer 1 par la variable de quantité -->
+                        <button class="bg-gray-200 text-gray-700 hover:text-gray-900 hover:bg-gray-300 rounded px-2 py-1 ml-2">
+                            +
+                        </button>
+                    </div>
+                    <br>
 								<form action="/supprimer/{{ ficheProduit.id }}" method="post" class="flex justify-end">
 									<button type="submit" class="bg-red-600 hover:bg-red-700 text-sm text-white py-1 px-2 rounded-full">
 										Supprimer
