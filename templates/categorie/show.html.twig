@@ -31,10 +31,11 @@
 
 
 
-<div class="flex flex-wrap justify-center gap-4">
+<div class="flex flex-wrap w-screen justify-center gap-4">
     {% for produit in produits %}
-        <div class="h-3/5 w-56 bg-white shadow-lg">
-            <div class="h-56 border-b-2 border-gray-200">
+        <!-- Modification ici: ajouter sm:w-1/3 pour appliquer cette largeur pour les écrans >= sm -->
+        <div class="h-3/5 sm:w-1/3 w-10/12 bg-white shadow-lg">
+            <div class="h-44 border-b-2 border-gray-200">
                 {# <img src="{{ produit.imageUrl }}" alt="{{ produit.titre }}"> #}
             </div>
             <div class="w-full h-44 flex flex-col justify-center items-center">
