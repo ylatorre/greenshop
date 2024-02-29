@@ -21,6 +21,7 @@ use EasyCorp\Bundle\EasyAdminBundle\Field\CollectionField;
 
 // Ajoutez cette ligne
 
+
 class FicheProduitCrudController extends AbstractCrudController
 {
     public static function getEntityFqcn(): string
