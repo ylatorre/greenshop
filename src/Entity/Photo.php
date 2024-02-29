@@ -8,6 +8,7 @@ use Doctrine\ORM\Mapping as ORM;
 #[ORM\Entity(repositoryClass: PhotoRepository::class)]
 class Photo
 {
+
     #[ORM\Id]
     #[ORM\GeneratedValue]
     #[ORM\Column]
@@ -47,4 +48,23 @@ class Photo
 
         return $this;
     }
+
+
+    #[Vich\UploadableField(mapping: 'photos', fileNameProperty: 'image')]
+    private ?File $imageFile = null;
+
+    public function setImageFile(?File $imageFile = null): void
+    {
+        $this->imageFile = $imageFile;
+        if (null !== $imageFile) {
+            // Il est nécessaire de mettre à jour l'entité pour que la date de mise à jour soit modifiée
+            // et Doctrine écoute les changements.
+            // $this->updatedAt = new \DateTimeImmutable();
+        }
+    }
+    public function getImageFile(): ?File
+    {
+        return $this->imageFile;
+    }
+
 }

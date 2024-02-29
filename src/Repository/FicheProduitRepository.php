@@ -22,6 +22,17 @@ class FicheProduitRepository extends ServiceEntityRepository
     }
 
 
+    public function findBySearchQuery($query)
+    {
+        return $this->createQueryBuilder('p')
+            ->andWhere('p.titre LIKE :query OR p.description LIKE :query')
+            ->setParameter('query', '%' . $query . '%')
+            ->getQuery()
+            ->getResult();
+    }
+
+
+
 
 //    /**
 //     * @return FicheProduit[] Returns an array of FicheProduit objects

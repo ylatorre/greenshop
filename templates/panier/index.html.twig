@@ -2,49 +2,66 @@
 
 {% block body %}
 
-{# {% include './composant/Header.html.twig' %} #}
-	{% include './composant/PageStyle.html.twig' %}
+	{% include './composant/Header.html.twig' %} 
+	{# {% include './composant/PageStyle.html.twig' %} #}
 
-<div class="flex flex-col flex-row items-center justify-between text-xl ">
-				<h1 class="text-4xl sm:text-7xl text-gray-900 font-bold m-4 sm:mb-0">Votre panier</h1>
-			</div>
+	<div class="flex mt-28 flex-col flex-row items-center justify-between text-xl ">
+		<h1 class="text-3xl  text-gray-900 font-bold m-4 sm:mb-0">PANIER</h1>
+	</div>
 	<div class="flex flex-col sm:flex-row w-full h-screen">
 		<div class="w-full sm:w-1/6"></div>
 		<div class="w-full sm:w-5/6 px-4 sm:px-0">
-			
-			<br>
-        <div class="flex space-x-10">
-			<h2>Prix Total:
-				{{ prixTotal }}
-				€</h2>
-                <h2 class="text-grey-600">Prix HT:
-				
-				€</h2>
-        </div>
-			<br>
 
-			<button id="checkout-button" class="bg-green-800 hover:bg-green-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline transform transition hover:scale-105 duration-300 ease-in-out">
-				Passer la commande
-			</button>
 
 			{% if panier %}
 				<ul>
 
 					{% for ficheProduit in panier.getFicheProduits %}
-						<div class="border border-gray-300 shadow-md p-3 m-3 rounded-lg">
+						<div class="border-b-2 border-gray-300 p-3 m-3">
 							<div class="mb-4">
-								<span class="font-semibold">{{ ficheProduit.titre }}</span>
-								<br>
-								<span>Prix :
-									{{ ficheProduit.prix }}
-									€
-								</span>
-                                <br>
-								<form action="/supprimer/{{ ficheProduit.id }}" method="post" class="flex justify-end">
-									<button type="submit" class="bg-red-600 hover:bg-red-700 text-sm text-white py-1 px-2 rounded-full">
-										Supprimer
-									</button>
-								</form>
+
+								<div class="col-1 flex justify-between">
+									<span class="text-base">{{ ficheProduit.titre }}</span>
+									<form action="/supprimer/{{ ficheProduit.id }}" method="post">
+										<button type="submit" class="text-basic">
+											X
+										</button>
+									</form>
+								</div>
+
+								<div>
+									<span class="text-base">
+										{{ ficheProduit.prix }}
+										€
+									</span>
+								</div>
+
+								<div>
+									<span class="col-2" class="text-base">
+										Bio
+									</span>
+								</div>
+
+								<div>
+									<span class="text-base">
+										Taille : XL
+									</span>
+								</div>
+
+								<div class="flex items-center mt-2">
+									<div class="border border-grey-500 rounded-full">
+										<button class="px-2 py-1 mr-2 ml-2">
+											-
+										</button>
+										<span class="text-gray-700 px-2">1</span>
+										<!-- Remplacer 1 par la variable de quantité -->
+										<button class="px-2 py-1 ml-2 mr-2">
+											+
+										</button>
+									</div>
+								</div>
+
+
 							</div>
 						</div>
 					{% endfor %}
@@ -58,45 +75,39 @@
 					<h2 class="text-xl sm:text-2xl font-light">Vous n'avez pas encore passé de commande.</h2>
 				</div>
 			{% endif %}
+			<div class="p-3 m-3">
+				<button id="checkout-button" class="flex justify-center space-x-2 w-full bg-green-800 hover:bg-green-700 text-white  py-2 px-4 rounded-full focus:outline-none focus:shadow-outline transform transition hover:scale-105 duration-300 ease-in-out">
+					<h1>
+						Procéder au paiement |</h1>
+					<h1 class="font-bold">
+						{{ prixTotal }}€
+					</h1>
+				</button>
+			</div>
+
 		</div>
-        <div class="w-full sm:w-1/6"></div>
-	</div>  
-    
-{% include './composant/bottomBar.html.twig' %}
+
+
+		<div class="w-full sm:w-1/6"></div>
+	</div>
+
+	{% include './composant/bottomBar.html.twig' %}
 
 
 </div>
-<script src="https://js.stripe.com/v3/"></script>
-    
-</body>
-</html>
-
-<script>
-var stripe = Stripe('pk_test_51OfQTfIt7t0x5dTglGHreq6TfXNXoTLuXW9HOvi24as0oEkvSxzXWNZBuYwfS9rnbVNFs8umnJRkDdEtIQo9FBTZ00h6Y2jXk2');
+<script src="https://js.stripe.com/v3/"></script></body></html><script>var stripe = Stripe('pk_test_51OfQTfIt7t0x5dTglGHreq6TfXNXoTLuXW9HOvi24as0oEkvSxzXWNZBuYwfS9rnbVNFs8umnJRkDdEtIQo9FBTZ00h6Y2jXk2');
 
 var checkoutButton = document.getElementById('checkout-button');
-checkoutButton.addEventListener('click', function () {
-    // Créer une session de paiement sur le serveur (voir étape dans le contrôleur Symfony)
-    fetch('/create-checkout-session', {
-        method: 'POST',
-    })
-    .then(function (response) {
-        return response.json();
-    })
-    .then(function (session) {
-        console.log("Session ID:", session.id); // Afficher le Session ID pour le débogage
-        if (!session.id) {
-            throw new Error("Session ID not found in response");
-        }
-        return stripe.redirectToCheckout({ sessionId: session.id });
-    })
-    .catch(function (error) {
-        console.error("Error:", error);
-    });
+checkoutButton.addEventListener('click', function () { // Créer une session de paiement sur le serveur (voir étape dans le contrôleur Symfony)
+fetch('/create-checkout-session', {method: 'POST'}).then(function (response) {
+return response.json();
+}).then(function (session) {
+console.log("Session ID:", session.id); // Afficher le Session ID pour le débogage
+if (! session.id) {
+throw new Error("Session ID not found in response");
+}
+return stripe.redirectToCheckout({sessionId: session.id});
+}).catch(function (error) {
+console.error("Error:", error);
 });
-
-
-
-</script>
-
-{% endblock %}
+});</script>{% endblock %}
