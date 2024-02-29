@@ -9,6 +9,7 @@ use EasyCorp\Bundle\EasyAdminBundle\Field\TextEditorField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\TextField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\NumberField;
 
+
 // Ajoutez cette ligne
 use EasyCorp\Bundle\EasyAdminBundle\Field\BooleanField;
 
