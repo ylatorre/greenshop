@@ -328,13 +328,14 @@ class FicheProduit
     public function getImagesProduit(): array
     {
         $images = [];
-    
+
         foreach ($this->idPhoto as $photo) {
-            // Ajoutez la logique pour obtenir l'URL ou le chemin de l'image
+            // Assurez-vous que la méthode getImage() dans votre entité Photo retourne le chemin ou l'URL de l'image
             $images[] = $photo->getImage();
         }
-    
+
         return $images;
     }
-        
+
+
 }

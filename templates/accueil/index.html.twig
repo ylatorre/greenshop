@@ -69,11 +69,12 @@
         <div class="w-screen xs:mt-72 mt-96 flex justify-around">
             <div class="w-11/12 h-1/3 flex flex-col sm:flex-row justify-around items-center">
                 {% for categorie in categories %}
+                    {% set imageFileName = imagesParCategorie[categorie.id] ?? 'default.jpg' %}
                     <div class="flex flex-col mb-4 w-72 shadow-lg">
                         <div>
-                            <img src="{{ categorie.image }}" class="h-56 w-full">
+                            <img src="{{ asset('/public/image/' ~ imageFileName) }}" class="h-56 w-full" alt="Image de {{ categorie.nom }}">
                         </div>
-                        <img  alt="{{ categorie.nom }}" class="w-32 h-32 object-contain p-2">
+                        <div>{{ categorie.nom }}</div>
                     </div>
                 {% endfor %}
             </div>
@@ -134,7 +135,7 @@
                             <img  alt="{{ produit.titre }}" class="w-32 h-32 object-contain p-2">
                             <div class="flex flex-col items-center space-y-3">
                                 <a  class="text-xs mt-2 text-center font-medium">{{ produit.titre }}</a>
-                                <span class="text-xs font-thin">{{ produit.description }}</span> 
+                                <span class="text-xs font-thin">{{ produit.description }}</span>
                             </div>
                         </div>
                     {% endfor %}
@@ -146,7 +147,7 @@
                             <div class="flex flex-col items-center space-y-3">
                                 <a  class="text-xs mt-2 text-center font-medium">{{ produit.titre }}</a>
                                 <span class="text-xs font-thin">{{ produit.description }}</span>
-                                
+
                             </div>
                         </div>
                     {% endfor %}

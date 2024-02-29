@@ -45,25 +45,25 @@ $ficheProduitRepository = $entityManager->getRepository(FicheProduit::class);
         $categories = $categorieRepository->findAll();
 
 
-       
-//je veux les imamge des produits de chaque categorie
 
+        $ficheProduitRepository = $entityManager->getRepository(FicheProduit::class);
+        $firstProductByCategory = $ficheProduitRepository->findFirstProductByCategory();
 
-      $filteredProduits = $entityManager->getRepository(FicheProduit::class)->findAllSortedByCategory();
-      
-      dd($filteredProduits);
+        $produits = $ficheProduitRepository->findAllSortedByCategory();
+        $imagesParCategorie = [];
 
-      foreach ($filteredProduits as $filteredProduit) {
-        $categories = $filteredProduit->getIdCategorie();
-    
-        foreach ($categories as $categorie) {
-            $categorie->setImageProduit($filteredProduit->getImageProduit());
-            $entityManager->persist($categorie);
+        foreach ($produits as $produit) {
+            foreach ($produit->getIdCategorie() as $categorie) {
+                if (!array_key_exists($categorie->getId(), $imagesParCategorie) && !$produit->getIdPhoto()->isEmpty()) {
+                    // Supposons que getIdPhoto retourne une collection d'où vous pouvez extraire la première photo
+                    $imagesParCategorie[$categorie->getId()] = $produit->getIdPhoto()->first()->getImage();
+                }
+            }
         }
-    
-        $entityManager->flush();
-    }
-    
+//        dd($imagesParCategorie);
+//dd($firstProductByCategory);
+
+
     //   dd($categories->toArray());
 
 
@@ -72,11 +72,13 @@ $ficheProduitRepository = $entityManager->getRepository(FicheProduit::class);
             'controller_name' => 'AccueilController',
             'produitsMieuxNotes' => $produitsMieuxNotes,
             'produitsPlusVendus' => $produitsPlusVendus,
-            'categories' => $categories->toArray(),
+            'categories' => $categories,
+            'firstProductByCategory' => $firstProductByCategory,
+            'imagesParCategorie' => $imagesParCategorie
 
 
         ]);
     }
 
-    
+
 }

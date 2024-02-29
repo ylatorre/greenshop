@@ -21,7 +21,7 @@ class FicheProduitRepository extends ServiceEntityRepository
         parent::__construct($registry, FicheProduit::class);
     }
 
-    
+
 
 //    /**
 //     * @return FicheProduit[] Returns an array of FicheProduit objects
@@ -48,14 +48,27 @@ class FicheProduitRepository extends ServiceEntityRepository
 //        ;
 //    }
 
+    public function findAllSortedByCategory()
+    {
+        $entityManager = $this->getEntityManager();
 
-public function findAllSortedByCategory()
-{
-    return $this->createQueryBuilder('fp')
-        ->leftJoin('fp.idCategorie', 'c')
-        ->addSelect('c')
-        ->orderBy('c.nom', 'ASC') // Vous pouvez changer 'nom' par la propriété que vous souhaitez utiliser pour trier
-        ->getQuery()
-        ->getResult();
-}
+        $query = $entityManager->createQuery(
+            'SELECT fp
+        FROM App\Entity\FicheProduit fp
+        JOIN fp.idCategorie c
+        ORDER BY c.nom ASC'
+        );
+
+        return $query->getResult();
+    }
+
+    public function findFirstProductByCategory()
+    {
+        return $this->createQueryBuilder('fp')
+            ->join('fp.idCategorie', 'c')
+            ->groupBy('c.id')
+            ->getQuery()
+            ->getResult();
+    }
+
 }
