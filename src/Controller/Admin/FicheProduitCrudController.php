@@ -3,6 +3,7 @@
 namespace App\Controller\Admin;
 
 use App\Entity\FicheProduit;
+use App\Form\PhotoType;
 use EasyCorp\Bundle\EasyAdminBundle\Controller\AbstractCrudController;
 use EasyCorp\Bundle\EasyAdminBundle\Field\IdField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\TextEditorField;
@@ -49,7 +50,11 @@ class FicheProduitCrudController extends AbstractCrudController
 
             // Pour une collection de photos ou autres entités liées
             CollectionField::new('idPhoto')
-                ->hideOnIndex() // Cacher sur la liste, montrer dans le détail ou la modification
+                ->setEntryType(PhotoType::class) // Assurez-vous d'utiliser le bon nom de classe pour votre formulaire
+                ->hideOnIndex()
+
+//        CollectionField::new('idPhoto')
+//                ->hideOnIndex() // Cacher sur la liste, montrer dans le détail ou la modification
             // Vous pouvez personnaliser davantage, par exemple en spécifiant un format
         ];
     }
