@@ -32,6 +32,18 @@ class FicheProduitRepository extends ServiceEntityRepository
     }
 
 
+    
+public function findByCategorieNom($categorieNom)
+{
+    return $this->createQueryBuilder('fp')
+        ->join('fp.idCategorie', 'c')
+        ->where('c.nom = :categorieNom')
+        ->setParameter('categorieNom', $categorieNom)
+        ->getQuery()
+        ->getResult();
+}
+
+
 
 
 //    /**

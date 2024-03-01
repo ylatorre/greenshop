@@ -52,8 +52,16 @@ class FicheProduit
     #[ORM\ManyToMany(targetEntity: EcoScore::class, inversedBy: 'ficheProduits')]
     private Collection $idEcoScore;
 
-    #[ORM\OneToMany(mappedBy: 'ficheProduit', targetEntity: Photo::class)]
+    #[ORM\OneToMany(mappedBy: 'ficheProduit', targetEntity: Photo::class, cascade: ['persist'])]
     private Collection $idPhoto;
+
+
+    // #[ORM\OneToMany(mappedBy: 'ficheProduit', targetEntity: Photo::class, cascade: ['persist'])]
+    // private Collection $photos;
+
+
+
+
 
 
     
@@ -312,7 +320,10 @@ class FicheProduit
         return $this;
     }
 
-    private ?string $imageProduit = null;  // Ajoutez cette propriété
+    private ?string $imageProduit = null;
+
+    #[ORM\Column]
+    private ?float $prix = null;  // Ajoutez cette propriété
 
     public function setImageProduit(?string $imageProduit): static
     {

@@ -51,6 +51,9 @@ class FicheProduitCrudController extends AbstractCrudController
             // Pour une collection de photos ou autres entités liées
             CollectionField::new('idPhoto')
                 ->setEntryType(PhotoType::class) // Assurez-vous d'utiliser le bon nom de classe pour votre formulaire
+                ->setFormTypeOptions([
+                    'by_reference' => false, // Important pour les collections OneToMany
+                ])
                 ->hideOnIndex()
 
 //        CollectionField::new('idPhoto')

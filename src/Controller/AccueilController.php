@@ -16,6 +16,10 @@ class AccueilController extends AbstractController
     #[Route('/', name: 'app_accueil')]
     public function index(MailerInterface $mailer, EntityManagerInterface $entityManager): Response
     {
+        $categorieNom = 'Beauté'; 
+        $produitsBeaute = $entityManager->getRepository(FicheProduit::class)->findByCategorieNom($categorieNom);
+
+
 // Envoi de l'email
         $email = (new Email())
             ->from('yvanlatorre@outlook.fr')
@@ -74,7 +78,9 @@ $ficheProduitRepository = $entityManager->getRepository(FicheProduit::class);
             'produitsPlusVendus' => $produitsPlusVendus,
             'categories' => $categories,
             'firstProductByCategory' => $firstProductByCategory,
-            'imagesParCategorie' => $imagesParCategorie
+            'imagesParCategorie' => $imagesParCategorie,
+            'produitsBeaute' => $produitsBeaute, // Ajoutez cette ligne
+
 
 
         ]);
