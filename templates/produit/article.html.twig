@@ -78,6 +78,14 @@
 <div class="flex justify-center py-4">
     <a href="{{ path('ajouter_aux_favoris', {'idProduit': product.id}) }}" class="rounded-lg text-white px-4 py-2" style="background-color: #FF69B4;">Ajouter aux favoris</a>
 </div>
+<form action="{{ path('ajouter_produit_a_liste', {'idProduit': product.id}) }}" method="POST">
+    <select name="listeId">
+        {% for liste in listes %}
+            <option value="{{ liste.id }}">{{ liste.nomListe }}</option>
+        {% endfor %}
+    </select>
+    <button type="submit">Ajouter à la liste</button>
+</form>
 
 
     {# <div class="flex justify-center py-4">

@@ -8,6 +8,8 @@ use Symfony\Component\Routing\Annotation\Route;
 use Doctrine\ORM\EntityManagerInterface;
 use App\Entity\FicheProduit;
 use Symfony\Component\HttpFoundation\Request;
+use App\Repository\ListeRepository;
+
 
 
 class ProduitController extends AbstractController
@@ -34,15 +36,23 @@ class ProduitController extends AbstractController
     }
 
     #[Route('/produit/{id}', name: 'produit_show')]
-    public function show(int $id, EntityManagerInterface $entityManager): Response
+    public function show(int $id, EntityManagerInterface $entityManager, ListeRepository $listeRepository): Response
     {
+        $user = $this->getUser();
         $product = $entityManager->getRepository(FicheProduit::class)->find($id);
 
         if (!$product) {
             throw $this->createNotFoundException('No product found for id ' . $id);
         }
 
-        return $this->render('produit/article.html.twig', ['product' => $product]);
+
+        // Récupérer les listes de l'utilisateur
+        $listes = $listeRepository->findBy(['user' => $user]);
+
+        return $this->render('produit/article.html.twig', [
+            'product' => $product,
+            'listes' => $listes,
+        ]);
     }
 
 
