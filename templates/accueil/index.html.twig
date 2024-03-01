@@ -65,21 +65,113 @@
         }
         </style>
 
-        <!--Affichage dynamique des catégories-->
-        <div class="w-screen mt-24 flex justify-around flex-wrap pt-80">
-            <div class="w-full flex flex-wrap justify-around">
-                {% for categorie in categories %}
-                    {% set imageFileName = imagesParCategorie[categorie.id] ?? 'default.png' %}
-                    <!-- Chaque carte prend 1/4 de la largeur du conteneur sur des écrans medium et plus grands -->
-                    <div class="flex flex-col mb-3 w-full md:w-1/3 p-3">
-                        <div class="shadow-lg">
-                            <img src="{{ asset('/image/produits/' ~ imageFileName) }}" class="h-56 w-full object-cover" alt="Image de {{ categorie.nom }}">
-                            <div class="text-center py-4">{{ categorie.nom }}</div>
+        <div class="w-screen   xs:mt-72 mt-96 flex justify-around">
+    <div class="w-11/12 h-1/3  flex flex-col sm:flex-row  justify-around items-center">
+
+        <div class="bg-orange-100 flex flex-col mb-4 w-72 shadow-lg">
+            <div>
+                <!-- Replace with your actual image path -->
+                <img src="https://sf1.mariefrance.fr/wp-content/uploads/sites/5/2018/02/celeri-1-750x410.jpg" class="w-full h-56 object-cover">
+            </div>
+            <div class=" flex flex-col h-24 justify-center p-4 bg-gray-50">
+                <div class="text-center text-gray-600 text-lg font-semibold mb-2">
+                    Légume
+                </div>
+                <div class= " arrow-svg flex flex-row justify-center items-center">
+
+                        <div class="text-gray-500 text-center flex items-center font-semibold text-xs hover:text-gray-800 cursor-pointer">
+                            <p>Découvrir</p> &nbsp;&nbsp;
                         </div>
-                    </div>
-                {% endfor %}
+                        <div class="text-center">
+                            <!-- Replace with your actual SVG code -->
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 19 14" class="arrow-svg hover:text-gray-800 relative top-[-1px] inline-block w-3 fill-current text-gray-500 md:w-4 transition-transform transform hover:-rotate-90">
+                                <g data-name="ARROW LINK">
+                                    <path data-name="Fill 1" d="M18.961 7.24a.754.754 0 0 0 0-.48.656.656 0 0 0-.114-.2L13.528.183a.466.466 0 0 0-.741 0 .719.719 0 0 0 0 .887l4.427 5.3H.524A.582.582 0 0 0 0 7a.583.583 0 0 0 .524.627h16.689l-4.427 5.3a.719.719 0 0 0 0 .887.465.465 0 0 0 .741 0l5.319-6.371a.643.643 0 0 0 .114-.2"></path>
+                                </g>
+                            </svg>                    
+                        </div>
+                </div>
             </div>
         </div>
+
+
+
+        <div class="flex flex-col mb-4 w-72 shadow-lg">
+            <div class="">
+                <!-- Replace with your actual image path -->
+                <img src="https://img.freepik.com/photos-gratuite/jeune-femme-appliquant-gommage-naturel-mains-contre-surface-rose-cure-thermale-produit-pour-spa-mains-feminines-massage-eau-fleurs-parfumees-bougies-detente-mise-plat-vue-dessus_1150-44585.jpg?t=st=1709282912~exp=1709286512~hmac=8589ec16cf79ab90cca2971aba78a3b18cba75bff6376151b362d99303830489&w=2000" class="w-full h-56 object-cover">
+            </div>
+            <div class="flex flex-col h-24 justify-center p-4 bg-white">
+                <div class="text-center text-gray-600 text-lg font-semibold mb-2">
+                    Beauté
+                </div>
+                <div class="flex flex-row justify-center items-center">
+                    <div class="text-gray-500 text-center font-semibold text-xs hover:text-blue-800 cursor-pointer">
+                        <p>Découvrir</p>
+                    </div>
+                    <div class="text-center">
+                        <!-- Replace with your actual SVG code -->
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 19 14" class="relative top-[-1px] inline-block w-3 fill-current text-gray-500 md:w-4">
+                            <g data-name="ARROW LINK">
+                                <path data-name="Fill 1" d="M18.961 7.24a.754.754 0 0 0 0-.48.656.656 0 0 0-.114-.2L13.528.183a.466.466 0 0 0-.741 0 .719.719 0 0 0 0 .887l4.427 5.3H.524A.582.582 0 0 0 0 7a.583.583 0 0 0 .524.627h16.689l-4.427 5.3a.719.719 0 0 0 0 .887.465.465 0 0 0 .741 0l5.319-6.371a.643.643 0 0 0 .114-.2"></path>
+                            </g>
+                        </svg>                    
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="flex flex-col mb-4 w-72 shadow-lg">
+            <div class="h-56">
+                <!-- Replace with your actual image path -->
+                <img src="https://img.freepik.com/photos-gratuite/cave-bouteilles_1136-132.jpg?t=st=1709282982~exp=1709286582~hmac=f5278e96398677053b3151806c6db780ebda9d0a840391b44a23f651373e7d78&w=2000"  class="w-full h-56 object-cover">
+            </div>
+            <div class="flex flex-col h-24 justify-center p-4 bg-white">
+                <div class="text-center text-gray-600 text-lg font-semibold mb-2">
+                    Cave
+                </div>
+                <div class="flex flex-row justify-center items-center">
+                    <div class="text-gray-500 text-center font-semibold text-xs hover:text-blue-800 cursor-pointer">
+                        <p>Découvrir</p>
+                    </div>
+                    <div class="text-center">
+                        <!-- Replace with your actual SVG code -->
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 19 14" class="relative top-[-1px] inline-block w-3 fill-current text-gray-500 md:w-4">
+                            <g data-name="ARROW LINK">
+                                <path data-name="Fill 1" d="M18.961 7.24a.754.754 0 0 0 0-.48.656.656 0 0 0-.114-.2L13.528.183a.466.466 0 0 0-.741 0 .719.719 0 0 0 0 .887l4.427 5.3H.524A.582.582 0 0 0 0 7a.583.583 0 0 0 .524.627h16.689l-4.427 5.3a.719.719 0 0 0 0 .887.465.465 0 0 0 .741 0l5.319-6.371a.643.643 0 0 0 .114-.2"></path>
+                            </g>
+                        </svg>                    
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="flex flex-col mb-4 w-72 shadow-lg">
+            <div>
+                <!-- Replace with your actual image path -->
+                <img src="https://img.freepik.com/photos-gratuite/merveilleux-ingredients-appetissants-epices-pices-picerie-poivre-rouge-pour-cuisiner-cuisine-saine_1220-1676.jpg?t=st=1709283138~exp=1709286738~hmac=87eb44354603fe1cfd22a1687b6b463105bac80eebb0cb3882811d4c2ffb1c1e&w=2000" class="w-full h-56 object-cover">
+            </div>
+            <div class="flex flex-col h-24 justify-center p-4 bg-white">
+                <div class="text-center text-gray-600 text-lg font-semibold mb-2">
+                    Épicerie
+                </div>
+                <div class="flex flex-row justify-center items-center">
+                    <div class="text-gray-500 text-center font-semibold text-xs hover:text-blue-800 cursor-pointer">
+                        <p>Découvrir</p>
+                    </div>
+                    <div class="text-center">
+                        <!-- Replace with your actual SVG code -->
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 19 14" class="relative top-[-1px] inline-block w-3 fill-current text-gray-500 md:w-4">
+                            <g data-name="ARROW LINK">
+                                <path data-name="Fill 1" d="M18.961 7.24a.754.754 0 0 0 0-.48.656.656 0 0 0-.114-.2L13.528.183a.466.466 0 0 0-.741 0 .719.719 0 0 0 0 .887l4.427 5.3H.524A.582.582 0 0 0 0 7a.583.583 0 0 0 .524.627h16.689l-4.427 5.3a.719.719 0 0 0 0 .887.465.465 0 0 0 .741 0l5.319-6.371a.643.643 0 0 0 .114-.2"></path>
+                            </g>
+                        </svg>                    
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
 
 
 
