@@ -21,7 +21,7 @@ class Photo
     private ?string $image = null;
 
     #[ORM\ManyToOne(inversedBy: 'idPhoto')]
-    private ?FicheProduit $ficheProduit = null;
+    private ?FicheProduit $ficheProduit;
 
     public function getId(): ?int
     {
@@ -54,6 +54,8 @@ class Photo
 
 
     #[Vich\UploadableField(mapping: 'photos', fileNameProperty: 'image')]
+    #[Assert\NotNull(message: "Veuillez fournir une image.")]
+    #[Assert\File(mimeTypes: ["image/jpeg", "image/png"], mimeTypesMessage: "Veuillez uploader une image valide (jpeg ou png).")]
     private ?File $imageFile = null;
 
     public function setImageFile(?File $imageFile = null): void
