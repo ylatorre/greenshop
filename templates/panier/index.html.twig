@@ -50,12 +50,17 @@
 
 								<div class="flex items-center mt-2">
 									<div class="border border-grey-500 rounded-full">
-										<button class="px-2 py-1 mr-2 ml-2">
+										<button class="px-2 py-1 mr-2 ml-2" onclick="decreaseQuantity()">
 											-
 										</button>
-										<span class="text-gray-700 px-2">1</span>
-										<!-- Remplacer 1 par la variable de quantité -->
-										<button class="px-2 py-1 ml-2 mr-2">
+										<span id="quantityDisplay" class="text-gray-700 px-2">
+											<!-- Display quantity here -->
+											<script>
+												// Récupérer la quantité depuis le stockage local et l'afficher
+												document.getElementById('quantityDisplay').innerText = localStorage.getItem('quantity') || 1;
+											</script>
+										</span>
+										<button class="px-2 py-1 ml-2 mr-2" onclick="increaseQuantity()">
 											+
 										</button>
 									</div>
@@ -95,6 +100,7 @@
 
 
 </div>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script src="https://js.stripe.com/v3/"></script></body></html><script>var stripe = Stripe('pk_test_51OfQTfIt7t0x5dTglGHreq6TfXNXoTLuXW9HOvi24as0oEkvSxzXWNZBuYwfS9rnbVNFs8umnJRkDdEtIQo9FBTZ00h6Y2jXk2');
 
 var checkoutButton = document.getElementById('checkout-button');
@@ -110,4 +116,50 @@ return stripe.redirectToCheckout({sessionId: session.id});
 }).catch(function (error) {
 console.error("Error:", error);
 });
-});</script>{% endblock %}
+});
+
+
+  let quantity = localStorage.getItem('quantity') || 1; // Récupérer la quantité depuis le stockage local ou utiliser 1 par défaut
+
+$(document).ready(function() {
+    // Initialiser la quantité affichée
+    $('#quantityDisplay').text(quantity);
+});
+
+function decreaseQuantity() {
+    if (quantity > 1) {
+        quantity--;
+        updateQuantity(-1); // Appeler updateQuantity avec -1 pour diminuer la quantité
+    }
+}
+
+function increaseQuantity() {
+    quantity++;
+    updateQuantity(1); // Appeler updateQuantity avec 1 pour augmenter la quantité
+}
+
+function updateQuantity(change) {
+    let currentQuantity = parseInt($('#quantityDisplay').text());
+    let newQuantity = currentQuantity + change;
+
+    // Mettre à jour la quantité dans le stockage local
+    localStorage.setItem('quantity', newQuantity);
+
+    // Envoyer la requête AJAX pour mettre à jour la quantité sur le serveur
+    $.ajax({
+        url: '/update-quantity', // Modifier l'URL selon votre route Symfony
+        type: 'POST',
+        data: { quantity: newQuantity },
+        success: function(response) {
+            // Mettre à jour la quantité affichée si la mise à jour a réussi
+            $('#quantityDisplay').text(newQuantity);
+        },
+        error: function(xhr, status, error) {
+            console.error('Erreur lors de la mise à jour de la quantité:', error);
+        }
+    });
+}
+
+</script>
+
+{% endblock %}
