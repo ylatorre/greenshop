@@ -186,6 +186,111 @@
             </div>
         </div>
     </div>
+    <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css"/>
+
+    <div class="w-screen mt-96 flex justify-around">
+        <div class="swiper-container w-11/12">
+            <div class="swiper-wrapper">
+                <!-- Slide 1 : Légume -->
+                <div class="swiper-slide bg-orange-100 flex flex-col mb-4 w-72 shadow-lg">
+                    <img src="https://sf1.mariefrance.fr/wp-content/uploads/sites/5/2018/02/celeri-1-750x410.jpg"
+                         class="w-full h-56 object-cover">
+                    <div class="flex flex-col h-24 justify-center p-4 bg-gray-50">
+                        <div class="text-center text-gray-600 text-lg font-semibold mb-2">Légume</div>
+                        <div class="arrow-svg flex flex-row justify-center items-center">
+                            <p class="text-gray-500 text-center flex items-center font-semibold text-xs hover:text-gray-800 cursor-pointer">
+                                Découvrir</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Slide 2 : Beauté -->
+                <div class="swiper-slide flex flex-col mb-4 w-72 shadow-lg">
+                    <img src="https://img.freepik.com/photos-gratuite/jeune-femme-appliquant-gommage-naturel-mains-contre-surface-rose-cure-thermale-produit-pour-spa-mains-feminines-massage-eau-fleurs-parfumees-bougies-detente-mise-plat-vue-dessus_1150-44585.jpg?t=st=1709282912~exp=1709286512~hmac=8589ec16cf79ab90cca2971aba78a3b18cba75bff6376151b362d99303830489&w=2000"
+                         class="w-full h-56 object-cover">
+                    <div class="flex flex-col h-24 justify-center p-4 bg-white">
+                        <div class="text-center text-gray-600 text-lg font-semibold mb-2">Beauté</div>
+                        <div class="flex flex-row justify-center items-center">
+                            <p class="text-gray-500 text-center font-semibold text-xs hover:text-blue-800 cursor-pointer">
+                                Découvrir</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Slide 3 : Cave -->
+                <div class="swiper-slide flex flex-col mb-4 w-72 shadow-lg">
+                    <img src="https://img.freepik.com/photos-gratuite/cave-bouteilles_1136-132.jpg?t=st=1709282982~exp=1709286582~hmac=f5278e96398677053b3151806c6db780ebda9d0a840391b44a23f651373e7d78&w=2000"
+                         class="w-full h-56 object-cover">
+                    <div class="flex flex-col h-24 justify-center p-4 bg-white">
+                        <div class="text-center text-gray-600 text-lg font-semibold mb-2">Cave</div>
+                        <div class="flex flex-row justify-center items-center">
+                            <p class="text-gray-500 text-center font-semibold text-xs hover:text-blue-800 cursor-pointer">
+                                Découvrir</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Slide 4 : Épicerie -->
+                <div class="swiper-slide flex flex-col mb-4 w-72 shadow-lg">
+                    <img src="https://img.freepik.com/photos-gratuite/merveilleux-ingredients-appetissants-epices-pices-picerie-poivre-rouge-pour-cuisiner-cuisine-saine_1220-1676.jpg?t=st=1709283138~exp=1709286738~hmac=87eb44354603fe1cfd22a1687b6b463105bac80eebb0cb3882811d4c2ffb1c1e&w=2000"
+                         class="w-full h-56 object-cover">
+                    <div class="flex flex-col h-24 justify-center p-4 bg-white">
+                        <div class="text-center text-gray-600 text-lg font-semibold mb-2">Épicerie</div>
+                        <div class="flex flex-row justify-center items-center">
+                            <p class="text-gray-500 text-center font-semibold text-xs hover:text-blue-800 cursor-pointer">
+                                Découvrir</p>
+                        </div>
+                    </div>
+                </div>
+                <!-- Slide 4 : Épicerie -->
+                <div class="swiper-slide flex flex-col mb-4 w-72 shadow-lg">
+                    <img src="https://img.freepik.com/photos-gratuite/merveilleux-ingredients-appetissants-epices-pices-picerie-poivre-rouge-pour-cuisiner-cuisine-saine_1220-1676.jpg?t=st=1709283138~exp=1709286738~hmac=87eb44354603fe1cfd22a1687b6b463105bac80eebb0cb3882811d4c2ffb1c1e&w=2000"
+                         class="w-full h-56 object-cover">
+                    <div class="flex flex-col h-24 justify-center p-4 bg-white">
+                        <div class="text-center text-gray-600 text-lg font-semibold mb-2">Épicerie</div>
+                        <div class="flex flex-row justify-center items-center">
+                            <p class="text-gray-500 text-center font-semibold text-xs hover:text-blue-800 cursor-pointer">
+                                Découvrir</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- Boutons de navigation -->
+            <div class="swiper-button-prev"></div>
+            <div class="swiper-button-next"></div>
+            <!-- Pagination -->
+            <div class="swiper-pagination"></div>
+        </div>
+    </div>
+
+    <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
+    <script>
+        var swiper = new Swiper('.swiper-container', {
+            loop: true,
+            slidesPerView: 2,
+            spaceBetween: 30,
+
+            navigation: {
+                nextEl: '.swiper-button-next',
+                prevEl: '.swiper-button-prev',
+            },
+            pagination: {
+                el: '.swiper-pagination',
+                clickable: true,
+            },
+            breakpoints: {
+                400: {
+                    slidesPerView: 2,
+                },
+                768: {
+                    slidesPerView: 3,
+                },
+                1024: {
+                    slidesPerView: 4,
+                },
+            },
+        });
+    </script>
 
 
     <!--Affichage semi-dynamique produits "Les plus vendus"-->
