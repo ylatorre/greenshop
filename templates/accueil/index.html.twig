@@ -9,178 +9,299 @@
 
     <body class=" bg-orange-100">
 
-        <div class="relative z-48  h-[90vh] top-0 flex flex-col justify-center items-center">
-            <!-- Conteneur de l'image -->
-            <div class="w-full md:w-3/4 h-3/4 md:h-2/3 bg-no-repeat bg-center" style="background-image: url('https://media.discordapp.net/attachments/1153601406339661886/1212416782166397058/pexels-kelly-4030637.jpg?ex=65f1c21e&is=65df4d1e&hm=20d1f5326f6b585e953a4872762b1f91514dccf8a2b7fdea1ee2e5a50d6456e1&=&format=webp&width=2087&height=1172');">
-                <!-- Le texte commence ici, au-dessus de l'image -->
-                <div id="floatingText" class="absolute top-0 left-1/2 w-full justify-center -translate-y-full flex flex-col items-center">
-                    <h2 class="text-4xl md:text-5xl xs:text-3xl text-orange-100 text-center font-extrabold">
-                        La plateforme de vente en ligne éco-responsable. <br>- déchet <br>+ de produits.
-                    </h2>
-                    <h2 class="text-xl md:text-2xl xs:text-xl text-orange-100 mt-2 md:mt-5 text-center font-semibold">
-                        Notre objectif est de sensibiliser à la cause environnementale et de promouvoir un mode de vie durable.
-                    </h2>
-                    <button class="mt-2 md:mt-4 rounded border-2 border-orange-200 px-4 md:px-7 pb-[4px] md:pb-[8px] pt-[6px] md:pt-[10px] text-xs md:text-sm font-medium uppercase leading-normal text-orange-100 transition duration-150 ease-in-out hover:border-neutral-100 hover:bg-neutral-500 hover:bg-opacity-10 hover:text-neutral-100">
-                        Shop Now
-                    </button>
-                </div>
+    <div class="relative z-48  h-[90vh] top-0 flex flex-col justify-center items-center">
+        <!-- Conteneur de l'image -->
+        <div class="w-full md:w-3/4 h-3/4 md:h-2/3 bg-no-repeat bg-center"
+             style="background-image: url('https://media.discordapp.net/attachments/1153601406339661886/1212416782166397058/pexels-kelly-4030637.jpg?ex=65f1c21e&is=65df4d1e&hm=20d1f5326f6b585e953a4872762b1f91514dccf8a2b7fdea1ee2e5a50d6456e1&=&format=webp&width=2087&height=1172');">
+            <!-- Le texte commence ici, au-dessus de l'image -->
+            <div id="floatingText"
+                 class="absolute top-0 left-1/2 w-full justify-center -translate-y-full flex flex-col items-center">
+                <h2 class="text-4xl md:text-5xl xs:text-3xl text-orange-100 text-center font-extrabold">
+                    La plateforme de vente en ligne éco-responsable. <br>- déchet <br>+ de produits.
+                </h2>
+                <h2 class="text-xl md:text-2xl xs:text-xl text-orange-100 mt-2 md:mt-5 text-center font-semibold">
+                    Notre objectif est de sensibiliser à la cause environnementale et de promouvoir un mode de vie
+                    durable.
+                </h2>
+                <button class="mt-2 md:mt-4 rounded border-2 border-orange-200 px-4 md:px-7 pb-[4px] md:pb-[8px] pt-[6px] md:pt-[10px] text-xs md:text-sm font-medium uppercase leading-normal text-orange-100 transition duration-150 ease-in-out hover:border-neutral-100 hover:bg-neutral-500 hover:bg-opacity-10 hover:text-neutral-100">
+                    Shop Now
+                </button>
             </div>
         </div>
+    </div>
 
-        <script>
-            document.addEventListener('scroll', function() {
-                var scrollPosition = window.scrollY;
-                var textElement = document.getElementById('floatingText');
-                var imageContainer = textElement.parentElement;
-                var imageHeight = imageContainer.offsetHeight;
-                var imageOffsetTop = imageContainer.offsetTop;
-                var textElements = textElement.querySelectorAll('h2, button'); // Sélectionne tous les éléments de texte et le bouton
-                var extraDistance = 130; // Ajustez cette valeur selon vos besoins
-                var textPosition = scrollPosition + window.innerHeight / 2 - imageOffsetTop;
+    <script>
+        document.addEventListener('scroll', function () {
+            var scrollPosition = window.scrollY;
+            var textElement = document.getElementById('floatingText');
+            var imageContainer = textElement.parentElement;
+            var imageHeight = imageContainer.offsetHeight;
+            var imageOffsetTop = imageContainer.offsetTop;
+            var textElements = textElement.querySelectorAll('h2, button'); // Sélectionne tous les éléments de texte et le bouton
+            var extraDistance = 130; // Ajustez cette valeur selon vos besoins
+            var textPosition = scrollPosition + window.innerHeight / 2 - imageOffsetTop;
 
-                if (scrollPosition + window.innerHeight / 2 <= imageOffsetTop + imageHeight + extraDistance) {
-                    textElement.style.transform = `translate(-50%, ${textPosition}px)`;
-                    if (scrollPosition + window.innerHeight / 2 <= imageOffsetTop + imageHeight) {
-                        textElements.forEach(el => {
-                            el.classList.remove('text-neutral-900');
-                            el.classList.add('text-orange-100');
-                        });
-                    } else {
-                        textElements.forEach(el => {
-                            el.classList.remove('text-orange-100');
-                            el.classList.add('text-neutral-900');
-                        });
-                    }
+            if (scrollPosition + window.innerHeight / 2 <= imageOffsetTop + imageHeight + extraDistance) {
+                textElement.style.transform = `translate(-50%, ${textPosition}px)`;
+                if (scrollPosition + window.innerHeight / 2 <= imageOffsetTop + imageHeight) {
+                    textElements.forEach(el => {
+                        el.classList.remove('text-neutral-900');
+                        el.classList.add('text-orange-100');
+                    });
                 } else {
-                    let translateYValue = (imageHeight + extraDistance) - imageOffsetTop + window.innerHeight / 2 - textElement.offsetHeight / 2;
-                    textElement.style.transform = `translate(-50%, ${translateYValue}px)`;
+                    textElements.forEach(el => {
+                        el.classList.remove('text-orange-100');
+                        el.classList.add('text-neutral-900');
+                    });
                 }
-            });
-        </script>
+            } else {
+                let translateYValue = (imageHeight + extraDistance) - imageOffsetTop + window.innerHeight / 2 - textElement.offsetHeight / 2;
+                textElement.style.transform = `translate(-50%, ${translateYValue}px)`;
+            }
+        });
+    </script>
 
-        <style>
+    <style>
         .card:hover .arrow-svg {
             transform: translateX(10px);
             transition: transform 0.3s ease-in-out;
         }
-        </style>
+    </style>
 
-        <!--Affichage dynamique des catégories-->
-        <div class="w-screen mt-24 flex justify-around flex-wrap pt-80">
-            <div class="w-full flex flex-wrap justify-around">
-                {% for categorie in categories %}
-                    {% set imageFileName = imagesParCategorie[categorie.id] ?? 'default.png' %}
-                    <!-- Chaque carte prend 1/4 de la largeur du conteneur sur des écrans medium et plus grands -->
-                    <div class="flex flex-col mb-3 w-full md:w-1/3 p-3">
-                        <div class="shadow-lg">
-                            <img src="{{ asset('/image/produits/' ~ imageFileName) }}" class="h-56 w-full object-cover" alt="Image de {{ categorie.nom }}">
-                            <div class="text-center py-4">{{ categorie.nom }}</div>
-                        </div>
+    <!--Affichage dynamique des catégories-->
+    <div class="w-screen mt-24 flex justify-around flex-wrap pt-80">
+        <div class="w-full flex flex-wrap justify-around">
+            {% for categorie in categories %}
+                {% set imageFileName = imagesParCategorie[categorie.id] ?? 'default.png' %}
+                <!-- Chaque carte prend 1/4 de la largeur du conteneur sur des écrans medium et plus grands -->
+                <div class="flex flex-col mb-3 w-full md:w-1/3 p-3">
+                    <div class="shadow-lg">
+                        <img src="{{ asset('/image/produits/' ~ imageFileName) }}" class="h-56 w-full object-cover"
+                             alt="Image de {{ categorie.nom }}">
+                        <div class="text-center py-4">{{ categorie.nom }}</div>
                     </div>
-                {% endfor %}
-            </div>
+                </div>
+            {% endfor %}
         </div>
+    </div>
 
 
-
-        <!--Affichage semi-dynamique produits "Les plus vendus"-->
-        <div class="h-screen w-screen flex-col justify-center items-center">
-            <div class="w-screen flex items-center justify-center">
-                <h1 class="text-xl text-green-800 my-8 w-11/12 ">
-                    Top Vente
-                </h1>
-            </div>
-            <div class="flex justify-center gap-4">
-                {% for produit in produitsPlusVendus|slice(0, 4) %}
-                    <div class="flex flex-col items-center w-44 h-64 p-2.5 rounded border border-gray-400 border-opacity-50">
-                        <img  alt="{{ produit.titre }}" class="w-32 h-32 object-contain p-2">
-                        <div class="flex flex-col items-center space-y-3">
-                            <a  class="text-xs mt-2 text-center font-medium">{{ produit.titre }}</a>
-                            <span class="text-xs font-thin">{{ produit.description }}</span>
-                        </div>
+    <!--Affichage semi-dynamique produits "Les plus vendus"-->
+    <div class="h-screen w-screen flex-col justify-center items-center">
+        <div class="w-screen flex items-center justify-center">
+            <h1 class="text-xl text-green-800 my-8 w-11/12 ">
+                Top Vente
+            </h1>
+        </div>
+        <div class="flex justify-center gap-4">
+            {% for produit in produitsPlusVendus|slice(0, 4) %}
+                <div class="flex flex-col items-center w-44 h-64 p-2.5 rounded border border-gray-400 border-opacity-50">
+                    <img alt="{{ produit.titre }}" class="w-32 h-32 object-contain p-2">
+                    <div class="flex flex-col items-center space-y-3">
+                        <a class="text-xs mt-2 text-center font-medium">{{ produit.titre }}</a>
+                        <span class="text-xs font-thin">{{ produit.description }}</span>
                     </div>
-                {% endfor %}
-            </div>
-            <div id="produits-cache" class="hidden">
-                {% for produit in produitsPlusVendus|slice(4, 4) %}
-                    <div class="flex flex-col items-center w-44 h-64 p-2.5 rounded border border-gray-400 border-opacity-50">
-                        <img  alt="{{ produit.titre }}" class="w-32 h-32 object-contain p-2">
-                        <div class="flex flex-col items-center space-y-3">
-                            <a  class="text-xs mt-2 text-center font-medium">{{ produit.titre }}</a>
-                            <span class="text-xs font-thin">{{ produit.description }}</span>
-                        </div>
+                </div>
+            {% endfor %}
+        </div>
+        <div id="produits-cache" class="hidden">
+            {% for produit in produitsPlusVendus|slice(4, 4) %}
+                <div class="flex flex-col items-center w-44 h-64 p-2.5 rounded border border-gray-400 border-opacity-50">
+                    <img alt="{{ produit.titre }}" class="w-32 h-32 object-contain p-2">
+                    <div class="flex flex-col items-center space-y-3">
+                        <a class="text-xs mt-2 text-center font-medium">{{ produit.titre }}</a>
+                        <span class="text-xs font-thin">{{ produit.description }}</span>
                     </div>
-                {% endfor %}
-            </div>
-            <h2 class="voir-plus text-green-800 font-semibold text-sm underline text-center mt-4 cursor-pointer">Voir plus</h2>
+                </div>
+            {% endfor %}
+        </div>
+        <h2 class="voir-plus text-green-800 font-semibold text-sm underline text-center mt-4 cursor-pointer">Voir
+            plus</h2>
 
-            <script>
-                document.querySelector('.voir-plus').addEventListener('click', function() {
-                    document.getElementById('produits-cache').classList.remove('hidden');
-                    this.classList.add('hidden'); // Cache le bouton "Voir plus" après le clic
-                });
-            </script>
-            {# <span class="text-xs font-semibold">Prix: {{ produit.prix }} €</span>
+        <script>
+            document.querySelector('.voir-plus').addEventListener('click', function () {
+                document.getElementById('produits-cache').classList.remove('hidden');
+                this.classList.add('hidden'); // Cache le bouton "Voir plus" après le clic
+            });
+        </script>
+        {# <span class="text-xs font-semibold">Prix: {{ produit.prix }} €</span>
             href="{{ path('path_to_product_detail', {'id': produit.id}) }}"
             src="{{ produit.pathToImage }}" #}
 
-            <!-- Affichage semi-dynamique produits "Mieux notés"-->
-            <div class="h-screen w-screen flex-col justify-center items-center">
-                <div class="w-screen flex items-center justify-center">
-                    <h1 class="text-xl text-green-800 my-8 w-11/12 ">
-                        Mieux notés
-                    </h1>
-                </div>
-                <div class="flex justify-center gap-4">
-                    {% for produit in produitsMieuxNotes|slice(0, 4) %}
-                        <div class="flex flex-col items-center w-44 h-64 p-2.5 rounded border border-gray-400 border-opacity-50">
-                            <img  alt="{{ produit.titre }}" class="w-32 h-32 object-contain p-2">
-                            <div class="flex flex-col items-center space-y-3">
-                                <a  class="text-xs mt-2 text-center font-medium">{{ produit.titre }}</a>
-                                <span class="text-xs font-thin">{{ produit.description }}</span>
-                            </div>
-                        </div>
-                    {% endfor %}
-                </div>
-                <div id="produits-cache-mieux-notes" class="hidden">
-                    {% for produit in produitsMieuxNotes|slice(4, 4) %}
-                        <div class="flex flex-col items-center w-44 h-64 p-2.5 rounded border border-gray-400 border-opacity-50">
-                            <img  alt="{{ produit.titre }}" class="w-32 h-32 object-contain p-2">
-                            <div class="flex flex-col items-center space-y-3">
-                                <a  class="text-xs mt-2 text-center font-medium">{{ produit.titre }}</a>
-                                <span class="text-xs font-thin">{{ produit.description }}</span>
-
-                            </div>
-                        </div>
-                    {% endfor %}
-                </div>
-
-                <h2 class="voir-plus-mieux-notes text-green-800 font-semibold text-sm underline text-center mt-4 cursor-pointer">Voir plus</h2>
-
-                <script>
-                    document.querySelector('.voir-plus-mieux-notes').addEventListener('click', function() {
-                        document.getElementById('produits-cache-mieux-notes').classList.remove('hidden');
-                        this.classList.add('hidden'); // Cache le bouton "Voir plus" après le clic
-                    });
-                </script>
-
-                <script>
-                    function carouselNext() {
-                        const container = document.querySelector('.flex');
-                        const shownItems = document.querySelectorAll('.flex-shrink-0:not(.hidden)');
-                        const nextIndex = Math.min(shownItems.length, 5);
-                        container.style.transform = `translateX(-${
-                        nextIndex * 100
-                        }%)`;
-                        }
-
-                        function carouselPrev() {
-                        const container = document.querySelector('.flex');
-                        container.style.transform = 'translateX(0)';
-                    }
-                </script>
+        <!-- Affichage semi-dynamique produits "Mieux notés"-->
+        <div class="h-screen w-screen flex-col justify-center items-center">
+            <div class="w-screen flex items-center justify-center">
+                <h1 class="text-xl text-green-800 my-8 w-11/12 ">
+                    Mieux notés
+                </h1>
             </div>
+            <div class="flex justify-center gap-4">
+                {% for produit in produitsMieuxNotes|slice(0, 4) %}
+                    <div class="flex flex-col items-center w-44 h-64 p-2.5 rounded border border-gray-400 border-opacity-50">
+                        <img alt="{{ produit.titre }}" class="w-32 h-32 object-contain p-2">
+                        <div class="flex flex-col items-center space-y-3">
+                            <a class="text-xs mt-2 text-center font-medium">{{ produit.titre }}</a>
+                            <span class="text-xs font-thin">{{ produit.description }}</span>
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
+            <div id="produits-cache-mieux-notes" class="hidden">
+                {% for produit in produitsMieuxNotes|slice(4, 4) %}
+                    <div class="flex flex-col items-center w-44 h-64 p-2.5 rounded border border-gray-400 border-opacity-50">
+                        <img alt="{{ produit.titre }}" class="w-32 h-32 object-contain p-2">
+                        <div class="flex flex-col items-center space-y-3">
+                            <a class="text-xs mt-2 text-center font-medium">{{ produit.titre }}</a>
+                            <span class="text-xs font-thin">{{ produit.description }}</span>
+
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
+
+            <h2 class="voir-plus-mieux-notes text-green-800 font-semibold text-sm underline text-center mt-4 cursor-pointer">
+                Voir plus</h2>
+
+            <script>
+                document.querySelector('.voir-plus-mieux-notes').addEventListener('click', function () {
+                    document.getElementById('produits-cache-mieux-notes').classList.remove('hidden');
+                    this.classList.add('hidden'); // Cache le bouton "Voir plus" après le clic
+                });
+            </script>
+
+            <script>
+                function carouselNext() {
+                    const container = document.querySelector('.flex');
+                    const shownItems = document.querySelectorAll('.flex-shrink-0:not(.hidden)');
+                    const nextIndex = Math.min(shownItems.length, 5);
+                    container.style.transform = `translateX(-${
+                        nextIndex * 100
+                    }%)`;
+                }
+
+                function carouselPrev() {
+                    const container = document.querySelector('.flex');
+                    container.style.transform = 'translateX(0)';
+                }
+            </script>
         </div>
+    </div>
+
+
+    <div>Ici test slider</div>
+    <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css"/>
+{#    <div class="relative mt-12 md:mt-72 flex flex-col md:flex-row md:items-center">#}
+<div>
+
+        {#            code de camil #}
+        <div class="relative mt-12 md:mt-72">
+            <!-- Premier composant qui disparait sur mobile -->
+            <div class="hidden md:flex justify-end w-full">
+                <div class="w-full md:w-11/12 h-48 md:h-96 bg-orange-50">
+                    <div class="flex items-center justify-center md:justify-start h-full md:h-1/5 p-4 md:p-0">
+                        <h1 class="text-center md:text-left text-gray-600 text-xl md:text-3xl font-semibold pl-4">NOS BEST
+                            SELLERS </h1>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Deuxième composant avec taille ajustée sur mobile -->
+            <div class="absolute top-14 md:top-20 left-0 w-full flex flex-col md:flex-row justify-between md:space-y-0 space-y-4">
+                <!-- La première image est masquée sur mobile -->
+                <div class="hidden sm:block sm:w-96 w-full shadow-lg">
+                    <img src="https://www.extime.com/_next/image?url=https%3A%2F%2Fstproadpmkpshare01.blob.core.windows.net%2Fextime%2Fassets%2Fvisuel_382x508_04_e565e07f39.jpg&w=3840&q=100"
+                         alt="" class="w-full">
+                </div>
+                <!-- Cartes de produits ajustées pour mobile -->
+                <div class="swiper mySwiper w-full md:w-2/3 lg:w-3/4">
+                    <div class="swiper-wrapper">
+                        <!-- Exemple de slides -->
+                        {% for i in 1..6 %}
+                            <div class="swiper-slide">
+                                <div class="grid grid-cols-1 md:grid-cols-3 gap-4 pl-8 pr-8">
+                                    {% for j in 1..3 %}
+                                        <div class="bg-white shadow-lg ">
+                                            <img src="https://www.extime.com/_next/image?url=https%3A%2F%2Fd1kvfoyrif6wzg.cloudfront.net%2Fassets%2Fimages%2F655%2F60238%2Fnone_9a68bab95f11bd3dca53fbd6a7a8b088_9a68bab.JPEG&w=828&q=100"
+                                                 alt="Produit {{ j }}" class="w-full h-96 object-cover">
+                                            <div class="p-4 pb-6">
+                                                <h2 class="font-bold text-gray-800">Produit {{ j }}</h2>
+                                                <p class="font-light text-sm text-gray-600">Description du produit {{ j }}</p>
+                                                <p class="font-semibold text-blue-800">Prix: XX,XX€</p>
+                                            </div>
+                                        </div>
+                                    {% endfor %}
+                                </div>
+                            </div>
+                        {% endfor %}
+                    </div>
+                    <div class="swiper-button-prev"></div>
+                    <div class="swiper-button-next"></div>
+                </div>
+
+            </div>
+
+
+        </div>
+    </div>
+
+        {#        fin code de camil #}
+
+
+{#        <!-- Conteneur de l'image avec débordement en haut et en bas -->#}
+{#        <div class="md:flex md:w-1/3 lg:w-1/4 overflow-visible">#}
+{#            <img src="https://www.extime.com/_next/image?url=https%3A%2F%2Fstproadpmkpshare01.blob.core.windows.net%2Fextime%2Fassets%2Fvisuel_382x508_04_e565e07f39.jpg&w=3840&q=100"#}
+{#                 alt="" class="w-full object-cover h-auto"#}
+{#                 style="transform: translateY(-10%); margin-top: -10%; margin-bottom: -10%;">#}
+{#        </div>#}
+
+{#        <!-- Swiper slider ajusté pour prendre plus de place à droite -->#}
+{#        <div class="swiper mySwiper w-full md:w-2/3 lg:w-3/4">#}
+{#            <div class="swiper-wrapper">#}
+{#                <!-- Exemple de slides -->#}
+{#                {% for i in 1..6 %}#}
+{#                    <div class="swiper-slide">#}
+{#                        <div class="grid grid-cols-1 md:grid-cols-3 gap-4">#}
+{#                            {% for j in 1..3 %}#}
+{#                                <div class="bg-white shadow-lg">#}
+{#                                    <img src="https://www.extime.com/_next/image?url=https%3A%2F%2Fd1kvfoyrif6wzg.cloudfront.net%2Fassets%2Fimages%2F655%2F60238%2Fnone_9a68bab95f11bd3dca53fbd6a7a8b088_9a68bab.JPEG&w=828&q=100"#}
+{#                                         alt="Produit {{ j }}" class="w-full h-48 object-cover">#}
+{#                                    <div class="p-4">#}
+{#                                        <h2 class="font-bold text-gray-800">Produit {{ j }}</h2>#}
+{#                                        <p class="font-light text-sm text-gray-600">Description du produit {{ j }}</p>#}
+{#                                        <p class="font-semibold text-blue-800">Prix: XX,XX€</p>#}
+{#                                    </div>#}
+{#                                </div>#}
+{#                            {% endfor %}#}
+{#                        </div>#}
+{#                    </div>#}
+{#                {% endfor %}#}
+{#            </div>#}
+{#            <div class="swiper-button-prev"></div>#}
+{#            <div class="swiper-button-next"></div>#}
+{#        </div>#}
+{#    </div>#}
+
+    <!-- Inclure le JS de Swiper -->
+    <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
+    <script>
+        new Swiper('.mySwiper', {
+            slidesPerView: 1,
+            spaceBetween: 30,
+            navigation: {
+                nextEl: '.swiper-button-next',
+                prevEl: '.swiper-button-prev',
+            },
+            breakpoints: {
+                768: {
+                    slidesPerView: 1,
+                },
+                1024: {
+                    slidesPerView: 1,
+                },
+            },
+        });
+    </script>
+
     </body>
 {% endblock %}
 
