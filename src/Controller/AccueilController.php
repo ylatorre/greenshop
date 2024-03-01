@@ -2,7 +2,7 @@
 
 namespace App\Controller;
 
-
+use App\Entity\Categorie;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -39,8 +39,32 @@ $ficheProduitRepository = $entityManager->getRepository(FicheProduit::class);
             [],
             ['nombreDeVente' => 'DESC'],
             8,
-              // Limite à 4 produits
         );
+
+        $categorieRepository = $entityManager->getRepository(Categorie::class);
+        $categories = $categorieRepository->findAll();
+
+
+
+        $ficheProduitRepository = $entityManager->getRepository(FicheProduit::class);
+        $firstProductByCategory = $ficheProduitRepository->findFirstProductByCategory();
+
+        $produits = $ficheProduitRepository->findAllSortedByCategory();
+        $imagesParCategorie = [];
+
+        foreach ($produits as $produit) {
+            foreach ($produit->getIdCategorie() as $categorie) {
+                if (!array_key_exists($categorie->getId(), $imagesParCategorie) && !$produit->getIdPhoto()->isEmpty()) {
+                    // Supposons que getIdPhoto retourne une collection d'où vous pouvez extraire la première photo
+                    $imagesParCategorie[$categorie->getId()] = $produit->getIdPhoto()->first()->getImage();
+                }
+            }
+        }
+//        dd($imagesParCategorie);
+//dd($firstProductByCategory);
+
+
+    //   dd($categories->toArray());
 
 
 // Rendu de la vue
@@ -48,10 +72,13 @@ $ficheProduitRepository = $entityManager->getRepository(FicheProduit::class);
             'controller_name' => 'AccueilController',
             'produitsMieuxNotes' => $produitsMieuxNotes,
             'produitsPlusVendus' => $produitsPlusVendus,
+            'categories' => $categories,
+            'firstProductByCategory' => $firstProductByCategory,
+            'imagesParCategorie' => $imagesParCategorie
 
 
         ]);
     }
 
-    
+
 }
