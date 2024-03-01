@@ -8,11 +8,15 @@
 {% include 'composant/affichagePage.html.twig' with {'pageName':  liste.nomListe } %}
 
     <h1>Total :</h1>
-<div  class="w-screen flex justify-end items-end px-2"> <!-- Adjust the width as needed -->
-                <button id="Add" class="text-slate-50 text-xs bg-green-900 hover:bg-green-950 font-medium rounded-full w-40 px-8 py-1">
-                    Ajouter au panier
-                </button>
+<div class="w-screen flex justify-end items-end px-2">
+    <a href="{{ path('ajouter_liste_au_panier', {'idListe': liste.id}) }}" class="text-slate-50 text-xs bg-green-900 hover:bg-green-950 font-medium rounded-full w-40 px-8 py-1">
+        Ajouter au panier
+    </a>
 </div>
+
+
+
+
 
 
 
@@ -29,7 +33,7 @@
 
     <div class="produits-liste h-32">
 {% for produit in liste.getFicheProduits %}
-{% include './composant/VosCommandes.html.twig' with {'produit': produit} %}
+{# {% include './composant/VosCommandes.html.twig' with {'produit': produit} %} #}
 
 {% endfor %}
 </div>

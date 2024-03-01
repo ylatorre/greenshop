@@ -10,6 +10,7 @@
     use Symfony\Component\HttpFoundation\Request;
     use Symfony\Component\HttpFoundation\Response;
     use Symfony\Component\Routing\Annotation\Route;
+use App\Repository\FicheProduitRepository;
 
     #[Route('/liste')]
     class ListeController extends AbstractController
@@ -80,6 +81,67 @@
             return $this->redirectToRoute('app_liste_index', [], Response::HTTP_SEE_OTHER);
         }
 
+
+        #[Route('/ajouter-produit-a-liste/{idProduit}', name: 'ajouter_produit_a_liste', methods: ['POST'])]
+        public function ajouterProduitAListe(Request $request, $idProduit, ListeRepository $listeRepository, FicheProduitRepository $produitRepository, EntityManagerInterface $entityManager): Response
+        {
+            $user = $this->getUser();
+            if (!$user) {
+                return $this->redirectToRoute('app_login');
+            }
+        
+            $listeId = $request->request->get('listeId');
+            $liste = $listeRepository->findOneBy(['id' => $listeId, 'user' => $user]);
+        
+            if (!$liste) {
+                // Gérer l'erreur si la liste n'existe pas ou n'appartient pas à l'utilisateur
+                return $this->redirectToRoute('une_route', ['erreur' => 'Liste non trouvée']);
+            }
+        
+            $produit = $produitRepository->find($idProduit);
+            if (!$produit) {
+                // Gérer l'erreur si le produit n'existe pas
+                return $this->redirectToRoute('une_autre_route', ['erreur' => 'Produit non trouvé']);
+            }
+        
+            // Ajouter le produit à la liste
+            $liste->addFicheProduit($produit);
+            $entityManager->flush();
+        
+            // Rediriger vers la page de la liste ou une autre page de confirmation
+            return $this->redirectToRoute('app_liste_index');
+        }
+
+
+        // Dans votre contrôleur, par exemple ListeController.php
+
+#[Route('/ajouter-liste-au-panier/{idListe}', name: 'ajouter_liste_au_panier')]
+public function ajouterListeAuPanier(int $idListe, ListeRepository $listeRepository, EntityManagerInterface $entityManager): Response
+{
+    $liste = $listeRepository->find($idListe);
+    $user = $this->getUser();
+
+    if (!$liste || !$user) {
+        // Gérer l'erreur si la liste n'existe pas ou l'utilisateur n'est pas connecté
+        return $this->redirectToRoute('homepage'); // Rediriger vers une page appropriée
+    }
+
+    // Ici, vous devriez avoir une logique pour ajouter tous les produits de la liste au panier de l'utilisateur
+    // Cela dépend de la structure de votre entité Panier et de la manière dont vous gérez les paniers dans votre application
+
+    // Exemple simplifié:
+    foreach ($liste->getFicheProduits() as $produit) {
+        // Ajouter chaque produit au panier de l'utilisateur
+        // Vous devez remplacer cette partie par votre propre logique d'ajout au panier
+    }
+
+    $entityManager->flush(); // Assurez-vous de persister les changements si nécessaire
+
+    // Rediriger vers le panier ou une autre page de confirmation
+    return $this->redirectToRoute('app_liste_index');
+}
+
+        
 
 
 
