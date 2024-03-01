@@ -59,7 +59,7 @@ class FicheProduit
     // #[ORM\OneToMany(mappedBy: 'ficheProduit', targetEntity: Photo::class, cascade: ['persist'])]
     // private Collection $photos;
 
-
+    
 
 
 
