@@ -9,51 +9,23 @@
 
     <body class=" bg-orange-100">
 
-    <div class="relative z-48  h-screen top-0 flex flex-col justify-center items-center">
-        <!-- Conteneur de l'image -->
-        <div class="w-screen  h-screen  bg-no-repeat bg-center"
-             style="background-image: url('https://img.freepik.com/photos-gratuite/plan-horizontal-jeune-femme-aux-cheveux-boucles-etonnee-surprise-qui-embrasse-legumes-frais-fruits-enveloppes-dans-du-papier-reagit-quelque-chose-inattendu-porte-epicerie-isolee-fond-marron_273609-62770.jpg?t=st=1709285270~exp=1709288870~hmac=754c495a6cbf3c3bf29ab5c534ec879373dbb3bf9df2a8558b7c6c1e800087de&w=2000');">
-            <!-- Le texte commence ici, au-dessus de l'image -->
-            <div id="floatingText"
-                 class="	  absolute top-0 left-1/2 transform -translate-x-1/2 -translate-y-full w-full h-full flex flex-col items-center justify-center p-4">
-                <div class="flex flex-col items-center justify-center h-1/2 bg-opacity-30 bg-slate-200">
-                    <h2 class=" text-sm sm:text-md md:text-lg lg:text-xl xl:text-2xl text-slate-900		 text-center font-extrabold">
-                        La plateforme de vente en ligne éco-responsable. <br>- déchet <br>+ de produits.
-                    </h2>
-                    <h2 class="text-xs sm:text-sm md:text-md lg:text-lg xl:text-xl text-slate-900 mt-2 md:mt-5 text-center font-semibold">
-                        Notre objectif est de sensibiliser à la cause environnementale et de promouvoir un mode de vie
-                        durable.
-                    </h2>
-                    <a href="/Nous" class="mt-2 md:mt-4 rounded border-2 border-slate-800 px-4 md:px-7 pb-[4px] md:pb-[8px] pt-[6px] md:pt-[10px] text-xs md:text-sm font-medium uppercase leading-normal text-slate-800 transition duration-150 ease-in-out hover:border-neutral-100 hover:bg-neutral-500 hover:bg-opacity-10 hover:text-neutral-100">
-                        À propos de nous
-                    </a>
-                </div>
-            </div>
-
+    <div class="relative z-48 h-screen top-0 flex flex-col justify-center items-center bg-no-repeat bg-center"
+         style="background-image: url('https://img.freepik.com/photos-gratuite/plan-horizontal-jeune-femme-aux-cheveux-boucles-etonnee-surprise-qui-embrasse-legumes-frais-fruits-enveloppes-dans-du-papier-reagit-quelque-chose-inattendu-porte-epicerie-isolee-fond-marron_273609-62770.jpg?t=st=1709285270~exp=1709288870~hmac=754c495a6cbf3c3bf29ab5c534ec879373dbb3bf9df2a8558b7c6c1e800087de&w=2000');">
+        <!-- Centre de texte sur l'image de fond -->
+        <div class="flex flex-col items-center justify-center h-64 bg-opacity-70 bg-slate-200 p-4">
+            <h2 class="text-sm sm:text-md md:text-lg lg:text-xl xl:text-2xl text-slate-900 text-center font-extrabold">
+                La plateforme de vente en ligne éco-responsable. <br>- déchet <br>+ de produits.
+            </h2>
+            <h2 class="text-xs sm:text-sm md:text-md lg:text-lg xl:text-xl text-slate-900 mt-2 md:mt-5 text-center font-semibold">
+                Notre objectif est de sensibiliser à la cause environnementale et de promouvoir un mode de vie durable.
+            </h2>
+            <a href="/Nous" class="mt-2 md:mt-4 rounded border-2 border-slate-800 px-4 md:px-7 pb-[4px] md:pb-[8px] pt-[6px] md:pt-[10px] text-xs md:text-sm font-medium uppercase leading-normal text-slate-800 transition duration-150 ease-in-out hover:border-neutral-100 hover:bg-neutral-500 hover:bg-opacity-10 hover:text-neutral-100">
+                À propos de nous
+            </a>
         </div>
     </div>
 
-    <script>
-        document.addEventListener('scroll', function () {
-            var scrollPosition = window.scrollY;
-            var textElement = document.getElementById('floatingText');
-            var imageContainer = textElement.parentElement;
-            var imageHeight = imageContainer.offsetHeight;
-            var imageOffsetTop = imageContainer.offsetTop;
-            var windowHeight = window.innerHeight;
-            var textHeight = textElement.offsetHeight;
-            var maxTextPosition = imageHeight - textHeight; // Calculer la position maximale pour que le texte reste dans l'image
 
-            // Calculer la nouvelle position du texte en fonction du défilement, sans le faire sortir de l'image
-            var textPosition = Math.min(maxTextPosition, scrollPosition + windowHeight / 2 - imageOffsetTop - textHeight / 2);
-
-            // S'assurer que le texte ne dépasse pas le haut de l'image
-            textPosition = Math.max(0, textPosition);
-
-            textElement.style.transform = `translate(-50%, ${textPosition}px)`;
-        });
-
-    </script>
 
     <style>
         .card:hover .arrow-svg {
