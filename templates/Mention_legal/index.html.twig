@@ -1,0 +1,40 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Mentions Légales{% endblock %}
+
+{% block body %}
+
+    <body class="font-sans bg-gray-100">
+
+        {% include './composant/Header.html.twig' %}
+        <br>
+        <br>
+        <br>
+        <section class="container mx-auto my-8 p-8 bg-white rounded shadow-lg">
+            <h2 class="text-3xl font-bold mb-6">Mentions Légales</h2>
+
+            <div class="mb-4">
+                <h3 class="text-xl font-bold mb-2">Responsable du site</h3>
+                <p>Helya Cislo, Baptiste Bodin, Yvan Latorre, Camil Nitel, Alexandra Chabriel, Allan Ngor</p>
+            </div>
+
+            <div class="mb-4">
+                <h3 class="text-xl font-bold mb-2">Adresse</h3>
+                <p>24 Avenue Joannes Masset, 69009 Lyon</p>
+            </div>
+
+            <div class="mb-4">
+                <h3 class="text-xl font-bold mb-2">Siège Social</h3>
+                <p>21 Rue Marc Donnadille, 13013 Marseille</p>
+            </div>
+
+            <div>
+                <h3 class="text-xl font-bold mb-2">Hébergement</h3>
+                <p>Serveur Yvan</p>
+            </div>
+
+        </section>
+
+    </body>
+
+{% endblock %}

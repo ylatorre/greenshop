@@ -86,5 +86,19 @@ $ficheProduitRepository = $entityManager->getRepository(FicheProduit::class);
         ]);
     }
 
+    #[Route('/AProposDeNous', name: 'app_propos')]
+    public function APropos(): response
+    {
+        return $this->render('AProposDeNous/index.html.twig', [
+            'controller_name' => 'AccueilController',
+        ]);
+    }
 
+    #[Route('/MentionLegal', name: 'app_mentions_legales')]
+    public function MentionLegale(): response
+    {
+        return $this->render('Mention_legal/index.html.twig', [
+            'controller_name' => 'AccueilController',
+        ]);
+    }
 }

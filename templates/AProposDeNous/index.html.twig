@@ -1,0 +1,47 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+
+    {% include './composant/Header.html.twig' %}
+
+    <body class="flex justify-center place-items-center h-screen font-sans bg-gray-100">
+        <br>
+        <br>
+        <br>
+        <section class="container mx-auto my-8 p-8 bg-white rounded shadow-lg">
+            <h2 class="text-2xl font-bold mb-4">La Démarche Greenshop</h2>
+            <p class="text-gray-700">
+                Greenshop, propulsée par Éco-Life, s'engage à offrir une expérience d'achat en ligne éthique et respectueuse de l'environnement. Nous croyons en un mode de vie durable et nous nous efforçons de faciliter cette transition en proposant une sélection soigneuse de produits éco-responsables.
+            </p>
+            <p class="text-gray-700">
+                Sur notre plateforme, chaque produit est choisi avec soin pour son impact minimal sur la planète. Nous sommes fiers de soutenir des initiatives visant à promouvoir des pratiques durables tout au long de la chaîne d'approvisionnement.
+            </p>
+        </section>
+
+        <section class="container mx-auto my-8 p-8 bg-white rounded shadow-lg">
+            <h2 class="text-2xl font-bold mb-4">Catégories de Produits</h2>
+            <ul class="list-disc pl-4">
+                <li class="text-gray-700">Produits Écologiques pour la Maison</li>
+                <li class="text-gray-700">Mode Éthique et Responsable</li>
+                <li class="text-gray-700">Bien-Être et Beauté Naturelle</li>
+                <li class="text-gray-700">Alimentation Saine et Bio</li>
+                <!-- Ajoutez d'autres catégories au besoin -->
+            </ul>
+            <p class="text-gray-700">
+                Explorez nos catégories variées et découvrez des produits qui correspondent à votre engagement pour un mode de vie respectueux de l'environnement.
+            </p>
+        </section>
+
+        <section class="container mx-auto my-8 p-8 bg-white rounded shadow-lg">
+            <h2 class="text-2xl font-bold mb-4">Engagez-vous avec Greenshop</h2>
+            <p class="text-gray-700">
+                Rejoignez-nous dans notre mission pour un monde plus vert. Explorez notre gamme de produits éco-responsables et adoptez un mode de vie durable dès aujourd'hui. Chez Greenshop, chaque achat est un pas vers un avenir plus propre et plus sain pour notre planète.
+            </p>
+            <p class="text-gray-700">
+                Faites partie du changement. Choisissez Greenshop.
+            </p>
+        </section>
+
+    </body>
+
+{% endblock %}
