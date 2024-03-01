@@ -169,13 +169,13 @@
 
 
                 <div class="swiper mySwiper w-full md:w-2/3 lg:w-3/4">
-                    <div class="swiper-wrapper">
+                    <div class="swiper-wrapper pr-8 pl-8">
                         {% for produit in produitsBeaute %}
                             <div class="swiper-slide">
                                 <div class="bg-white shadow-lg">
                                     <img src="{{ produit.getImageProduit() }}" alt="Image de {{ produit.getTitre() }}"
                                          class="w-full h-96 object-cover">
-                                    <div class="p-4 pb-6">
+                                    <div class=" pb-6">
                                         <h2 class="font-bold text-gray-800">{{ produit.getTitre() }}</h2>
                                         <p class="font-light text-sm text-gray-600">
                                             {{ produit.getDescription()|length > 70 ? produit.getDescription()|slice(0, 70) ~ '...' : produit.getDescription() }}
