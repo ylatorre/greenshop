@@ -32,6 +32,7 @@ class FicheProduitRepository extends ServiceEntityRepository
     }
 
 
+
     
 public function findByCategorieNom($categorieNom)
 {

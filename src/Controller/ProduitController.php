@@ -51,12 +51,13 @@ class ProduitController extends AbstractController
     {
         $searchQuery = $request->query->get('q');
         $ficheProduits = $entityManager->getRepository(FicheProduit::class)->findBySearchQuery($searchQuery);
-
+//dd($ficheProduits,$request);
         return $this->render('produit/results.html.twig', [
             'ficheProduits' => $ficheProduits,
             'searchQuery' => $searchQuery,
         ]);
     }
+
 
 }
 
