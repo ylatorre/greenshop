@@ -11,7 +11,7 @@
         {% include './composant/UserBar.html.twig' %}
 
         <div class="text-gray-900 mt-8 sm:mt-20">
-            <h2 class="text-3xl sm:text-5xl font-semibold">Historique des commandes</h2>
+            <h2 class="lg:text-3xl sm:text-2xl font-semibold">Historique des commandes</h2>
             {% if commandes|length == 0 %}
                 <h2 class="text-xl sm:text-2xl font-light">Vous n'avez pas encore passé de commande.</h2>
             {% else %}
@@ -25,7 +25,7 @@
 </div>
 
 {% if is_granted('ROLE_ADMIN') %}
-    <a href="/admin" class="bg-blue-500 mt-10 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
+    <a href="/admin" class="bg-green-600 mt-10 hover:bg-green-700 text-white font-bold py-2 px-4 rounded">
         Bouton Admin
     </a>
 {% endif %}

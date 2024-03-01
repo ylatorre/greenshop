@@ -16,6 +16,10 @@ class AccueilController extends AbstractController
     #[Route('/', name: 'app_accueil')]
     public function index(MailerInterface $mailer, EntityManagerInterface $entityManager): Response
     {
+        $categorieNom = 'Beauté'; 
+        $produitsBeaute = $entityManager->getRepository(FicheProduit::class)->findByCategorieNom($categorieNom);
+
+
 // Envoi de l'email
         $email = (new Email())
             ->from('yvanlatorre@outlook.fr')
@@ -74,11 +78,35 @@ $ficheProduitRepository = $entityManager->getRepository(FicheProduit::class);
             'produitsPlusVendus' => $produitsPlusVendus,
             'categories' => $categories,
             'firstProductByCategory' => $firstProductByCategory,
-            'imagesParCategorie' => $imagesParCategorie
+            'imagesParCategorie' => $imagesParCategorie,
+            'produitsBeaute' => $produitsBeaute, // Ajoutez cette ligne
+
 
 
         ]);
     }
 
+    #[Route('/AProposDeNous', name: 'app_propos')]
+    public function APropos(): response
+    {
+        return $this->render('AProposDeNous/index.html.twig', [
+            'controller_name' => 'AccueilController',
+        ]);
+    }
 
+    #[Route('/MentionLegal', name: 'app_mentions_legales')]
+    public function MentionLegale(): response
+    {
+        return $this->render('Mention_legal/index.html.twig', [
+            'controller_name' => 'AccueilController',
+        ]);
+    }
+
+    #[Route('/Nous', name: 'Nous')]
+    public function Nous(): Response
+    {
+        return $this->render('AProposDeNous/index.html.twig', [
+            
+        ]);
+    }
 }

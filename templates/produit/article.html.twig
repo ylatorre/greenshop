@@ -73,11 +73,16 @@
     </div>
 
     <div class="flex justify-center py-4">
-        <button class="bg-lime-950 rounded-lg text-white px-4 py-2">Ajouter au panier</button>
-    </div>
-    <div class="flex justify-center py-4">
+    <a href="{{ path('ajouter_au_panier', {'idProduit': product.id}) }}" class="bg-lime-950 rounded-lg text-white px-4 py-2">Ajouter au panier</a>
+</div>
+<div class="flex justify-center py-4">
+    <a href="{{ path('ajouter_aux_favoris', {'idProduit': product.id}) }}" class="rounded-lg text-white px-4 py-2" style="background-color: #FF69B4;">Ajouter aux favoris</a>
+</div>
+
+
+    {# <div class="flex justify-center py-4">
         <button class="bg-emerald-500 rounded-lg text-white px-4 py-2">Acheter maintenant</button>
-    </div>
+    </div> #}
 </div>
 
 {% include './composant/bottomBar.html.twig' %}
