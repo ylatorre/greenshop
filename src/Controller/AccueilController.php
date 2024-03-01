@@ -101,4 +101,12 @@ $ficheProduitRepository = $entityManager->getRepository(FicheProduit::class);
             'controller_name' => 'AccueilController',
         ]);
     }
+
+    #[Route('/Nous', name: 'Nous')]
+    public function Nous(): Response
+    {
+        return $this->render('AProposDeNous/index.html.twig', [
+            
+        ]);
+    }
 }
