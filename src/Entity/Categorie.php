@@ -6,6 +6,7 @@ use App\Repository\CategorieRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use phpDocumentor\Reflection\Types\Object_;
 
 #[ORM\Entity(repositoryClass: CategorieRepository::class)]
 class Categorie
@@ -104,6 +105,27 @@ class Categorie
     public function setImageProduit($imageProduit)
     {
         $this->imageProduit = $imageProduit;
+    }
+
+    public function getFirstFicheProduitImage(): ?string
+    {
+        // Vérifie si la collection ficheProduits n'est pas vide
+        if ($this->ficheProduits->isEmpty()) {
+            return null;
+        }
+
+        // Récupère le premier FicheProduit
+        $firstFicheProduit = $this->ficheProduits->first();
+
+        // Vérifie si le premier FicheProduit a des photos
+        if ($firstFicheProduit && !$firstFicheProduit->getIdPhoto()->isEmpty()) {
+            // Récupère la première photo
+            $firstPhoto = $firstFicheProduit->getIdPhoto()->first();
+            // Retourne l'image de la première photo
+            return $firstPhoto->getImage();
+        }
+
+        return null;
     }
 
 }
