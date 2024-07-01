@@ -56,8 +56,8 @@ class FicheProduit
     private Collection $idPhoto;
 
 
-    // #[ORM\OneToMany(mappedBy: 'ficheProduit', targetEntity: Photo::class, cascade: ['persist'])]
-    // private Collection $photos;
+     #[ORM\OneToMany(mappedBy: 'ficheProduit', targetEntity: Photo::class, cascade: ['persist'])]
+    private Collection $photos;
 
     
 
@@ -334,10 +334,15 @@ class FicheProduit
     
         return $this;
     }
-    
+
     public function getImageProduit(): ?string
     {
-        return $this->imageProduit;
+        // Retourne le nom de la première photo associée au produit, ou null s'il n'y en a pas
+        $firstPhoto = $this->photos->first();
+        if ($firstPhoto) {
+            return $firstPhoto->getImage();
+        }
+        return null;
     }
     public function getImagesProduit(): array
     {
